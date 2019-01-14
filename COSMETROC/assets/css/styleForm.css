@@ -1,0 +1,27 @@
+/* 
+    Created on : 21 déc. 2018, 10:51:06
+    Author     : capo
+*/
+body{
+    background-image: url("../img/based-texture-1142094_1920.jpg");
+}
+
+#hello {
+    margin-top: 10rem;
+    background-color: rgba(50, 50, 50, 0.5);
+    color: #efefef;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+    padding: 0;
+    padding: 5rem;
+
+}
+
+#button{
+    margin-top: 1rem;
+}
+
+.error{
+    color: red;
+}

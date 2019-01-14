@@ -1,0 +1,140 @@
+/* *****************************************HEADER******************************** */
+.headDiv{
+  background-color: black;
+  margin-bottom: 0px;
+  height: 13rem;
+}
+.Social{
+list-style-type: none;
+display: inline-block;
+}
+.sociallink{
+
+}
+/* ********************************NAVBAR *******************************************/
+.navbar{
+ 
+}
+.navbar-brand{
+  color: white;
+}
+.nav-link{
+  color: white;
+}
+.btn{
+float: right;
+margin-right: 1rem;
+}
+/* ***************SECTION**************************** */
+.parallax {
+    /* The image used */
+    background-image: url('../img/shooting-star-3601173_1920.jpg');
+
+    /* Set a specific height */
+      min-height: 40rem;
+
+      /* Create the parallax scrolling effect */
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+/* ************************ footer *********** recuperer sur bootsnip*/
+footer {
+    border-top: pink 3px solid;
+    padding-top: 30px;
+  width: 100%;
+  background-color: #111111;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1 !important;
+  position: relative;
+}
+.foot-sect {
+  width: 100%;
+  margin-top: 0px;
+/*  white-space: nowrap;*/
+}
+
+.foot-sect-current {
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  margin-top: 30px;
+  width: 100%;
+  white-space: nowrap;
+  border-left: double #a9a9a9 4px;
+  padding-bottom: 5px;
+}
+
+.foot-sect-current > .foot-link {
+  color: white;
+  border-bottom: solid 1px black;
+  display: block;
+  padding: 12px;
+  font-size: 14px;
+}
+.foot-sect-current > .foot-link:hover {
+  color: blue;
+  text-decoration: none;
+  border-bottom: none;
+}
+.foot-link {
+  color: grey;
+  text-decoration: none;
+  margin-right: 2px;
+  margin-left: 8px;
+  border-bottom: pink 1px solid;
+  display: block;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.foot-link:hover {
+  background-color: #efefef;
+  text-decoration: none;
+  color: black;
+}
+.foot-link-current {
+  color: #efefef;
+  text-decoration: none;
+  margin-right: 2px;
+  margin-left: 8px;
+  border-bottom: #ED2939 1px solid;
+  display: block;
+  padding: 10px;
+  font-size: 14px;
+}
+.foot-link-current:hover {
+  color: #efefef;
+  text-decoration: none;
+}
+.foot-link-current:active {
+  color: #efefef;
+  text-decoration: none;
+}
+.foot-subt {
+  font-weight: 600;
+  color: #efefef;
+  margin-left: 3px;
+}
+.foot-subt-current {
+  font-weight: 600;
+  color: red;
+}
+
+
+
+
+
+
