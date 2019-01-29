@@ -1,11 +1,11 @@
 <?php
 // appel du controller controller
-include_once('../Controller/controllerConnexion.php');
+include_once('Controller/controllerConnexion.php');
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Cosmetroc</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">

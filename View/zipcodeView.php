@@ -1,17 +1,17 @@
 <?php
 // appel du controller controllerZipcode
-include_once('../Controller/controllerZipcode.php');
+include_once('Controller/controllerZipcode.php');
 
 //permet qu'une fois mon formulaire complet et envoyé, d'être redirigé ver la page inscription
 if (!isset($errorsArray['zipCode']) && isset($_POST['sendButton'])) {
-    header('location:../View/inscriptionView.php'); //redirection vers la page inscription si le code postal est correct.
+    header('location:View/inscriptionView.php'); //redirection vers la page inscription si le code postal est correct.
 }
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Cosmetroc</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">

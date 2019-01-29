@@ -1,17 +1,20 @@
 <?php
-include('../View/connexionView.php');
-include('../View/zipcodeView.php');
+include('View/connexionView.php');
+include('View/zipcodeView.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
+        <title>Cosmétroc</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <!-- Material Design for Bootstrap fonts and icons -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+        <!-- Material Design for Bootstrap CSS -->
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
+        <!-- style -->
         <link rel="stylesheet" href="../assets/css/style1.css">
-        <title>Cosmétroc</title>
+
     </head>
     <body>
 
@@ -24,8 +27,8 @@ include('../View/zipcodeView.php');
                     <div class="col">
                         <!-- Button connexion modal -->
                         <!-- <a href="../View/zipcodeView.php"><button type="button" class="btn">Inscription</button></a> (bouton pour rediriger sur une autre page, a enlever par la suite-->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pageconnexion">Connexion</button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pageZipcode">Inscription</button>
+                        <button id="modalbutton" class="btn btn-raised btn-primary" data-toggle="modal" data-target="#pageconnexion">Connexion</button>
+                        <button id="modalbutton" class="btn btn-raised btn-primary" data-toggle="modal" data-target="#pageZipcode">Inscription</button>
                     </div>
                 </div>
             </div>
@@ -128,8 +131,10 @@ include('../View/zipcodeView.php');
                 </a>
             </div>
         </section>
+
         <section>
             <div class="parallax">
+
                 <!--bouton pr faire remonter la page à améliorer-->
                 <fieldset >
                     <button type="button" class="btn btn-danger bmd-btn-fab">
@@ -137,9 +142,19 @@ include('../View/zipcodeView.php');
                     </button>
                 </fieldset>
 
-               
-            </div>
+                <!--partie menu-->
+                <div class="btn-group">
+                    <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">Menu</i>
+                    </button>  
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex2">
+                        <a class="dropdown-item" href="#">Regular link</a>
+                        <a class="dropdown-item disabled" href="#">Disabled link</a>
+                        <a class="dropdown-item" href="#">Another link</a>
+                    </div>
+                </div>
 
+            </div>
         </section>
 
         <!--************************************************* FOOTER************************************************************************* -->
@@ -191,12 +206,12 @@ include('../View/zipcodeView.php');
             </div>
         </footer>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>-->
-        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+
         <script type="text/javascript" src="js/mdb.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"  crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" crossorigin="anonymous"></script>
+
         <script>$(document).ready(function () {//script pour material bootstrap
                 $('body').bootstrapMaterialDesign();
             });
