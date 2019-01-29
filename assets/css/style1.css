@@ -12,19 +12,21 @@ display: inline-block;
 
 }
 /* ********************************NAVBAR *******************************************/
-.navbar{
- 
+.bg-dark {
+   background-color: black !important;
 }
-.navbar-brand{
-  color: white;
-}
-.nav-link{
-  color: white;
-}
+
 .btn{
 float: right;
 margin-right: 1rem;
 }
+
+.nav-item::after{content:'';display:block;width:0px;height:2px;background:#fec400;transition: 0.2s;}
+.nav-item:hover::after{width:100%;}
+.navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show > .nav-link,.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{color:white;}
+.nav-link{padding:15px 5px;transition:0.2s;}
+.dropdown-item.active, .dropdown-item:active{color:#212529;}
+.dropdown-item:focus, .dropdown-item:hover{background:#fec400;}
 /* ***************SECTION**************************** */
 .parallax {
     /* The image used */
@@ -133,6 +135,28 @@ footer {
   color: red;
 }
 
+/*div socialLinks dans le footer*/
+#footer ul.social li{
+	padding: 5px 0;
+}
+#footer ul.social li a i {
+    margin-right: 5px;
+	font-size:25px;
+	-webkit-transition: .5s all ease;
+	-moz-transition: .5s all ease;
+	transition: .5s all ease;
+}
+#footer ul.social li:hover a i {
+	font-size:30px;
+	margin-top:-10px;
+}
+#footer ul.social li a,
+#footer ul.quick-links li a{
+	color:#ffffff;
+}
+#footer ul.social li a:hover{
+	color:#eeeeee;
+}
 
 
 

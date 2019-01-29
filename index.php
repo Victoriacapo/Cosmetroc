@@ -1,4 +1,4 @@
- <?php
+<?php
 include('../View/connexionView.php');
 include('../View/zipcodeView.php');
 ?>
@@ -8,11 +8,13 @@ include('../View/zipcodeView.php');
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
         <link rel="stylesheet" href="../assets/css/style1.css">
         <title>Cosmétroc</title>
     </head>
     <body>
-       
+
         <header>
             <div class="container-fluid headDiv">
                 <div class="row">
@@ -21,7 +23,7 @@ include('../View/zipcodeView.php');
                     </div>
                     <div class="col">
                         <!-- Button connexion modal -->
-<!-- <a href="../View/zipcodeView.php"><button type="button" class="btn">Inscription</button></a> (bouton pour rediriger sur une autre page, a enlever par la suite-->
+                        <!-- <a href="../View/zipcodeView.php"><button type="button" class="btn">Inscription</button></a> (bouton pour rediriger sur une autre page, a enlever par la suite-->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pageconnexion">Connexion</button>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pageZipcode">Inscription</button>
                     </div>
@@ -90,13 +92,13 @@ include('../View/zipcodeView.php');
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" />
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ok</button>
                     </form>
                 </div>
             </nav>
         </header>
-        
+
         <!-- ************************************************FIN HEADER ET NAV *************************************************************-->
         <section>
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -127,52 +129,76 @@ include('../View/zipcodeView.php');
             </div>
         </section>
         <section>
-            <div class="parallax"></div>
+            <div class="parallax">
+                <!--bouton pr faire remonter la page à améliorer-->
+                <fieldset >
+                    <button type="button" class="btn btn-danger bmd-btn-fab">
+                        <i class="material-icons">grade</i>
+                    </button>
+                </fieldset>
+
+               
+            </div>
 
         </section>
 
-
         <!--************************************************* FOOTER************************************************************************* -->
-        <footer>
-            <div class="row row-foot">
-                <div class="foot-sect col-12 col-lg-3 col-md-6 col-sm-12">
-                    <div class="foot-div">
-                        <h5 class="foot-subt">Acceuil</h5>
+        <footer id="footer">
+            <div class="container-fluid">
+                <div class="row row-foot">
+                    <div class="foot-sect col-12 col-lg-3 col-md-6 col-sm-12">
+                        <div class="foot-div">
+                            <h5 class="foot-subt">Acceuil</h5>
+                        </div>
+                        <a class="foot-link" href="index.php" title="footer_Home">Acceuil</a>
                     </div>
-                    <a class="foot-link" href="index.php" title="footer_Home">Acceuil</a>
-                </div>
-                <div class="foot-sect col-12 col-lg-3 col-md-6 col-sm-12">
-                    <div class="foot-div">
-                        <h5 class="foot-subt">Produits</h5>
+                    <div class="foot-sect col-12 col-lg-3 col-md-6 col-sm-12">
+                        <div class="foot-div">
+                            <h5 class="foot-subt">Produits</h5>
+                        </div>
+                        <a class="foot-link" href="" title="Mascara">Mascara</a>
+                        <a class="foot-link" href="" title="Vernis">Vernis</a>
+                        <a class="foot-link" href="" title="Parfum">Parfum </a>
+                        <a class="foot-link" href="" title="Soin du corps">Soin du corps</a>
                     </div>
-                    <a class="foot-link" href="" title="Mascara">Mascara</a>
-                    <a class="foot-link" href="" title="Vernis">Vernis</a>
-                    <a class="foot-link" href="" title="Parfum">Parfum </a>
-                    <a class="foot-link" href="" title="Soin du corps">Soin du corps</a>
-                </div>
-                <div class="foot-sect col-12 col-lg-3 col-md-6 col-sm-12">
-                    <div class="foot-div">
-                        <h5 class="foot-subt">About me</h5>
+                    <div class="foot-sect col-12 col-lg-3 col-md-6 col-sm-12">
+                        <div class="foot-div">
+                            <h5 class="foot-subt">About me</h5>
+                        </div>
+                        <a class="foot-link" href="about.php" title="footer_About">About</a>
+                        <a class="foot-link" href="pp.php" title="footer_Past_Projects">Past Projects</a>
+                        <a class="foot-link" href="blog.php" title="footer_Blog">Blog</a>
                     </div>
-                    <a class="foot-link" href="about.php" title="footer_About">About</a>
-                    <a class="foot-link" href="pp.php" title="footer_Past_Projects">Past Projects</a>
-                    <a class="foot-link" href="blog.php" title="footer_Blog">Blog</a>
+                    <div class="foot-sect col-12 col-lg-3 col-md-6 col-sm-12">
+                        <div class="foot-div">
+                            <h5 class="foot-subt">Other</h5>
+                        </div><!-- Contact Me -->
+                        <a class="foot-link" href="contact.php" title="footer_Contact">Contact Me</a>
+                        <a class="foot-link" href="indexfr.php" title="footer_French">Français</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-xs-12 col-sm-12 col-md-12 mt-12 mt-sm-5">
+                            <ul class="list-unstyled list-inline social">
+                                <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-facebook-f"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-instagram"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-google-plus"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="foot-sect col-12 col-lg-3 col-md-6 col-sm-12">
-                    <div class="foot-div">
-                        <h5 class="foot-subt">Other</h5>
-                    </div><!-- Contact Me -->
-                    <a class="foot-link" href="contact.php" title="footer_Contact">Contact Me</a>
-                    <a class="foot-link" href="indexfr.php" title="footer_French">Français</a>
-                </div>
-                <ul class="Social">
-                    <li><a class="sociallink">facebook</a></li>
-                    <li><a class="sociallink">twitter</a></li>
-                </ul>
             </div>
         </footer>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>-->
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+        <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"  crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" crossorigin="anonymous"></script>
+        <script>$(document).ready(function () {//script pour material bootstrap
+                $('body').bootstrapMaterialDesign();
+            });
+        </script>
 </html>
