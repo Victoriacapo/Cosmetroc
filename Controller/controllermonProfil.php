@@ -12,6 +12,12 @@ $regexzipcode = '/^766[0-9]{2}$/';
 $regexphonenumber='/(0|\\+33|0033)[1-9][0-9]{8}/';
 
 
+if (!array_key_exists('gender', $_POST) && isset($_POST['sendButton'])) { // recherche si la clé gender existe
+   $errorsArray1['gender'] = 'Veuillez choisir votre civilité';
+}
+if (isset($_POST['gender'])) { // recherche donnée input 
+    $gender = htmlspecialchars($_POST['gender']);
+}
 
 if (isset($_POST['lastname'])) { // recherche donnée input pseudo
     $lastname = htmlspecialchars($_POST['lastname']); // declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )

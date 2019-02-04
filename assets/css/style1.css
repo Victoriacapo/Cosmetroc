@@ -38,6 +38,15 @@ margin-right: 1rem;
 .dropdown-toggle::after{
     color: white;
 }
+.voila{
+    height: auto;
+    width: 800px;
+    background-color: whitesmoke;
+}
+#ulNav{
+    list-style: none;
+    border-right: solid 3px pink;
+}
 
 /* ***************SECTION**************************** */
 #carouselExampleIndicators{

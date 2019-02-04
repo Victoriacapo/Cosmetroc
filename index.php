@@ -12,9 +12,10 @@ include('View/zipcodeView.php');
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         <!-- Material Design for Bootstrap CSS -->
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" crossorigin="anonymous">
+        <!-- fontawesome --> 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous">
         <!-- style -->
         <link rel="stylesheet" href="../assets/css/style1.css">
-
     </head>
     <body>
 
@@ -47,40 +48,99 @@ include('View/zipcodeView.php');
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Maquillage
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-menu voila" aria-labelledby="navbarDropdown">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <a class="dropdown-item" href="#">Teint</a>
+                                        <ul id="ulNav">
+                                            <li>FDT</li>
+                                            <li>Poudre</li>
+                                            <li>Blush</li>
+                                            <li>Anticerne/Correcteur</li>
+                                            <li>Illuminateur de teint</li>
+                                            <li>Base de teint</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <a class="dropdown-item" href="#">Yeux</a>
+                                        <ul id="ulNav">
+                                            <li>Mascara</li>
+                                            <li>Eyeliner</li>
+                                            <li>Ombre à paupière</li>
+                                            <li>crayon</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <a class="dropdown-item" href="#">Lèvres</a>
+                                        <ul id="ulNav">
+                                            <li>Rouge à lèvre</li>
+                                            <li>Gloss</li>
+                                            <li>Crayon à lèvre</li>
+                                            <li>Baume à lèvres</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Soins du corps
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-menu voila" aria-labelledby="navbarDropdown">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a class="dropdown-item" href="#">Crème/Huile</a>
+                                        <a class="dropdown-item" href="#">Masque gommage</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a class="dropdown-item" href="#">Hygiène/Bain</a>
+                                        <ul id="ulNav">
+                                            <li>Déo</li>
+                                            <li>Savon</li>
+                                            <li>Bain/Douche</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Soins du visage
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
+                            <div class="dropdown-menu voila" aria-labelledby="navbarDropdown">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a class="dropdown-item" href="#">Nettoyant/Demaquillant</a>
+                                        <ul id="ulNav">
+                                            <li>Lotion/Tonique</li>
+                                            <li>Lingette</li>
+                                        </ul>
+
+                                        <a class="dropdown-item" href="#">Crème</a>
+                                        <ul id="ulNav">
+                                            <li>Soin Jour/Nuit</li>
+                                            <li>Serum</li>
+                                            <li>Contour yeux</li>
+                                            <li>Anti-âge</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6">
+                                        <a class="dropdown-item" href="#">Masque/Gommage</a>
+                                        <ul id="ulNav">
+                                            <li>Masque</li>
+                                            <li>Gommage</li>
+                                        </ul>
+                                    </div>
+                                </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Soins des ongles
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Vernis</a>
+                                <a class="dropdown-item" href="#">Base/soin</a>
+                                <a class="dropdown-item" href="#">Décoration/Gel/faux ongle</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -88,9 +148,19 @@ include('View/zipcodeView.php');
                                 Soins cheveux
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Shampooing</a>
+                                <a class="dropdown-item" href="#">A-P shampooing</a>
+                                <a class="dropdown-item" href="#">Soin/Masque</a>
+                                <a class="dropdown-item" href="#">Produit coiffant</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Parfum
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Femme</a>
+                                <a class="dropdown-item" href="#">Homme</a>
                             </div>
                         </li>
                     </ul>
@@ -142,18 +212,7 @@ include('View/zipcodeView.php');
                     </button>
                 </fieldset>
 
-                <!--partie menu-->
-                <div class="btn-group">
-                    <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons">Menu</i>
-                    </button>  
-                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex2">
-                        <a class="dropdown-item" href="#">Regular link</a>
-                        <a class="dropdown-item disabled" href="#">Disabled link</a>
-                        <a class="dropdown-item" href="#">Another link</a>
-                    </div>
-                </div>
-
+                
             </div>
         </section>
 

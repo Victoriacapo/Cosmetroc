@@ -7,7 +7,6 @@ if (!isset($errorsArray['zipCode']) && isset($_POST['sendButton'])) {
     header('location:View/inscriptionView.php'); //redirection vers la page inscription si le code postal est correct.
 }
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,7 +34,7 @@ if (!isset($errorsArray['zipCode']) && isset($_POST['sendButton'])) {
                             <!--Formulaire POUR CODE POSTAL-->
                             <form name="inscription" action="index.php" method="POST" novalidate>
                                 <h1>Vérification adresse</h1>
-                                <label for="zipCode"> Veuillez entrer votre code postal </label>
+                                <label for="zipCode">Veuillez entrer votre code postal </label>
                                     <input type="text" placeholder="34000" name="zipCode" id="zipCode" value="<?= isset($_POST['zipCode']) ? $zipCode : ''; ?>"/><!--ternaire pr que la valeur saisie ne soit pas refresh -->
                                     <span class="error"><?= isset($errorsArray['zipCode']) ? $errorsArray['zipCode'] : ''; ?></span>
                                 <input type="submit" name="sendButton" value="Envoyer" />
@@ -52,8 +51,6 @@ if (!isset($errorsArray['zipCode']) && isset($_POST['sendButton'])) {
             </div>
 
         </div>
-
-
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

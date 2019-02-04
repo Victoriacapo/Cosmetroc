@@ -15,6 +15,13 @@ include_once('controllermonProfil.php');
         <form name="Profil" action="" method="POST">
 
             <h1>Informations complémentaires</h1>
+            <div><label>Civilité: </label></div>
+            <select name="gender"> 
+                <option  value="" selected disabled></option>
+                <option  value="MR" <?= (isset($_POST['gender']) && $_POST['gender'] == 'MR') ? 'selected' : ''; //ternaire qui permet de garder les valeurs inscrites à l'envoi             ?>>MR</option>
+                <option  value="MME" <?= (isset($_POST['gender']) && $_POST['gender'] == 'MME') ? 'selected' : ''//ternaire qui permet de garder les valeurs inscrites à l'envoi;              ?>>MME</option>
+            </select>
+            <span class="error"><?= isset($errorsArray2['gender']) ? $errorsArray2['gender'] : ''; ?></span>
 
             <p><label for="lastname"> Veuillez entrer votre nom</label>
                 <input type="text" placeholder="Doe" name="lastname" id="lastname" value="<?= isset($_POST['lastname']) ? $lastname : ''; ?>" />
@@ -40,13 +47,10 @@ include_once('controllermonProfil.php');
                 <input type="tel" placeholder="0660 66 66 66" name="phonenumber" id="phonenumber" value="<?= isset($_POST['phonenumber']) ? $phonenumber : ''; ?>" />
                 <span class="error"><?= isset($errorsArray2['phonenumber']) ? $errorsArray2['phonenumber'] : ''; ?></span></p>
 
-            <input type="submit" value="envoyer" /> 
+             <div><input id="button" type="submit" name="sendButton" value="Envoyer" /></div>
 
         </form>
-
-        <?php
-// put your code here
-        ?>
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>

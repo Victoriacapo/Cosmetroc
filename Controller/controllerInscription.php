@@ -1,4 +1,5 @@
 <?php
+
 // // Verification pour Deuxième formulaire.
 // on déclare un tableau errorsArray qui contiendra les messages d'erreurs
 $errorsArray1 = [];
@@ -9,7 +10,7 @@ $regexPwd = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{6,}$/';
 $regexEmail = '/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/';
 
 if (!array_key_exists('gender', $_POST) && isset($_POST['sendButton'])) { // recherche si la clé gender existe
-   $errorsArray1['gender'] = 'Veuillez choisir votre civilité';
+    $errorsArray1['gender'] = 'Veuillez choisir votre civilité';
 }
 
 if (isset($_POST['gender'])) { // recherche donnée input 
