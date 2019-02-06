@@ -65,18 +65,21 @@ margin-right: 1rem;
       background-repeat: no-repeat;
       background-size: cover;
 }
+/*partie espacetroc*/
 /*partie menu*/
 .menunav{
     background-color: black;
      border-top: pink 3px solid;
      border-bottom: solid 3px #00876e;
+     color: white;
 }
 .menunavVertical{
      background-color: black;
      width: 150px;
      border: pink 3px solid;
 }
-/* ************************ footer *********** recuperer sur bootsnip*/
+
+/* ************************ footer *********** */
 footer {
     border-top: pink 3px solid;
     padding-top: 30px;
@@ -91,7 +94,6 @@ footer {
 .foot-sect {
   width: 100%;
   margin-top: 0px;
-/*  white-space: nowrap;*/
 }
 
 .foot-sect-current {

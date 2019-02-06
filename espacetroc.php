@@ -25,10 +25,11 @@ include('View/inscriptionView.php');
       
                 <div class="menunav">
                     <nav class="nav nav-pills nav-fill">
-                        <a class="nav-item nav-link active" href="#">Active</a>
-                        <a class="nav-item nav-link" href="#">Link</a>
+                        <a class="nav-item nav-link" onclick="(window.location = '../index.php')">Acceuil</a>
+                        <a class="nav-item nav-link" onclick="(window.location = 'View/monprofilView.php')">Profil</a>
                         <a class="nav-item nav-link" href="#">Link</a>
                         <a class="nav-item nav-link" href="#">Disabled</a>
+                         <!--<button class="homeButton" onclick="(window.location = 'view/listerendez-vous.php')">Liste RDV</button>-->
                     </nav>
                 </div>
 
@@ -49,11 +50,11 @@ include('View/inscriptionView.php');
 
 
 
-
-
-
-
-
+ <!--************************************************* FOOTER************************************************************************* -->
+       <?php
+            require('View/footer.php');
+            ?>
+ <!--************************************************* /FOOTER************************************************************************* -->
 
 
         <script type="text/javascript" src="js/mdb.min.js"></script>

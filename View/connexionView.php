@@ -8,7 +8,7 @@ include_once('Controller/controllerConnexion.php');
         <!-- style -->
         <link rel="stylesheet" href="../assets/css/styleForm.css">
          
-        <title>Connexion</title>
+        <title></title>
     </head>
     <body>
         <div class="container">
