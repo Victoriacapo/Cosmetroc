@@ -1,12 +1,11 @@
 <?php
 include('View/connexionView.php');
-include('View/zipcodeView.php');
+include('View/inscriptionView.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <title>Cosmétroc</title>
-        <meta charset="utf-8">
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Material Design for Bootstrap fonts and icons -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
@@ -16,161 +15,15 @@ include('View/zipcodeView.php');
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous">
         <!-- style -->
         <link rel="stylesheet" href="../assets/css/style1.css">
+        <title>Cosmétroc</title>
     </head>
     <body>
 
-        <header>
-            <div class="container-fluid headDiv">
-                <div class="row">
-                    <div class="col">
-                        <a href="#"><img class="img-fluid" id="logo" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></a>
-                    </div>
-                    <div class="col">
-                        <!-- Button connexion modal -->
-                        <!-- <a href="../View/zipcodeView.php"><button type="button" class="btn">Inscription</button></a> (bouton pour rediriger sur une autre page, a enlever par la suite-->
-                        <button id="modalbutton" class="btn btn-raised btn-primary" data-toggle="modal" data-target="#pageconnexion">Connexion</button>
-                        <button id="modalbutton" class="btn btn-raised btn-primary" data-toggle="modal" data-target="#pageZipcode">Inscription</button>
-                    </div>
-                </div>
-            </div>
-            <!-- *********************************************NAVBAR******************************************************************* -->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Acceuil<span class="sr-only"></span></a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Maquillage
-                            </a>
-                            <div class="dropdown-menu voila" aria-labelledby="navbarDropdown">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <a class="dropdown-item" href="#">Teint</a>
-                                        <ul id="ulNav">
-                                            <li>FDT</li>
-                                            <li>Poudre</li>
-                                            <li>Blush</li>
-                                            <li>Anticerne/Correcteur</li>
-                                            <li>Illuminateur de teint</li>
-                                            <li>Base de teint</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-4">
-                                        <a class="dropdown-item" href="#">Yeux</a>
-                                        <ul id="ulNav">
-                                            <li>Mascara</li>
-                                            <li>Eyeliner</li>
-                                            <li>Ombre à paupière</li>
-                                            <li>crayon</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-4">
-                                        <a class="dropdown-item" href="#">Lèvres</a>
-                                        <ul id="ulNav">
-                                            <li>Rouge à lèvre</li>
-                                            <li>Gloss</li>
-                                            <li>Crayon à lèvre</li>
-                                            <li>Baume à lèvres</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Soins du corps
-                            </a>
-                            <div class="dropdown-menu voila" aria-labelledby="navbarDropdown">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <a class="dropdown-item" href="#">Crème/Huile</a>
-                                        <a class="dropdown-item" href="#">Masque gommage</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a class="dropdown-item" href="#">Hygiène/Bain</a>
-                                        <ul id="ulNav">
-                                            <li>Déo</li>
-                                            <li>Savon</li>
-                                            <li>Bain/Douche</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Soins du visage
-                            </a>
-                            <div class="dropdown-menu voila" aria-labelledby="navbarDropdown">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <a class="dropdown-item" href="#">Nettoyant/Demaquillant</a>
-                                        <ul id="ulNav">
-                                            <li>Lotion/Tonique</li>
-                                            <li>Lingette</li>
-                                        </ul>
-
-                                        <a class="dropdown-item" href="#">Crème</a>
-                                        <ul id="ulNav">
-                                            <li>Soin Jour/Nuit</li>
-                                            <li>Serum</li>
-                                            <li>Contour yeux</li>
-                                            <li>Anti-âge</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-6">
-                                        <a class="dropdown-item" href="#">Masque/Gommage</a>
-                                        <ul id="ulNav">
-                                            <li>Masque</li>
-                                            <li>Gommage</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Soins des ongles
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Vernis</a>
-                                <a class="dropdown-item" href="#">Base/soin</a>
-                                <a class="dropdown-item" href="#">Décoration/Gel/faux ongle</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Soins cheveux
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Shampooing</a>
-                                <a class="dropdown-item" href="#">A-P shampooing</a>
-                                <a class="dropdown-item" href="#">Soin/Masque</a>
-                                <a class="dropdown-item" href="#">Produit coiffant</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Parfum
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Femme</a>
-                                <a class="dropdown-item" href="#">Homme</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" />
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ok</button>
-                    </form>
-                </div>
-            </nav>
-        </header>
+      
+            <?php
+            require('View/navbar.php');
+            ?>
+      
 
         <!-- ************************************************FIN HEADER ET NAV *************************************************************-->
         <section>
@@ -200,9 +53,9 @@ include('View/zipcodeView.php');
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-        </section>
 
-        <section>
+
+
             <div class="parallax">
 
                 <!--bouton pr faire remonter la page à améliorer-->
@@ -211,8 +64,16 @@ include('View/zipcodeView.php');
                         <i class="material-icons">grade</i>
                     </button>
                 </fieldset>
-
-                
+                <!--fin partie menu gauche-->
+                <div class="menunavVertical">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                    </div>
+                </div>
+                <!--fin partie menu gauche-->
             </div>
         </section>
 
@@ -270,9 +131,7 @@ include('View/zipcodeView.php');
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"  crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" crossorigin="anonymous"></script>
-
-        <script>$(document).ready(function () {//script pour material bootstrap
+        <script>$(document).ready(function () {
                 $('body').bootstrapMaterialDesign();
-            });
-        </script>
+            });</script>
 </html>

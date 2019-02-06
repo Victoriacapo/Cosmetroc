@@ -65,8 +65,17 @@ margin-right: 1rem;
       background-repeat: no-repeat;
       background-size: cover;
 }
-
-
+/*partie menu*/
+.menunav{
+    background-color: black;
+     border-top: pink 3px solid;
+     border-bottom: solid 3px #00876e;
+}
+.menunavVertical{
+     background-color: black;
+     width: 150px;
+     border: pink 3px solid;
+}
 /* ************************ footer *********** recuperer sur bootsnip*/
 footer {
     border-top: pink 3px solid;
@@ -134,10 +143,7 @@ footer {
   padding: 10px;
   font-size: 14px;
 }
-.foot-link-current:hover {
-  color: #efefef;
-  text-decoration: none;
-}
+
 .foot-link-current:active {
   color: #efefef;
   text-decoration: none;
@@ -146,10 +152,6 @@ footer {
   font-weight: 600;
   color: #efefef;
   margin-left: 3px;
-}
-.foot-subt-current {
-  font-weight: 600;
-  color: red;
 }
 
 /*div socialLinks dans le footer*/

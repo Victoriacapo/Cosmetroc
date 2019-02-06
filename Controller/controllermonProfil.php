@@ -18,7 +18,6 @@ if (!array_key_exists('gender', $_POST) && isset($_POST['sendButton'])) { // rec
 if (isset($_POST['gender'])) { // recherche donnée input 
     $gender = htmlspecialchars($_POST['gender']);
 }
-
 if (isset($_POST['lastname'])) { // recherche donnée input pseudo
     $lastname = htmlspecialchars($_POST['lastname']); // declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
     // on test si regex n'est pas bonne

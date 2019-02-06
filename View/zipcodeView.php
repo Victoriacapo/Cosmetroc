@@ -32,7 +32,7 @@ if (!isset($errorsArray['zipCode']) && isset($_POST['sendButton'])) {
                         <!-- Modal body -->
                         <div class="modal-body">
                             <!--Formulaire POUR CODE POSTAL-->
-                            <form name="inscription" action="index.php" method="POST" novalidate>
+                            <form name="ok" action="index.php" method="POST" novalidate>
                                 <h1>Vérification adresse</h1>
                                 <label for="zipCode">Veuillez entrer votre code postal </label>
                                     <input type="text" placeholder="34000" name="zipCode" id="zipCode" value="<?= isset($_POST['zipCode']) ? $zipCode : ''; ?>"/><!--ternaire pr que la valeur saisie ne soit pas refresh -->
