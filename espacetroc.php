@@ -18,18 +18,18 @@ include('View/inscriptionView.php');
         <title>Espace personnel</title>
     </head>
     <body>
-      
+              <!-- ************************************************HEADER ET NAV *************************************************************-->
         <?php
             require('View/navbar.php');
             ?>
-      
+              <!-- ************************************************/FIN HEADER ET NAV *************************************************************-->
+
                 <div class="menunav">
                     <nav class="nav nav-pills nav-fill">
                         <a class="nav-item nav-link" onclick="(window.location = '../index.php')">Acceuil</a>
                         <a class="nav-item nav-link" onclick="(window.location = 'View/monprofilView.php')">Profil</a>
                         <a class="nav-item nav-link" href="#">Link</a>
                         <a class="nav-item nav-link" href="#">Disabled</a>
-                         <!--<button class="homeButton" onclick="(window.location = 'view/listerendez-vous.php')">Liste RDV</button>-->
                     </nav>
                 </div>
 
@@ -55,7 +55,6 @@ include('View/inscriptionView.php');
             require('View/footer.php');
             ?>
  <!--************************************************* /FOOTER************************************************************************* -->
-
 
         <script type="text/javascript" src="js/mdb.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

@@ -46,23 +46,23 @@ if (isset($_POST['submit']) && (count($errorsArray) == 0)) {
                                         <option  value="MR" <?= (isset($_POST['gender']) && $_POST['gender'] == 'MR') ? 'selected' : ''; //ternaire qui permet de garder les valeurs inscrites à l'envoi                                         ?>>MR</option>
                                         <option  value="MME" <?= (isset($_POST['gender']) && $_POST['gender'] == 'MME') ? 'selected' : ''; //ternaire qui permet de garder les valeurs inscrites à l'envoi;                                          ?>>MME</option>
                                     </select>
-                                    <span class="error"><?= isset($errorsArray1['gender']) ? $errorsArray1['gender'] : ''; ?></span>
+                                    <span class="error"><?= isset($errorsArray['gender']) ? $errorsArray['gender'] : ''; ?></span>
                                 </div>
                                 <div class="form-group"> 
                                     <label for="pseudo">Pseudo: </label>
                                     <input type="text" name="pseudo" class="form-control" value="<?= isset($_POST['pseudo']) ? $pseudo : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
-                                    <span class="error"><?= isset($errorsArray1['pseudo']) ? $errorsArray1['pseudo'] : ''; ?></span>
+                                    <span class="error"><?= isset($errorsArray['pseudo']) ? $errorsArray['pseudo'] : ''; ?></span>
                                 </div>
                                 <div class="form-group"> 
                                     <label for="password">Mot de passe: (6 caractères minimum, comprenant 1 majuscule et 1 miniscule)</label>
                                     <!--<span class="bmd-help">(6 caractères minimum, comprenant 1 majuscule et 1 miniscule)</span>-->
                                     <input type="password" name="password" class="form-control" value="<?= isset($_POST['password']) ? $password : ''; ?>"/>
-                                    <span class="error"><?= isset($errorsArray1['password']) ? $errorsArray1['password'] : ''; ?></span>
+                                    <span class="error"><?= isset($errorsArray['password']) ? $errorsArray['password'] : ''; ?></span>
                                 </div>
                                 <div class="form-group"> 
                                     <label for="email" class="bmd-label-floating">Email: </label>
                                     <input type="email" name="email" class="form-control" value="<?= isset($_POST['email']) ? $email : ''; ?>"/>
-                                    <span class="error"><?= isset($errorsArray1['email']) ? $errorsArray1['email'] : ''; ?></span>
+                                    <span class="error"><?= isset($errorsArray['email']) ? $errorsArray['email'] : ''; ?></span>
                                 </div>
 
                                 <div id="sendButton"><input type="submit" class="btn btn-raised btn-primary"  name="sendButton" value="Envoyer" /></div>

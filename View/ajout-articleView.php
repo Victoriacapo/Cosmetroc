@@ -15,18 +15,84 @@
     </head>
     <body>
 
-        <form>
-            <div class="form-group">
-                <label for="formGroupExampleInput">Image du produit à troqué</label>
-                <input type="file" class="form-control" id="formGroupExampleInput">
-            </div>
-        </form>
+        <div class="container-fluid">
+            <form>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Image du produit à troqué</label>
+                    <input type="file" class="form-control">
+                </div>
+            </form>
+            <div class="row">
+                <div class="form-group col-lg-4 col-sm-6"> 
+                    <label>Catégorie: </label>
+                    <select name="category" class="form-control"> 
+                        <?php
+                        foreach ($show as $patient) {
+                            ?>
+                            <option  value="" selected disabled></option>
+                            <option  value="dyed" <?= (isset($_POST['category']) && $_POST['category'] == 'dyed') ? 'selected' : ''; ?>>Teint</option> <!--ternaire qui permet de garder les valeurs inscrites à l'envoi -->
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <span class="error"><?= isset($errorsArray['category']) ? $errorsArray['category'] : ''; ?></span>
+                </div>
 
+                <div class="form-group col-lg-4 col-sm-6"> 
+                    <label>Sous-Catégorie: </label>
+                    <select name="sbcategory" class="form-control"> 
+                        <?php
+                        foreach ($show as $patient) {
+                            ?>
+                            <option  value="" selected disabled></option>
+                            <option  value="dyed" <?= (isset($_POST['category']) && $_POST['category'] == 'dyed') ? 'selected' : ''; ?>>Teint</option> <!--ternaire qui permet de garder les valeurs inscrites à l'envoi -->
+                            <option  value="eyes" <?= (isset($_POST['category']) && $_POST['category'] == 'eyes') ? 'selected' : ''; ?>>Yeux</option>
+                            <option  value="lips" <?= (isset($_POST['category']) && $_POST['category'] == 'lips') ? 'selected' : ''; ?>>Lèvre</option>
+                            <option  value="Cleansing" <?= (isset($_POST['category']) && $_POST['category'] == 'Cleansing') ? 'selected' : ''; ?>>Nettoyant/Démaquillant</option>
+                            <option  value="FaceCream" <?= (isset($_POST['category']) && $_POST['category'] == 'FaceCream') ? 'selected' : ''; ?>>Crème</option>
+                            <option  value="scrub" <?= (isset($_POST['category']) && $_POST['category'] == 'scrub') ? 'selected' : ''; ?>>Masque/Gommage</option>
+                            <option  value="scrub" <?= (isset($_POST['category']) && $_POST['category'] == 'scrub') ? 'selected' : ''; ?>>Masque/Gommage</option>
+                            <option  value="scrub" <?= (isset($_POST['category']) && $_POST['category'] == 'scrub') ? 'selected' : ''; ?>>Masque/Gommage</option>
+                            <option  value="FDT" <?= (isset($_POST['sbcategory']) && $_POST['sbcategory'] == 'FDT') ? 'selected' : ''; ?>>Fond de Teint</option> <!--ternaire qui permet de garder les valeurs inscrites à l'envoi -->
+                            <option  value="powder" <?= (isset($_POST['sbcategory']) && $_POST['sbcategory'] == 'powder') ? 'selected' : ''; ?>>Poudre</option>
+                            <option  value="blush" <?= (isset($_POST['sbcategory']) && $_POST['sbcategory'] == 'blush') ? 'selected' : ''; ?>>Blush</option>
+                            <option  value="concealer" <?= (isset($_POST['sbcategory']) && $_POST['sbcategory'] == 'concealer') ? 'selected' : ''; ?>>Anticerne</option>
+                            <option  value="highlighter" <?= (isset($_POST['sbcategory']) && $_POST['sbcategory'] == 'highlighter') ? 'selected' : ''; ?>>Illuminateur</option>
+                            <option  value="foundation" <?= (isset($_POST['sbcategory']) && $_POST['sbcategory'] == 'foundation') ? 'selected' : ''; ?>>Base de Teint</option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <span class="error"><?= isset($errorsArray['sbcategory']) ? $errorsArray['sbcategory'] : ''; ?></span>
+                </div>
 
+                <div class="form-group col-lg-4 col-sm-6"> 
+                    <label for="nameproduct">Nom du produit: </label>
+                    <input type="text" name="nameproduct" class="form-control" value="<?= isset($_POST['nameproduct']) ? $nameproduct : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
+                    <span class="error"><?= isset($errorsArray['nameproduct']) ? $errorsArray['nameproduct'] : ''; ?></span>
+                </div>
 
+                <div class="form-group col-lg-4 col-sm-6"> 
+                    <label for="brand">Marque: </label>
+                    <input type="text" name="brand" class="form-control" value="<?= isset($_POST['brand']) ? $brand : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
+                    <span class="error"><?= isset($errorsArray['brand']) ? $errorsArray['brand'] : ''; ?></span>
+                </div>
 
+                <div class="form-group col-lg-4 col-sm-6"> 
+                    <label>Quantité: </label>
+                    <select name="quantity" class="form-control"> 
+                        <option  value="" selected disabled></option>
+                        <option  value="1" <?= (isset($_POST['quantity']) && $_POST['quantity'] == '1') ? 'selected' : ''; ?>>1</option> <!--ternaire qui permet de garder les valeurs inscrites à l'envoi -->
+                        <option  value="2" <?= (isset($_POST['quantity']) && $_POST['quantity'] == '2') ? 'selected' : ''; ?>>2</option>
+                        <option  value="3" <?= (isset($_POST['quantity']) && $_POST['quantity'] == '3') ? 'selected' : ''; ?>>3</option>
+                        <option  value="4" <?= (isset($_POST['quantity']) && $_POST['quantity'] == '4') ? 'selected' : ''; ?>>4</option>
+                        <option  value="5" <?= (isset($_POST['quantity']) && $_POST['quantity'] == '5') ? 'selected' : ''; ?>>5</option>
+                    </select>
+                    <span class="error"><?= isset($errorsArray['quantity']) ? $errorsArray['quantity'] : ''; ?></span>
+                </div>
 
-
+            </div> <!--fin div row -->
+        </div><!--fin div container -->
 
 
 

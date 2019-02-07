@@ -19,13 +19,11 @@ include('View/inscriptionView.php');
     </head>
     <body>
 
-      
+           <!-- ************************************************ HEADER ET NAV *************************************************************-->
             <?php
             require('View/navbar.php');
             ?>
-      
-
-        <!-- ************************************************FIN HEADER ET NAV *************************************************************-->
+          <!-- ************************************************/HEADER ET NAV *************************************************************-->
         <section>
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -64,7 +62,7 @@ include('View/inscriptionView.php');
                         <i class="material-icons">grade</i>
                     </button>
                 </fieldset>
-                <!--fin partie menu gauche-->
+                <!--partie menu gauche-->
                 <div class="menunavVertical">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
@@ -73,7 +71,7 @@ include('View/inscriptionView.php');
                         <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
                     </div>
                 </div>
-                <!--fin partie menu gauche-->
+                <!--/partie menu gauche-->
             </div>
         </section>
 
@@ -81,7 +79,7 @@ include('View/inscriptionView.php');
        <?php
             require('View/footer.php');
             ?>
- <!--************************************************* /FOOTER************************************************************************* -->
+        <!--************************************************* /FOOTER************************************************************************ -->
         <script type="text/javascript" src="js/mdb.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"  crossorigin="anonymous"></script>
