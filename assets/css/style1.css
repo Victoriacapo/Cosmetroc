@@ -1,24 +1,24 @@
 /* *****************************************HEADER******************************** */
 .headDiv{
-  background-color: black;
-  margin-bottom: -10px;
-  height: 13rem;
+    background-color: black;
+    margin-bottom: -10px;
+    height: 13rem;
 }
-#modalbutton{
+#buttonForm{
     margin-top: 20px;
 }
 
 /* ********************************NAVBAR *******************************************/
 .bg-dark {
-   background-color: black !important;
-     border-top: solid 3px pink;  
-     border-bottom: solid 3px #00876e;  
-     padding-bottom: 10px;
+    background-color: black !important;
+    border-top: solid 3px pink;  
+    border-bottom: solid 3px #00876e;  
+    padding-bottom: 10px;
 }
 
 .btn{
-float: right;
-margin-right: 1rem;
+    float: right;
+    margin-right: 1rem;
 }
 .nav-item::after{
     content:'';
@@ -38,7 +38,7 @@ margin-right: 1rem;
 .dropdown-toggle::after{
     color: white;
 }
-.voila{
+.listNav{
     height: auto;
     width: 800px;
     background-color: whitesmoke;
@@ -57,127 +57,133 @@ margin-right: 1rem;
     background-image: url('../img/shooting-star-3601173_1920.jpg');
 
     /* Set a specific height */
-      min-height: 40rem;
+    min-height: 40rem;
 
-      /* Create the parallax scrolling effect */
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 /*partie espacetroc*/
 /*partie menu*/
 .menunav{
     background-color: black;
-     border-top: pink 3px solid;
-     border-bottom: solid 3px #00876e;
-     color: white;
+    border-top: pink 3px solid;
+    border-bottom: solid 3px #00876e;
+    color: white;
 }
 .menunavVertical{
-     background-color: black;
-     width: 150px;
-     border: pink 3px solid;
+    background-color: black;
+    width: 150px;
+    border: pink 3px solid;
 }
 
 /* ************************ footer *********** */
 footer {
     border-top: pink 3px solid;
     padding-top: 30px;
-  width: 100%;
-  background-color: #111111;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1 !important;
-  position: relative;
+    width: 100%;
+    background-color: #111111;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1 !important;
+    position: relative;
 }
 .foot-sect {
-  width: 100%;
-  margin-top: 0px;
+    width: 100%;
+    margin-top: 0px;
 }
 
 .foot-sect-current {
-  padding-right: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
-  margin-top: 30px;
-  width: 100%;
-  white-space: nowrap;
-  border-left: double #a9a9a9 4px;
-  padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-top: 30px;
+    width: 100%;
+    white-space: nowrap;
+    border-left: double #a9a9a9 4px;
+    padding-bottom: 5px;
 }
 
 .foot-sect-current > .foot-link {
-  color: white;
-  border-bottom: solid 1px black;
-  display: block;
-  padding: 12px;
-  font-size: 14px;
+    color: white;
+    border-bottom: solid 1px black;
+    display: block;
+    padding: 12px;
+    font-size: 14px;
 }
 .foot-sect-current > .foot-link:hover {
-  color: blue;
-  text-decoration: none;
-  border-bottom: none;
+    color: blue;
+    text-decoration: none;
+    border-bottom: none;
 }
 .foot-link {
-  color: #00876e;
-  text-decoration: none;
-  margin-right: 2px;
-  margin-left: 8px;
-  border-bottom: pink 1px solid;
-  display: block;
-  padding: 10px;
-  font-size: 14px;
+    color: #00876e;
+    text-decoration: none;
+    margin-right: 2px;
+    margin-left: 8px;
+    border-bottom: pink 1px solid;
+    display: block;
+    padding: 10px;
+    font-size: 14px;
 }
 
 .foot-link:hover {
-  background-color: #efefef;
-  text-decoration: none;
-  color: black;
+    background-color: #efefef;
+    text-decoration: none;
+    color: black;
 }
 .foot-link-current {
-  color: #efefef;
-  text-decoration: none;
-  margin-right: 2px;
-  margin-left: 8px;
-  border-bottom: #ED2939 1px solid;
-  display: block;
-  padding: 10px;
-  font-size: 14px;
+    color: #efefef;
+    text-decoration: none;
+    margin-right: 2px;
+    margin-left: 8px;
+    border-bottom: #ED2939 1px solid;
+    display: block;
+    padding: 10px;
+    font-size: 14px;
 }
 
 .foot-link-current:active {
-  color: #efefef;
-  text-decoration: none;
+    color: #efefef;
+    text-decoration: none;
 }
 .foot-subt {
-  font-weight: 600;
-  color: #efefef;
-  margin-left: 3px;
+    font-weight: 600;
+    color: #efefef;
+    margin-left: 3px;
 }
 
 /*div socialLinks dans le footer*/
 #footer ul.social li{
-	padding: 5px 0;
+    padding: 5px 0;
 }
 #footer ul.social li a i {
     margin-right: 5px;
-	font-size:25px;
-	-webkit-transition: .5s all ease;
-	-moz-transition: .5s all ease;
-	transition: .5s all ease;
+    font-size:25px;
+    -webkit-transition: .5s all ease;
+    -moz-transition: .5s all ease;
+    transition: .5s all ease;
 }
 #footer ul.social li:hover a i {
-	font-size:30px;
-	margin-top:-10px;
+    font-size:30px;
+    margin-top:-10px;
 }
 #footer ul.social li a,
 #footer ul.quick-links li a{
-	color:#ffffff;
+    color:#ffffff;
 }
-#footer ul.social li a:hover{
-    /*si je veux rajouter une couleur au hover ds sociallinks ou effacer apres*/
+
+/*partie sociallist*/
+#social {
+    text-align: center;
+    margin: auto;
+    width: 350px;
+    margin-top: 45px;
 }
+
 
 
 

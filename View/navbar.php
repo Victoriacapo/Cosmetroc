@@ -8,9 +8,8 @@
             </div>
             <div class="col">
                 <!-- Button connexion modal -->
-                <!-- <a href="../View/zipcodeView.php"><button type="button" class="btn">Inscription</button></a> (bouton pour rediriger sur une autre page, a enlever par la suite-->
-                <button id="modalbutton" class="btn btn-raised btn-primary" data-toggle="modal" data-target="#pageconnexion">Connexion</button>
-                <button id="modalbutton" class="btn btn-raised btn-primary" data-toggle="modal" data-target="#pageInscription">Inscription</button>
+                <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'View/connexionView.php')">Connexion</button>
+                <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'View/inscriptionView.php')">Inscription</button>
             </div>
         </div>
     </div>
@@ -28,7 +27,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Maquillage
                     </a>
-                    <div class="dropdown-menu voila" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu listNav" aria-labelledby="navbarDropdown">
                         <div class="row">
                             <div class="col-4">
                                 <a class="dropdown-item" href="#">Teint</a>
@@ -66,7 +65,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Soins du corps
                     </a>
-                    <div class="dropdown-menu voila" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu listNav" aria-labelledby="navbarDropdown">
                         <div class="row">
                             <div class="col-6">
                                 <a class="dropdown-item" href="#">Crème/Huile</a>
@@ -87,7 +86,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Soins du visage
                     </a>
-                    <div class="dropdown-menu voila" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu listNav" aria-labelledby="navbarDropdown">
                         <div class="row">
                             <div class="col-6">
                                 <a class="dropdown-item" href="#">Nettoyant/Demaquillant</a>

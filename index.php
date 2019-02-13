@@ -1,7 +1,3 @@
-<?php
-include('View/connexionView.php');
-include('View/inscriptionView.php');
-?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -51,8 +47,6 @@ include('View/inscriptionView.php');
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-
-
 
             <div class="parallax">
 
