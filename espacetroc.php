@@ -1,6 +1,7 @@
 <?php
 session_start();
-if (empty($_SESSION)){
+
+if (empty($_SESSION)) {
     header('location: index.php');
     exit;
 }
@@ -8,63 +9,76 @@ if (empty($_SESSION)){
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Material Design for Bootstrap fonts and icons -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-        <!-- Material Design for Bootstrap CSS -->
-        <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" crossorigin="anonymous">
-        <!-- fontawesome --> 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous">
+        <?php
+        require('View/link/header.php');
+        ?>
         <!-- style -->
         <link rel="stylesheet" href="../assets/css/style1.css">
-        <title>Espace personnel</title>
+        <title>Espace Troc</title>
     </head>
     <body>
-        <!-- ************************************************HEADER ET NAV *************************************************************-->
+        <!-- Nav -->       
         <?php
         require('View/navbar.php');
         ?>
-        <!-- ************************************************/FIN HEADER ET NAV *************************************************************-->
-
+        <!-- /Nav -->
+        <!--Sous-Menu-->
         <div class="menunav">
             <nav class="nav nav-pills nav-fill">
-                <a class="nav-item nav-link" onclick="(window.location = '../index.php')">Acceuil</a>
-                <a class="nav-item nav-link" onclick="(window.location = 'View/monprofilView.php')">Profil</a>
-                <a class="nav-item nav-link" onclick="(window.location = 'View/ajout-articleView.php')">Ajout Article</a>
-                <a class="nav-item nav-link" onclick="(window.location = '../deconnexion.php')"><i class="fas fa-2x fa-sign-out-alt"></i></a>
+                <a class="nav-item nav-link"><i class="fas fa-2x fa-user-tie"></i><?= $_SESSION['pseudo'] ?></a> <!--renvoie le pseudo connecté-->
+                <a class="nav-item nav-link" onclick="(window.location = '../index.php')"><i class="fas fa-2x fa-home"></i>Acceuil</a>
+                <a class="nav-item nav-link" onclick="(window.location = 'View/monprofilView.php?id=<?= $_SESSION['id']; ?>')"><i class="fas fa-2x fa-tachometer-alt"></i>Profil</a>
+                <a class="nav-item nav-link" onclick="(window.location = 'View/ajout-articleView.php')"><i class="fab fa-2x fa-cloudscale"></i>Ajout Article</a>
+                <a class="nav-item nav-link" onclick="(window.location = 'View/deconnexion.php')"><i class="fas fa-2x fa-sign-out-alt"></i>deconnexion</a>
             </nav>
         </div>
+        <!--/Sous-Menu-->
 
-        <div class="menunavVertical">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-            </div>
-        </div>
+        <div class="container-fluid ">
+            <div class="row">
+                <!--Menu vertical-->
+                <div class="col-sm-12 col-lg-2">
+                    <div class="menunavVertical">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Menu vertical-->
+
+                <!--div profil rapide-->
+                <div class="col-sm-12 col-lg-6 showprofil">
+                    <div class="form-group">
+                        <label class="nav-item nav-link">Civilité:</label>
+                        <p><?= $_SESSION['gender'] ?></p>
+                        <label class="nav-item nav-link">Pseudo:</label>
+                        <p><?= $_SESSION['pseudo'] ?></p>
+                        <label class="nav-item nav-link">Email:</label>
+                        <p><?= $_SESSION['email'] ?></p>
+                    </div>
+                </div>
+                <!-- /div profil rapide-->
+
+
+            </div> <!--/div row-->
+        </div> <!--/div container-->
 
 
 
 
-
-
-
-
-
-        <!--************************************************* FOOTER************************************************************************* -->
+        <!-- Footer -->
         <?php
         require('View/footer.php');
         ?>
-        <!--************************************************* /FOOTER************************************************************************* -->
+        <!-- /Footer -->
 
-        <script type="text/javascript" src="js/mdb.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-        <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"  crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" crossorigin="anonymous"></script>
-        <script>$(document).ready(function () {
-                        $('body').bootstrapMaterialDesign();
-                    });</script>
+        <!--Script-->
+        <?php
+        require('View/link/script.php');
+        ?>
+
     </body>
 </html>

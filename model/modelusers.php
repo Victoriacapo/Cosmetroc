@@ -32,7 +32,7 @@ class Users extends database {//creation class client qui heriteras de la class 
     }
 
     /**
-     * Fonction permettant de vérifier que l'utilisateur est bien inscrit
+     * Fonction permettant de vérifier que l'utilisateur est bien inscrit en vérifiant le pseudo
      * @return Execute Query SELECT 
      * 
      */
@@ -50,14 +50,14 @@ class Users extends database {//creation class client qui heriteras de la class 
      * @return Execute Query SELECT 
      * 
      */
-//    public function profilPatient() {   // correction autre possibilite: SELECT lastName, firstName, birthDate, IF(card = 1, "oui", "non") AS card, cardNumber FROM clients;
-//        $query = 'SELECT * FROM `patients` WHERE `id`=:id';
-//        $afficherProfil = $this->database->prepare($query);
-//        $afficherProfil->bindValue(':id', $this->id, PDO::PARAM_INT); //recupere l'id
-//        $afficherProfil->execute();
-//        $patientprofil = $afficherProfil->fetch(PDO::FETCH_OBJ);
-//        return $patientprofil;
-//    }
+    public function UserProfil() {   // correction autre possibilite: SELECT lastName, firstName, birthDate, IF(card = 1, "oui", "non") AS card, cardNumber FROM clients;
+        $query = 'SELECT * FROM `velo_users` WHERE `id`=:id';
+        $afficherProfil = $this->database->prepare($query);
+        $afficherProfil->bindValue(':id', $this->id, PDO::PARAM_INT); //recupere l'id
+        $afficherProfil->execute();
+        $patientprofil = $afficherProfil->fetch(PDO::FETCH_OBJ);
+        return $patientprofil;
+    }
 
     /**
      * Fonction permettant de recupérer les modifications des patients

@@ -16,6 +16,7 @@ include_once('../Controller/controllerConnexion.php');
     </head>
 
     <body id="connexion">
+        
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-sm-12 col-lg-6">
@@ -46,12 +47,11 @@ include_once('../Controller/controllerConnexion.php');
                     </form>
 
                     <div id="closebutton">
-                        <button type="button" class="btn btn-raised btn-danger">Close</button>
+                        <button type="button" onclick="(window.location = '../index.php')" class="btn btn-raised btn-danger">X</button>
                     </div>
 
                 </div>
             </div>
-            
         </div>
 
 

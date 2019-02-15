@@ -1,8 +1,9 @@
 <?php
+session_start();
+
 // appel du controller controller
 include_once('../Controller/controllermonProfil.php');
 
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -41,41 +42,41 @@ session_start();
                                 <span class="error"><?= isset($errorsArray['gender']) ? $errorsArray['gender'] : ''; ?></span>
                             </div>
                             <div class="form-group"> 
-                                <label for="lastname"> Veuillez entrer votre nom</label>
-                                <input type="text" name="lastname" class="form-control" value="<?= isset($_POST['lastname']) ? $lastname : ''; ?>" />
+                                <label for="lastname">Nom: </label>
+                                <input type="text" name="lastname" class="form-control" value="<?= isset($_POST['lastname']) ? $_POST['lastname'] : $profil->users_lastname ?>" />
                                 <span class="error"><?= isset($errorsArray['lastname']) ? $errorsArray['lastname'] : ''; ?></span>
                             </div>
                             <div class="form-group"> 
-                                <label for="firstname">Prénom:</label>
-                                <input type="text" name="firstname" class="form-control" value="<?= isset($_POST['firstname']) ? $firstname : ''; ?>" />
+                                <label for="firstname">Prénom: </label>
+                                <input type="text" name="firstname" class="form-control" value="<?= isset($_POST['firstname']) ? $_POST['firstname'] : $profil->users_firstname ?>" />
                                 <span class="error"><?= isset($errorsArray['firstname']) ? $errorsArray['firstname'] : ''; ?></span>
                             </div>
                             <div class="form-group"> 
-                                <label for="email">Email:</label>
-                                <input type="text"  name="email" class="form-control" placeholder="email@domaine.com" value="<?= isset($_POST['email']) ? $email : ''; ?>" />
-                                <span class="error"><?= isset($errorsArray['email']) ? $errorsArray['email'] : ''; ?></span>
+                                <label for="adress">Adresse: </label>
+                                <input type="text" name="address" class="form-control" value="<?= isset($_POST['address']) ? $_POST['address'] : $profil->users_address ?>" />
+                                <span class="error"><?= isset($errorsArray['address']) ? $errorsArray['adress'] : ''; ?></span>
                             </div>
                             <div class="form-group"> 
-                                <label for="adress">Adresse:</label>
-                                <input type="text" name="adress" class="form-control" value="<?= isset($_POST['adress']) ? $adress : ''; ?>" />
-                                <span class="error"><?= isset($errorsArray['adress']) ? $errorsArray['adress'] : ''; ?></span>
-                            </div>
-                            <div class="form-group"> 
-                                <label for="zipcode">Code postal:</label>
-                                <input type="text" name="zipcode" class="form-control" value="<?= isset($_POST['zipcode']) ? $zipcode : ''; ?>" />
+                                <label for="zipcode">Code postal: </label>
+                                <input type="text" name="zipcode" class="form-control" value="<?= isset($_POST['zipcode']) ? $_POST['zipcode'] : $profil->user_CP ?>" />
                                 <span class="error"><?= isset($errorsArray['zipcode']) ? $errorsArray['zipcode'] : ''; ?></span>
                             </div>
-                            <div class="form-group">
-                                <label for="phonenumber">Téléphone:</label>
-                                <input type="tel" name="phonenumber" class="form-control" value="<?= isset($_POST['phonenumber']) ? $phonenumber : ''; ?>" />
-                                <span class="error"><?= isset($errorsArray['phonenumber']) ? $errorsArray['phonenumber'] : ''; ?></span>
+                            <div class="form-group"> 
+                                <label for="email">Email: </label>
+                                <input type="text"  name="email" class="form-control" placeholder="email@domaine.com" value="<?= isset($_POST['lastname']) ? $_POST['lastname'] : $profil->users_email ?>" />
+                                <span class="error"><?= isset($errorsArray['email']) ? $errorsArray['email'] : ''; ?></span>
                             </div>
                             <div class="form-group">
-                                <label for="pseudo">Pseudo:</label>
+                                <label for="phone">Téléphone: </label>
+                                <input type="tel" name="phone" class="form-control" value="<?= isset($_POST['phone']) ? $_POST['phonenumber'] : $profil->user_phone?>" />
+                                <span class="error"><?= isset($errorsArray['phone']) ? $errorsArray['phone'] : ''; ?></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="pseudo">Pseudo: </label>
                                 <input type="text" name="pseudo" class="form-control" value="<?= isset($_POST['pseudo']) ? $pseudo : ''; ?>" />
                                 <span class="error"><?= isset($errorsArray['pseudo']) ? $errorsArray['pseudo'] : ''; ?></span>
                             </div>
-                            <div id="sendButton"><input type="submit" class="btn btn-raised btn-primary"  name="sendButton" value="Envoyer" /></div>
+                            <div id="sendButton"><input type="submit" class="btn btn-raised btn-primary"  name="sendButton" value="Modifier" /></div>
                         </form>
                     </div>
                 </div>

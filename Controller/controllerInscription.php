@@ -37,7 +37,6 @@ if (isset($_POST['pseudo'])) { // recherche donnée input
 }
 
 if (isset($_POST['password'])) { // recherche donnée input 
-    // Variable password qui vérifie que les caractères speciaux soit converties en entité html via password_hash = protection
     // on test si regex n'est pas bonne
     if (!preg_match($regexPwd, $_POST['password'])) {//le preg_match permet de tester la regex sur ma variable 
         $errorsArray['password'] = 'Veuillez inscrire un mot de passe conforme';
@@ -60,8 +59,8 @@ if (isset($_POST['email'])) { // recherche donnée input pseudo
 }
 
 if (isset($_POST['sendButton']) && (count($errorsArray) == 0)) {
-    $usersObj->users_password = password_hash($_POST['password'], PASSWORD_DEFAULT); // declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
-    $usersObj->addUser(); // execute ma requete presente dans mon modelusers
+    $usersObj->users_password = password_hash($_POST['password'], PASSWORD_DEFAULT); // password_hash permet de sécuriser, le mot de passe en l'entrant ds la Bdd sous forme d'une longue chaîne
+    $usersObj->addUser(); // execute ma requete presente dans mon modelusers et ajoute un utilisateur ds la Bdd
     $showForm = false; // ma variable return false donc cache mon formulaire remplie.
 }
 ?>

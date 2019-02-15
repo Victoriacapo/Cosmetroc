@@ -95,14 +95,10 @@ header('location:../View/monprofilView.php');
         }
         ?>
         
-            <?php } else { ?>
-            <div><?= 'Bonjour ' . $usersObj->users_pseudo . ' votre compte a bien été crée.' ?></div>
-        <?php } ?>
-           
             
-            <?php if (isset($_SESSION['userlogin'])) { ?>
-        Bienvenue  <a href="moncompte.php" class="userprofil" ><i class="far fa-user"></i></a> 
-    <?= $_SESSION['users_login'] ?>
+            
+         
+
         
         
             <!--button lié au modal dans l'index-->

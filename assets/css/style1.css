@@ -79,6 +79,7 @@
     border: pink 3px solid;
 }
 
+
 /* ************************ footer *********** */
 footer {
     border-top: pink 3px solid;
@@ -183,10 +184,24 @@ footer {
     width: 350px;
     margin-top: 45px;
 }
+.fa-user-tie, .fa-sign-out-alt, .fa-home, .fa-tachometer-alt, .fa-cloudscale{
+    margin-right: 8px;
+}
 
-
-
-
+.showprofil{
+    color: black;
+    background-color: rgba(50, 50, 50, 0.5);
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+    padding: 3rem;
+}
+label{
+    text-align: center;
+    background: black;
+    color: white;
+    font-size: smaller;
+}
 
 
 

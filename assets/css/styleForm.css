@@ -1,6 +1,9 @@
+/*body de mes pages form*/
 .modal, #profil, #Article, #inscription, #connexion{
     background-image: url("../img/based-texture-1142094_1920.jpg");
 }
+
+/*div col de mes pages form pr le fond et la forme*/
 .profil, .Article, .inscription, .connexion{
     background-color: rgba(50, 50, 50, 0.5);
     -webkit-border-radius: 18px;
@@ -9,6 +12,8 @@
     padding: 5rem;
 
 }
+
+/*div col de mes pages form avec les classes précisé,  pr les marge et la largeur*/
 .profil, .inscription, .connexion {
     margin-top: 40px;
     margin-bottom: 40px;
@@ -19,9 +24,13 @@
     margin-top: 40px;
     margin-bottom: 40px;
     height: auto;
+    margin: 0 auto;
     width: 750px;
+    
 }
-.profilFormH1, .ArticleFormH1, .inscriptionFormH1, .connexionFormH1{
+
+/*style pour mes Titre de form et page error(deconnexion et error404)*/
+.profilFormH1, .ArticleFormH1, .inscriptionFormH1, .connexionFormH1, .errorH1, .messageH1{
     background-color: #00876e;
     color: white;
     margin-bottom: 80px;
@@ -29,16 +38,29 @@
     border-radius: 17px;
     text-align: center;
 }
+/*label de mn upload img ds le form ajout-produit*/
+#labelImg{
+    font-size: medium;
+    color: wheat;
+}
+/*div contenant mon upload image*/
+.Image{
+    margin-top: 40px;
+}
+/*style de mes bouton envoyé*/
 #sendButton{
     margin: 0 auto;
     width: 100px;
     padding-top: 85px;
 }
+/*style de mes bouton close*/
 #closebutton{
     height: 40px;
     width: 80px; 
     float: right;
 }
+
+/*style de mes bouton retour*/
 .returnButton{
     height: 50px;
     width: 50px;
@@ -47,9 +69,12 @@
     margin-top: 5px;
     margin-left: 5px;
 }
+
+/*style de mes span error de mes form*/
 .error{
     color: red;
 }
+
 /*label de mes form */
 [class*=" bmd-label"], [class^="bmd-label"] {
     color: wheat;
@@ -63,4 +88,31 @@
 }
 .custom-file-control, .form-control {
     color: white !important;
+}
+
+/*page error et deconnexion*/
+#errorpage{
+    background-image: url("../img/makeup-brushes-824702_1920.jpg");
+    background-size: cover;
+}
+.deconnexion{
+    color: black;
+    text-align: center;
+    background-color: rgba(50, 50, 50, 0.5);
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+    padding: 5rem;  
+    top: 60px; /* corespond à la position top, installe un margin au dessus de ma div  */
+    margin-bottom: 40px;
+    margin: 0 auto;
+    width: 550px;
+}
+
+/*div message à l'utilisateur tel que les bienvenues et autres msg de confirmation*/
+#message{
+    text-align: center;
+    color: white;
+    margin-bottom: 50px;
+    font-size: 30px;
 }
