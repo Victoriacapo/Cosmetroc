@@ -7,6 +7,7 @@ class Users extends database {//creation class client qui heriteras de la class 
     public $users_lastname;
     public $users_firstname;
     public $users_address;
+    public $users_city;
     public $users_CP;
     public $users_email;
     public $users_phone;
@@ -32,11 +33,11 @@ class Users extends database {//creation class client qui heriteras de la class 
     }
 
     /**
-     * Fonction permettant de vérifier que l'utilisateur est bien inscrit en vérifiant le pseudo
+     * Fonction permettant de vérifier que l'utilisateur est bien inscrit en vérifiant le pseudo, puis établie par la suite la connexion.
      * @return Execute Query SELECT 
      * 
      */
-    public function checkUsers($users_pseudo) {   
+    public function checkUsers($users_pseudo) {
         $query = 'SELECT * FROM `velo_users` WHERE `users_pseudo` = :pseudo';
         $response = $this->database->prepare($query); //connexion database puis prepare la requete
         $response->bindValue(':pseudo', $users_pseudo, PDO::PARAM_STR);
@@ -46,17 +47,17 @@ class Users extends database {//creation class client qui heriteras de la class 
     }
 
     /**
-     * Fonction permettant d'afficher un profil de patient
+     * Fonction permettant d'afficher un profil en fonction de l'id session
      * @return Execute Query SELECT 
      * 
      */
-    public function UserProfil() {   // correction autre possibilite: SELECT lastName, firstName, birthDate, IF(card = 1, "oui", "non") AS card, cardNumber FROM clients;
-        $query = 'SELECT * FROM `velo_users` WHERE `id`=:id';
-        $afficherProfil = $this->database->prepare($query);
-        $afficherProfil->bindValue(':id', $this->id, PDO::PARAM_INT); //recupere l'id
-        $afficherProfil->execute();
-        $patientprofil = $afficherProfil->fetch(PDO::FETCH_OBJ);
-        return $patientprofil;
+    public function UserProfil() {
+        $query = 'SELECT * FROM `velo_users` WHERE `users_id`=:id';
+        $showProfil = $this->database->prepare($query);
+        $showProfil->bindValue(':id', $this->users_id, PDO::PARAM_INT); //recupere l'id
+        $showProfil->execute();
+        $userprofil = $showProfil->fetch(PDO::FETCH_OBJ);
+        return $userprofil;
     }
 
     /**
@@ -64,30 +65,34 @@ class Users extends database {//creation class client qui heriteras de la class 
      * @return Execute Query UPDATE 
      * 
      */
-//    public function modifPatient() {
-//        //variable query stocke ma requete pour inserer les donnee de mon formulaire
-//        $query = 'UPDATE `patients` SET `lastname`= :lastname, `firstname`=:firstname, `birthdate`= :birthdate, `phone`= :phone, `mail`= :mail WHERE `id`= :id'; //:lastname = marqueur nominatif
-//        $replacePatient = $this->database->prepare($query); //connexion database puis prepare la requete
-//        $replacePatient->bindValue(':id', $this->id, PDO::PARAM_INT); //recuperation de l'attribut id
-//        $replacePatient->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
-//        $replacePatient->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
-//        $replacePatient->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
-//        $replacePatient->bindValue(':phone', $this->phone, PDO::PARAM_STR);
-//        $replacePatient->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-//        return $replacePatient->execute();
-//    }
+    public function modifyUser() {
+        //variable query stocke ma requete pour inserer les donnee de mon formulaire
+        $query = 'UPDATE `velo_users` SET `users_gender`= :gender, `users_lastname`= :lastname, `users_firstname`= :firstname, `users_address`= :address, `users_city` = :city, `users_CP`= :zipcode, `users_email`= :email, `users_phone`= :phone, `users_pseudo`= :pseudo WHERE `users_id`= :id '; 
+        $replaceUser = $this->database->prepare($query); //connexion database puis prepare la requete
+        $replaceUser->bindValue(':id', $this->users_id, PDO::PARAM_INT); //recuperation de l'attribut id
+        $replaceUser->bindValue(':gender', $this->users_gender, PDO::PARAM_STR);
+        $replaceUser->bindValue(':lastname', $this->users_lastname, PDO::PARAM_STR);
+        $replaceUser->bindValue(':firstname', $this->users_firstname, PDO::PARAM_STR);
+        $replaceUser->bindValue(':address', $this->users_address, PDO::PARAM_STR);
+        $replaceUser->bindValue(':city', $this->users_city, PDO::PARAM_STR);
+        $replaceUser->bindValue(':zipcode', $this->users_CP, PDO::PARAM_STR);
+        $replaceUser->bindValue(':email', $this->users_email, PDO::PARAM_STR);
+        $replaceUser->bindValue(':phone', $this->users_phone, PDO::PARAM_STR);
+        $replaceUser->bindValue(':pseudo', $this->users_pseudo, PDO::PARAM_STR);
+        return $replaceUser->execute();
+    }
 
     /**
      * Fonction permettant de supprimer un patient
      * @return Execute Query DELETE 
      * 
      */
-//    public function supprimerPatient() {
-//        $query = 'DELETE FROM `patients` WHERE `id`= :id';
-//        $supprimeokPatient = $this->database->prepare($query); //connexion database puis prepare la requete
-//        $supprimeokPatient->bindValue(':id', $this->id, PDO::PARAM_INT); //recuperation de l'attribut idPatient pr operer la modification sur la ligne du patient concerné
-//        return $supprimeokPatient->execute();
-//    }
+    public function deleteUser() {
+        $query = 'DELETE FROM `velo_users` WHERE `users_id`= :id';
+        $editUser = $this->database->prepare($query); //connexion database puis prepare la requete
+        $editUser->bindValue(':id', $this->users_id, PDO::PARAM_INT); //recuperation de l'attribut idPatient pr operer la modification sur la ligne du patient concerné
+        return $editUser->execute();
+    }
 
     /**
      * Fonction permettant d'afficher un resultat pr la recherche de l'utilisateur

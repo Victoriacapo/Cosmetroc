@@ -3,20 +3,18 @@
 
 class Products extends database {//creation class client qui heriteras de la class database cree ds la page modelbdd
 
-    public $id; // attribué des attributs, correspond aux colonne de ma table 
+    public $products_id; // attribué des attributs, correspond aux colonne de ma table 
     public $products_name;
     public $products_brand;
     public $products_quantity;
     public $products_state;
     public $products_capacity;
     public $products_expiration;
-    public $subcat_id;
-    public $maincat_id;
-    public $users_id;
     public $products_img;
+    public $maincat_id;
+    public $subcat_id;
+    public $users_id;
 
-    
-    
     /**
      * Fonction permettant d'ajouter un user
      * @return Execute Query INSERT INTO
@@ -25,9 +23,9 @@ class Products extends database {//creation class client qui heriteras de la cla
     public function addProducts() {
         //variable query stocke ma requete pour inserer les donnee de mon formulaire
         $query = 'INSERT INTO `velo_products` (`products_name`, `products_brand`, `products_quantity`, '
-                . '`products_state`, `products_capacity`, `products_expiration`, '
-                . '`subcat_id`, `maincat_id`, `users_id`, `products_img`) '
-                . 'VALUES(:nameproduct, :brand, :quantity, :state, :capacity, :expiration, :sbcategory, :category, :userId :image) '; //marqueur nominatif
+                . '`products_state`, `products_capacity`, `products_expiration`, `products_img`, '
+                . '`maincat_id`, `subcat_id`, `users_id`) '
+                . 'VALUES(:nameproduct, :brand, :quantity, :state, :capacity, :expiration, :image, :category, :sbcategory, :id) '; //marqueur nominatif
         $addPdt = $this->database->prepare($query); //connexion database puis prepare la requete
         $addPdt->bindValue(':nameproduct', $this->products_name, PDO::PARAM_STR);
         $addPdt->bindValue(':brand', $this->products_brand, PDO::PARAM_STR);
@@ -35,13 +33,53 @@ class Products extends database {//creation class client qui heriteras de la cla
         $addPdt->bindValue(':state', $this->products_state, PDO::PARAM_STR);
         $addPdt->bindValue(':capacity', $this->products_capacity, PDO::PARAM_STR);
         $addPdt->bindValue(':expiration', $this->products_expiration, PDO::PARAM_STR);
-        $addPdt->bindValue(':sbcategory', $this->subcat_id, PDO::PARAM_INT);
-        $addPdt->bindValue(':category', $this->maincat_id, PDO::PARAM_INT);
-        $addPdt->bindValue(':userId', $this->users_id, PDO::PARAM_INT);
         $addPdt->bindValue(':image', $this->products_img, PDO::PARAM_STR);
+        $addPdt->bindValue(':category', $this->maincat_id, PDO::PARAM_INT);
+        $addPdt->bindValue(':sbcategory', $this->subcat_id, PDO::PARAM_INT);
+        $addPdt->bindValue(':id', $this->users_id, PDO::PARAM_INT);
         return $addPdt->execute();
     }
 
+    /**
+     * Fonction permettant d'afficher tous les produits
+     * @return Execute Query SELECT 
+     * 
+     */
+//    public function showProducts() {
+//        $response = $this->database->query('SELECT `products_name`,`products_brand`, `products_quantity`, `products_state`, `products_capacity`, '
+//                . 'DATE_FORMAT(`products_expiration`, \'%d/%m/%Y\') AS expiration, `products_img` FROM `velo_products` WHERE `users_id` = :id ');
+//        $response->bindValue(':id', $this->users_id, PDO::PARAM_INT);
+//        $data = $response->fetchAll(PDO::FETCH_OBJ);
+//        return $data; //la fonction retourne data.
+//    }
+
+    /**
+     * Fonction permettant d'afficher les RDV par patient
+     * @return Execute Query SELECT 
+     * 
+     */
+    public function showProducts() {
+        $query = 'SELECT `products_name`, '
+                . '`products_brand`, '
+                . '`products_quantity`, '
+                . '`products_state`, '
+                . '`products_capacity`, '
+                . 'DATE_FORMAT(`products_expiration`, \'%d/%m/%Y\') AS expiration, '
+                . '`products_img`, '
+                . '`maincat_name`, '
+                . '`subcat_name` '
+                . 'FROM `velo_products` '
+                . 'INNER JOIN `velo_maincat` '
+                . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
+                . 'INNER JOIN `velo_subcat` '
+                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
+                . 'WHERE `users_id` = :id ';
+        $ShowPDT = $this->database->prepare($query);
+        $ShowPDT->bindValue(':id', $this->users_id, PDO::PARAM_STR); //recupere l'id
+        $ShowPDT->execute();
+        $response = $ShowPDT->fetchAll(PDO::FETCH_OBJ);
+        return $response;
+    }
     
 
     /**
@@ -114,5 +152,4 @@ class Products extends database {//creation class client qui heriteras de la cla
 //        $supprimeokRDV->bindValue(':id', $this->id, PDO::PARAM_INT); //recuperation de l'attribut idPatient pr operer la modification sur la ligne du patient concerné
 //        return $supprimeokRDV->execute();
 //    }
-
 }

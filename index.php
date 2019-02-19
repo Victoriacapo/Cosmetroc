@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -9,12 +12,30 @@
         <title>Cosmétroc</title>
     </head>
     <body>
+        <header>
+            <div class="container-fluid headDiv">
+                <div class="row">
+                    <div class="col">
+                        <a href="#"><img class="img-fluid" id="logo" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></a>
+                    </div>
+                    <div class="col">
+                        <!-- Button connexion modal -->
+                        <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'View/connexionView.php')">Connexion</button>
+                        <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'View/inscriptionView.php')">Inscription</button>
+                        <?php if (isset($_SESSION['id'])) { ?>
+                            <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'espacetroc.php')"><i class="fas fa-user-tie"></i><?= $_SESSION['pseudo'] ?></button>
+                        <?php }
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <!-- Nav -->
+            <?php
+            require('View/navbar.php');
+            ?>
+            <!-- /Nav -->  
+        </header>
 
-        <!-- Nav -->
-        <?php
-        require('View/navbar.php');
-        ?>
-        <!-- /Nav -->
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">

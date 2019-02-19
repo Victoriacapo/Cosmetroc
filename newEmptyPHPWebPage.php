@@ -95,12 +95,25 @@ header('location:../View/monprofilView.php');
         }
         ?>
         
-            
-            
-         
+           INSERT INTO `velo_products` (`products_id`, `products_name`, `products_brand`, `products_quantity`,
+    `products_state`, `products_capacity`, `products_expiration`, `products_img`, `subcat_id`, `maincat_id`, `users_id`)
+    VALUES (NULL, 'gel douche', 'Dove', '1', 'neuf', '100g', '2019-02-28 00:00:00', 'file.img', '9', '3', '1');
+  
+         lien pr envoyer un email   
+        <i class="fas fa-envelope fa-2x"> </i> Email: <a id="mail" href="mailto:victoriacapo3@gmail.com &body=Bonjour,">Contacter</a> 
 
         
-        
+        formater un objet date en une date française avec la technique explode qui coupe le string en 3 partie.
+        <?php
+                                $date = $pductsObj->products_expiration;
+                                $dateFr = explode('-',$date);
+                                
+                                $newDateFr = $dateFr[2] . '-' . $dateFr[1] . '-' . $dateFr[0];
+                                
+                                echo date('d/m/Y', strtotime($newDateFr));
+                                //echo date('d/m/Y', strtotime($date));
+                                
+                                ?>
             <!--button lié au modal dans l'index-->
              <button id="modalbutton" class="btn btn-raised btn-primary" data-toggle="modal" data-target="#pageconnexion">Connexion</button>
     </body>

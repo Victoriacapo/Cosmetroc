@@ -5,7 +5,7 @@ include_once ('../model/modelbdd.php'); //utillisé uniquement de l'include once
 include_once ('../model/modelusers.php');
 
 $usersObj = new Users(); //instancie un nouvel objet
-$showForm = true;
+$showForm = true; //booléen qui renvoie true/false pr soit cacher/afficher mn form
 
 // on déclare un tableau errorsArray qui contiendra les messages d'erreurs
 $errorsArray = [];
