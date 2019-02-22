@@ -28,11 +28,11 @@ if (isset($_POST['password'])) { // recherche donnée input
 
 //verification du password
 if (isset($_POST['sendButton']) && (count($errorsArray) == 0)) {
-    $usersInfo = $usersObj->checkUsers($users_pseudo);
+    $usersInfo = $usersObj->checkUsers($users_pseudo); //$userInfo 
   
     if (is_object($usersInfo)) {
         if (password_verify($password, $usersInfo->users_password)) {
-            $_SESSION['id'] = $usersInfo->users_id;
+            $_SESSION['idUser'] = $usersInfo->users_id;
             $_SESSION['gender'] = $usersInfo->users_gender;
             $_SESSION['lastname'] = $usersInfo->users_lastname;
             $_SESSION['firstname'] = $usersInfo->users_firstname;
@@ -41,7 +41,7 @@ if (isset($_POST['sendButton']) && (count($errorsArray) == 0)) {
             $_SESSION['email'] = $usersInfo->users_email;
             $_SESSION['phone'] = $usersInfo->users_phone;
             $_SESSION['pseudo'] = $usersInfo->users_pseudo;
-         header('location:../espacetroc.php'); //si $_SESSION existe, redirigé vers espacetroc
+         header('location:../espacetroc.php'); //si l'user est authentifié, lié les variables de session aux objets, puis redirigé vers espacetroc
          exit;
         } else{ //permet les spans error dans la vue
             $errorsArray['password']= 'Mot de passe incorrect'; //renseigne l'utilisateur que le mot de passe saisie ne correspond pas à celui présent ds la Bdd

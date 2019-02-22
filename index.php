@@ -22,7 +22,7 @@ session_start();
                         <!-- Button connexion modal -->
                         <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'View/connexionView.php')">Connexion</button>
                         <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'View/inscriptionView.php')">Inscription</button>
-                        <?php if (isset($_SESSION['id'])) { ?>
+                        <?php if (isset($_SESSION['idUser'])) { ?>
                             <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'espacetroc.php')"><i class="fas fa-user-tie"></i><?= $_SESSION['pseudo'] ?></button>
                         <?php }
                         ?>

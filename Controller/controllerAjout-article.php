@@ -14,8 +14,8 @@ $pductsObj = new Products(); // article
 
 $showForm = true; //booléen qui renvoie true/false pr soit cacher/afficher mn form
 
-if (isset($_SESSION['id'])) { //recupere l'id, verifie si présent ds la base de donnée, et effectue la requête
-    $pductsObj->users_id = $_SESSION['id'];
+if (isset($_SESSION['idUser'])) { //recupere l'id, verifie si présent ds la base de donnée, et effectue la requête
+    $pductsObj->users_id = $_SESSION['idUser'];
 
     if ($pductsObj === FALSE) {
         $ifIdexist = FALSE;
@@ -27,6 +27,7 @@ if (isset($_SESSION['id'])) { //recupere l'id, verifie si présent ds la base de
 
 $showMncat = $categObj->showCat(); //permet d'effectuer ma requête pr afficher les catégories
 $showSbcat = $sbcategObj->showSubCat(); //permet d'effectuer ma requête pr afficher les ss-catégories
+
 // on déclare un tableau errorsArray qui contiendra les messages d'erreurs
 $errorsArray = [];
 $errorImage = []; //array contenant erreur lié au vérification de l'image.
@@ -107,7 +108,7 @@ if (isset($_FILES['image'])) {
         $errorImage['image'] = 'L\'image ne doit pas dépasser 2Mo';
     }
 
-// Vérifie si le nom du fichier existe déjà dans la bdd 
+// Vérifie si le nom du fichier existe déjà dans le dossier attribué
     if (file_exists($target_file)) {
         $errorImage['image'] = 'Le fichier existe déjà';
     }
@@ -132,7 +133,7 @@ if (isset($_FILES['image'])) {
 
 if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorImage) == 0)) {
     $pductsObj->products_img = '../assets/imgProducts/' . $_FILES['image']['name']; //j'indique que mon objet correpond au chemin de l'image uploadé.
-    $pductsObj->addProducts(); // execute ma requete presente dans mon model
+    $pductsObj->addProducts(); // execute ma requete presente dans mon model$pductsObj->products_img
     $date = $pductsObj->products_expiration;  //variable qui seras utilisé dans la vue pr formater l'objet expiration en date française.
     $showForm = false; // ma variable return false donc cache mon formulaire remplie.
 

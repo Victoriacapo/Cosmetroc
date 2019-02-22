@@ -112,3 +112,80 @@ SELECT `products_name`,
         INNER JOIN `velo_subcat` 
         ON `velo_products`.subcat_id = `velo_subcat`.subcat_id 
         WHERE `users_id` = 33 
+       
+        
+        
+        
+        
+        
+        
+SELECT `products_id`, 
+`products_name`, 
+`products_brand`, 
+`products_quantity`, 
+`products_state`, 
+`products_capacity`, 
+DATE_FORMAT(`products_expiration`, '%d/%m/%Y') AS expiration, 
+`products_img`, 
+`subcat_id`, 
+`maincat_id`, 
+`maincat_name`, 
+`subcat_name`                
+FROM `velo_products` 
+INNER JOIN `velo_maincat` 
+ON `velo_products`.maincat_id = `velo_maincat`.maincat_id 
+INNER JOIN `velo_subcat`                
+ON `velo_products`.subcat_id = `velo_subcat`.subcat_id 
+WHERE `products_id` = 25 ;
+
+
+SELECT 
+`products_id`,
+        `products_name`, 
+        `products_brand`,
+        `products_quantity`, 
+        `products_state`, 
+        `products_capacity`, 
+        DATE_FORMAT(`products_expiration`, '%d/%m/%Y') AS expiration, 
+        `products_img`, 
+        `velo_products`.`subcat_id`, 
+        `velo_products`.`maincat_id`, 
+        `maincat_name`, 
+        `subcat_name`
+         FROM `velo_products` 
+        INNER JOIN `velo_maincat` 
+        ON `velo_products`.maincat_id = `velo_maincat`.maincat_id 
+        INNER JOIN `velo_subcat` 
+        ON `velo_products`.subcat_id = `velo_subcat`.subcat_id 
+        WHERE `products_id` = 25 
+        
+        
+        
+        
+        <p><?= 'L\'article ' . $pductsObj->products_name . ' a bien été ajouté' ?></p>
+
+                            <ul>
+                                <li>Nom du produit: <?= $pductsObj->products_name ?> </li>
+                                <li>Marque du produit: <?= $pductsObj->products_brand ?> </li>
+                                <li>Quantité: <?= $pductsObj->products_quantity ?></li>
+                                <li>Etat: <?= $pductsObj->products_state ?></li>
+                                <li>Capacité: <?= $pductsObj->products_capacity ?></li>
+                                <li>Expiration: <?= date('d/m/Y', strtotime($date)); ?>
+                            </ul>
+        
+        
+        
+        UPDATE `velo_products` 
+        SET `products_name`= 'creme velo', 
+        `products_brand`= 'Garnier', 
+        `products_quantity`= '1', 
+        `products_state`= 'testé', 
+        `products_capacity`= '500ml', 
+        `products_expiration`= '2020/12/12', 
+        `products_img`= 'onion/1245.png', 
+        `subcat_id`= '9', 
+        `maincat_id`= '3' 
+        WHERE `products_id`=13 
+        
+        
+        

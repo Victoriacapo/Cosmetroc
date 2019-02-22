@@ -52,9 +52,9 @@ class Users extends database {//creation class client qui heriteras de la class 
      * 
      */
     public function UserProfil() {
-        $query = 'SELECT * FROM `velo_users` WHERE `users_id`=:id';
+        $query = 'SELECT * FROM `velo_users` WHERE `users_id`=:idUser';
         $showProfil = $this->database->prepare($query);
-        $showProfil->bindValue(':id', $this->users_id, PDO::PARAM_INT); //recupere l'id
+        $showProfil->bindValue(':idUser', $this->users_id, PDO::PARAM_INT); //recupere l'id
         $showProfil->execute();
         $userprofil = $showProfil->fetch(PDO::FETCH_OBJ);
         return $userprofil;
@@ -67,9 +67,9 @@ class Users extends database {//creation class client qui heriteras de la class 
      */
     public function modifyUser() {
         //variable query stocke ma requete pour inserer les donnee de mon formulaire
-        $query = 'UPDATE `velo_users` SET `users_gender`= :gender, `users_lastname`= :lastname, `users_firstname`= :firstname, `users_address`= :address, `users_city` = :city, `users_CP`= :zipcode, `users_email`= :email, `users_phone`= :phone, `users_pseudo`= :pseudo WHERE `users_id`= :id '; 
+        $query = 'UPDATE `velo_users` SET `users_gender`= :gender, `users_lastname`= :lastname, `users_firstname`= :firstname, `users_address`= :address, `users_city` = :city, `users_CP`= :zipcode, `users_email`= :email, `users_phone`= :phone, `users_pseudo`= :pseudo WHERE `users_id`= :idUser '; 
         $replaceUser = $this->database->prepare($query); //connexion database puis prepare la requete
-        $replaceUser->bindValue(':id', $this->users_id, PDO::PARAM_INT); //recuperation de l'attribut id
+        $replaceUser->bindValue(':idUser', $this->users_id, PDO::PARAM_INT); //recuperation de l'attribut id
         $replaceUser->bindValue(':gender', $this->users_gender, PDO::PARAM_STR);
         $replaceUser->bindValue(':lastname', $this->users_lastname, PDO::PARAM_STR);
         $replaceUser->bindValue(':firstname', $this->users_firstname, PDO::PARAM_STR);
@@ -88,9 +88,9 @@ class Users extends database {//creation class client qui heriteras de la class 
      * 
      */
     public function deleteUser() {
-        $query = 'DELETE FROM `velo_users` WHERE `users_id`= :id';
+        $query = 'DELETE FROM `velo_users` WHERE `users_id`= :idUser';
         $editUser = $this->database->prepare($query); //connexion database puis prepare la requete
-        $editUser->bindValue(':id', $this->users_id, PDO::PARAM_INT); //recuperation de l'attribut idPatient pr operer la modification sur la ligne du patient concerné
+        $editUser->bindValue(':idUser', $this->users_id, PDO::PARAM_INT); //recuperation de l'attribut idPatient pr operer la modification sur la ligne du patient concerné
         return $editUser->execute();
     }
 

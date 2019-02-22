@@ -40,9 +40,9 @@ include_once('Controller/controllerEspacetroc.php');
         <div class="menunav">
             <nav class="nav nav-pills nav-fill">
                 <a class="nav-item nav-link"><i class="fas fa-2x fa-user-tie"></i><?= $_SESSION['pseudo'] ?></a> <!--renvoie le pseudo connecté-->
-                <a class="nav-item nav-link" onclick="(window.location = '../index.php?id=<?= $_SESSION['id']; ?>')"><i class="fas fa-2x fa-home"></i>Accueil</a>
-                <a class="nav-item nav-link" onclick="(window.location = 'View/monprofilView.php?id=<?= $_SESSION['id']; ?>')"><i class="fas fa-2x fa-tachometer-alt"></i>Profil</a>
-                <a class="nav-item nav-link" onclick="(window.location = 'View/ajout-articleView.php?id=<?= $_SESSION['id']; ?>')"><i class="fab fa-2x fa-cloudscale"></i>Ajout Article</a>
+                <a class="nav-item nav-link" onclick="(window.location = '../index.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fas fa-2x fa-home"></i>Accueil</a>
+                <a class="nav-item nav-link" onclick="(window.location = 'View/monprofilView.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fas fa-2x fa-tachometer-alt"></i>Profil</a>
+                <a class="nav-item nav-link" onclick="(window.location = 'View/ajout-articleView.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fab fa-2x fa-cloudscale"></i>Ajout Article</a>
                 <a class="nav-item nav-link" onclick="(window.location = 'View/deconnexion.php')"><i class="fas fa-2x fa-sign-out-alt"></i>deconnexion</a>
             </nav>
         </div>
@@ -82,7 +82,7 @@ include_once('Controller/controllerEspacetroc.php');
         <!--content de mon menu vertical-->
         <div class="container-fluid ">
             <div class="row">
-                <div class="col-sm-12 col-lg-12 VerticalTabContent">
+                <div class="col-sm-12 col-lg-6 VerticalTabContent">
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-Article" role="tabpanel" aria-labelledby="v-pills-Article-tab">
                             <table>
@@ -90,11 +90,15 @@ include_once('Controller/controllerEspacetroc.php');
                                     <tr>
                                         <th>Nom</th>
                                         <th>Marque</th>
-                                         <th>Quantité</th>
-                                          <th>Etat</th>
-                                           <th>Capacité</th>
-                                            <th>Expiration</th>
-                                            <th>Image</th>
+                                        <th>Quantité</th>
+                                        <th>Etat</th>
+                                        <th>Capacité</th>
+                                        <th>Expiration</th>
+                                        <th>Image</th>
+                                        <th>Catégorie</th>
+                                        <th>Sous-catégorie</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -107,8 +111,11 @@ include_once('Controller/controllerEspacetroc.php');
                                             <td><?= $productUsers->products_quantity ?></td>
                                             <td><?= $productUsers->products_state ?></td>
                                             <td><?= $productUsers->products_capacity ?></td>
-                                            <td><?= $productUsers->products_expiration ?></td>
-                                            <td><img src="<?= $productUsers->products_img ?>" width="42" height="42"></td>
+                                            <td><?= $productUsers->expiration ?></td>
+                                            <td><img class="img-fluid" src="<?= $productUsers->products_img ?>" width="42" height="42"></td>
+                                            <td><?= $productUsers->maincat_name ?></td>
+                                            <td><?= $productUsers->subcat_name ?></td>
+                                            <td><button class="btn btn-primary" onclick="(window.location = 'View/modifArticle.php?idProducts=<?= $productUsers->products_id; ?>')">Modifier</button></td>
                                         </tr>
                                         <?php
                                     }
@@ -116,7 +123,6 @@ include_once('Controller/controllerEspacetroc.php');
                                 </tbody>
                             </table> 
                         </div>
-
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">..weeeep.</div>
                         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">.olleeeeee..</div>
                         <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">..wiiiiiiiii.</div>

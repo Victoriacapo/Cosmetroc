@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 // appel du controller controllerAjout-article
 include_once('../Controller/controllerAjout-article.php');
 ?>
@@ -142,10 +143,10 @@ include_once('../Controller/controllerAjout-article.php');
                                 <li>Quantité: <?= $pductsObj->products_quantity ?></li>
                                 <li>Etat: <?= $pductsObj->products_state ?></li>
                                 <li>Capacité: <?= $pductsObj->products_capacity ?></li>
-                                <li>Expiration: <?= date('d/m/Y', strtotime($date)); ?>
+                                <li>Expiration: <?= date('d/m/Y', strtotime($date)); ?> <!-- la variable $date est déclarer dns le controller, il contient l'attribut(products_expiration)-->
                             </ul>
                         </div>
-                        <div id="plus"><button onclick="(window.location = 'ajout-articleView.php')" class="btn btn-raised btn-primary">Ajouter un article</button></div>
+                        <div id="plus"><button onclick="(window.location = 'ajout-articleView.php?id=<?= $_SESSION['idUser']; ?>')" class="btn btn-raised btn-primary">Ajouter un article</button></div>
 
                     <?php } ?>
 
