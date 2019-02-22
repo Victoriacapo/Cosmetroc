@@ -18,6 +18,8 @@ if (isset($_GET['idProducts'])) { //recupere l'id, verifie si présent ds la bas
     $OnepductsObj->products_id = $_GET['idProducts']; //on indique que l'objet products_id correspond au Get['idProduct']
     $filePdt = $OnepductsObj->profilProducts(); //correspond à la requête pr afficher la fiche propre à un produit
     $_SESSION['idProduct'] = $_GET['idProducts'];
+    $_SESSION['imageProduct'] = $filePdt->products_img;
+
     var_dump($_SESSION);
 
     if ($OnepductsObj === FALSE) {
@@ -30,14 +32,11 @@ if (isset($_GET['idProducts'])) { //recupere l'id, verifie si présent ds la bas
 
 $showMncat = $categObj->showCat(); //permet d'effectuer ma requête pr afficher les catégories
 $showSbcat = $sbcategObj->showSubCat(); //permet d'effectuer ma requête pr afficher les ss-catégories
-
 //tableau d'erreur
 $errorsArray = [];
 $errorImage = []; //array contenant erreur lié au vérification de l'image.
 $succesArray = [];
 $regexName = '/[a-zA-Z0-9 -]+$/'; //autorise les minuscules, majuscules, les chiffres, les espaces, les traits d'union
-
-
 // Verification des inputs.
 if (isset($_POST['nameproduct'])) { // recherche donnée input 
     $nameproduct = htmlspecialchars($_POST['nameproduct']); // declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
@@ -142,6 +141,17 @@ if (!array_key_exists('image', $_FILES) && isset($_POST['sendButton'])) {
 
 
 if (isset($_POST['sendButton']) && (count($errorsArray) == 0)) {
+    $OnepductsObj->products_img = $_SESSION['imageProduct'];
+    $OnepductsObj->products_id = $_SESSION['idProduct'];
+    $OnepductsObj->products_name = $nameproduct;
+    $OnepductsObj->products_brand = $brand;
+    $OnepductsObj->products_quantity = $quantity;
+    $OnepductsObj->products_state = $state;
+    $OnepductsObj->products_capacity = $capacity;
+    $OnepductsObj->products_expiration = $expiration;
+    $OnepductsObj->maincat_id = $category;
+    $OnepductsObj->subcat_id = $sbcategory;
+
 
     $OnepductsObj->editProductWithoutImg();
     $OnepductsObj->profilProducts();

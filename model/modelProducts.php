@@ -115,19 +115,19 @@ class Products extends database {//creation class client qui heriteras de la cla
                 . '`products_state`= :state, '
                 . '`products_capacity`= :capacity, '
                 . '`products_expiration`= :expiration, '
-                . '`subcat_id`= :sbcategory '
-                . '`maincat_id`= :category, '
+                . '`subcat_id`= :sbcategory, '
+                . '`maincat_id`= :category '
                 . 'WHERE `products_id` = :idProducts ';
         $editPdt = $this->database->prepare($query); //connexion database puis prepare la requete
         $editPdt->bindValue(':nameproduct', $this->products_name, PDO::PARAM_STR);
         $editPdt->bindValue(':brand', $this->products_brand, PDO::PARAM_STR);
-        $editPdt->bindValue(':quantity', $this->products_quantity, PDO::PARAM_INT);
+        $editPdt->bindValue(':quantity', $this->products_quantity, PDO::PARAM_STR);
         $editPdt->bindValue(':state', $this->products_state, PDO::PARAM_STR);
         $editPdt->bindValue(':capacity', $this->products_capacity, PDO::PARAM_STR);
         $editPdt->bindValue(':expiration', $this->products_expiration, PDO::PARAM_STR);
-        $editPdt->bindValue(':category', $this->maincat_id, PDO::PARAM_INT);
-        $editPdt->bindValue(':sbcategory', $this->subcat_id, PDO::PARAM_INT);
-        $editPdt->bindValue(':idProducts', $this->products_id, PDO::PARAM_INT);
+        $editPdt->bindValue(':category', $this->maincat_id, PDO::PARAM_STR);
+        $editPdt->bindValue(':sbcategory', $this->subcat_id, PDO::PARAM_STR);
+        $editPdt->bindValue(':idProducts', $this->products_id, PDO::PARAM_STR);
         return $editPdt->execute();
     }
 
@@ -157,9 +157,9 @@ class Products extends database {//creation class client qui heriteras de la cla
         $response->bindValue(':capacity', $this->products_capacity, PDO::PARAM_STR);
         $response->bindValue(':expiration', $this->products_expiration, PDO::PARAM_STR);
         $response->bindValue(':image', $this->products_img, PDO::PARAM_STR);
-        $response->bindValue(':category', $this->maincat_id, PDO::PARAM_INT);
-        $response->bindValue(':sbcategory', $this->subcat_id, PDO::PARAM_INT);
-        $response->bindValue(':idProducts', $this->products_id, PDO::PARAM_INT);
+        $response->bindValue(':category', $this->maincat_id, PDO::PARAM_STR);
+        $response->bindValue(':sbcategory', $this->subcat_id, PDO::PARAM_STR);
+        $response->bindValue(':idProducts', $this->products_id, PDO::PARAM_STR);
         return $response->execute();
     }
 }
