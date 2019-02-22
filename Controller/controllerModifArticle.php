@@ -101,46 +101,43 @@ if (!array_key_exists('image', $_FILES) && isset($_POST['sendButton'])) {
 }
 
 
+if (isset($_FILES['image']) && ($_FILES['image']['error']) != 4 ) {
+
+    $target_dir = '../assets/imgProducts/';
+    //spécifie le chemin du fichier à être chargé 
+    $target_file = $target_dir . basename($_FILES['image']['name']);
+    //spécifie l'extension du fichier 
+    $imageFileType = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+
+// Vérifie le poids du fichier 
+    if ($_FILES['image']['size'] > 2000000) {
+        $errorImage['image'] = 'L\'image ne doit pas dépasser 2Mo';
+    }
+
+// Vérifie si le nom du fichier existe déjà dans la bdd 
+    if (file_exists($target_file)) {
+        $errorImage['image'] = 'Le fichier existe déjà';
+    }
+
+    $arrayValidFormat = ['jpg', 'png', 'jpeg', 'bmp']; // Prise en compte de certains formats de fichiers 
+    //création d'un tableau et si dans ce tableau on compare le fichier à uploadé et les formats autorisés 
+    if (!in_array($imageFileType, $arrayValidFormat)) {
+        $errorImage['image']['format'] = 'Le format du fichier n\'est pas autorise.(jpg, jpeg, png ou bmp) ';
+    }
+
+    if ((count($errorImage) == 0) && (count($errorsArray) == 0)) {
+        if (move_uploaded_file($_FILES['image']['tmp_name'], '../assets/imgProducts/' . $_FILES['image']['name'])) {
+
+            $succesArray['image'] = 'le fichier ' . basename($_FILES['image']['name']) . ' a été chargé. ';
+        } else {
+            $errorImage['image'] = 'désolé, il y a une erreur de chargement de fichier.';
+        }
+    }
+}
 
 
 
-//if (isset($_FILES['image'])) {
-//
-//    $target_dir = '../assets/imgProducts/';
-//    //spécifie le chemin du fichier à être chargé 
-//    $target_file = $target_dir . basename($_FILES['image']['name']);
-//    //spécifie l'extension du fichier 
-//    $imageFileType = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
-//
-//// Vérifie le poids du fichier 
-//    if ($_FILES['image']['size'] > 2000000) {
-//        $errorImage['image'] = 'L\'image ne doit pas dépasser 2Mo';
-//    }
-//
-//// Vérifie si le nom du fichier existe déjà dans la bdd 
-//    if (file_exists($target_file)) {
-//        $errorImage['image'] = 'Le fichier existe déjà';
-//    }
-//
-//    $arrayValidFormat = ['jpg', 'png', 'jpeg', 'bmp']; // Prise en compte de certains formats de fichiers 
-//    //création d'un tableau et si dans ce tableau on compare le fichier à uploadé et les formats autorisés 
-//    if (!in_array($imageFileType, $arrayValidFormat)) {
-//        $errorImage['image']['format'] = 'Le format du fichier n\'est pas autorise.(jpg, jpeg, png ou bmp) ';
-//    }
-//
-//    if ((count($errorImage) == 0) && (count($errorsArray) == 0)) {
-//        if (move_uploaded_file($_FILES['image']['tmp_name'], '../assets/imgProducts/' . $_FILES['image']['name'])) {
-//
-//            $succesArray['image'] = 'le fichier ' . basename($_FILES['image']['name']) . ' a été chargé. ';
-//        } else {
-//            $errorImage['image'] = 'désolé, il y a une erreur de chargement de fichier.';
-//        }
-//    }
-//}
-
-
-
-if (isset($_POST['sendButton']) && (count($errorsArray) == 0)) {
+if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorImage) == 0) ){
     $OnepductsObj->products_img = $_SESSION['imageProduct'];
     $OnepductsObj->products_id = $_SESSION['idProduct'];
     $OnepductsObj->products_name = $nameproduct;
@@ -153,7 +150,7 @@ if (isset($_POST['sendButton']) && (count($errorsArray) == 0)) {
     $OnepductsObj->subcat_id = $sbcategory;
 
 
-    $OnepductsObj->editProductWithoutImg();
+    $OnepductsObj->editProduct();
     $OnepductsObj->profilProducts();
 
 //    $pductsObj->products_img = '../assets/imgProducts/' . $_FILES['image']['name']; //j'indique que mon objet correpond au chemin de l'image uploadé.

@@ -120,7 +120,7 @@ include_once('../Controller/controllerModifArticle.php');
 
                             <div class="form-group col-lg-12 col-sm-12 Image">
                                 <label id="labelImg">Image du produit à troqué </label>
-                                <p><img class="img-fluid" src="<?= $filePdt->products_img ?>" width="82" height="82"></p>
+                                <p><img class="img-fluid" src="<?= isset($filePdt->products_img) ? $filePdt->products_img :  $OnepductsObj->products_img ?>" width="82" height="82"></p>
                                 <input type="file" name="image" class="form-control" value="<?= isset($_FILES['image']['name']) ? $_FILES['image']['name'] : $filePdt->products_img; ?>">
                                 <input type="hidden" name="MAX_FILE_SIZE" value="2000000"><!--controle le format uploadé--> <!-- On limite le fichier à 2Mo -->
                                 <span class="error"><?= isset($errorsArray['image']) ? $errorsArray['image'] : ''; ?></span>

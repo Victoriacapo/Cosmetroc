@@ -152,7 +152,7 @@ class Products extends database {//creation class client qui heriteras de la cla
         $response = $this->database->prepare($query); //connexion database puis prepare la requete
         $response->bindValue(':nameproduct', $this->products_name, PDO::PARAM_STR);
         $response->bindValue(':brand', $this->products_brand, PDO::PARAM_STR);
-        $response->bindValue(':quantity', $this->products_quantity, PDO::PARAM_INT);
+        $response->bindValue(':quantity', $this->products_quantity, PDO::PARAM_STR);
         $response->bindValue(':state', $this->products_state, PDO::PARAM_STR);
         $response->bindValue(':capacity', $this->products_capacity, PDO::PARAM_STR);
         $response->bindValue(':expiration', $this->products_expiration, PDO::PARAM_STR);
