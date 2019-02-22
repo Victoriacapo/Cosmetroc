@@ -101,7 +101,7 @@ if (!array_key_exists('image', $_FILES) && isset($_POST['sendButton'])) {
 }
 
 
-if (isset($_FILES['image']) && ($_FILES['image']['error']) != 4 ) {
+if (isset($_FILES['image']) && ($_FILES['image']['error']) != 4) {
 
     $target_dir = '../assets/imgProducts/';
     //spécifie le chemin du fichier à être chargé 
@@ -126,6 +126,7 @@ if (isset($_FILES['image']) && ($_FILES['image']['error']) != 4 ) {
     }
 
     if ((count($errorImage) == 0) && (count($errorsArray) == 0)) {
+        unlink($_SESSION['imageProduct']);
         if (move_uploaded_file($_FILES['image']['tmp_name'], '../assets/imgProducts/' . $_FILES['image']['name'])) {
 
             $succesArray['image'] = 'le fichier ' . basename($_FILES['image']['name']) . ' a été chargé. ';
@@ -137,8 +138,12 @@ if (isset($_FILES['image']) && ($_FILES['image']['error']) != 4 ) {
 
 
 
-if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorImage) == 0) ){
-    $OnepductsObj->products_img = $_SESSION['imageProduct'];
+if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorImage) == 0)) {
+    if (($_FILES['image']['error']) == 4) {
+        $OnepductsObj->products_img = $_SESSION['imageProduct'];
+    } else {
+        $OnepductsObj->products_img = '../assets/imgProducts/' . $_FILES['image']['name'];
+    }
     $OnepductsObj->products_id = $_SESSION['idProduct'];
     $OnepductsObj->products_name = $nameproduct;
     $OnepductsObj->products_brand = $brand;
