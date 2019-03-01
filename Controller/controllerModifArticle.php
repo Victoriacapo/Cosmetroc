@@ -1,5 +1,5 @@
 <?php
-
+//appel des différents modèle
 include_once ('../model/modelbdd.php');
 include_once ('../model/modelusers.php');
 include_once ('../model/modelCategory.php');
@@ -13,14 +13,11 @@ $sbcategObj = new SubCategory(); //ss-categorie
 $OnepductsObj = new Products(); // article
 
 
-
 if (isset($_GET['idProducts'])) { //recupere l'id, verifie si présent ds la base de donnée, et effectue la requête
     $OnepductsObj->products_id = $_GET['idProducts']; //on indique que l'objet products_id correspond au Get['idProduct']
     $filePdt = $OnepductsObj->profilProducts(); //correspond à la requête pr afficher la fiche propre à un produit
     $_SESSION['idProduct'] = $_GET['idProducts'];
     $_SESSION['imageProduct'] = $filePdt->products_img;
-
-    var_dump($_SESSION);
 
     if ($OnepductsObj === FALSE) {
         $ifIdexist = FALSE;
@@ -100,7 +97,6 @@ if (!array_key_exists('image', $_FILES) && isset($_POST['sendButton'])) {
     $errorsArray['image'] = 'Veuillez entrer une image';
 }
 
-
 if (isset($_FILES['image']) && ($_FILES['image']['error']) != 4) {
 
     $target_dir = '../assets/imgProducts/';
@@ -158,10 +154,5 @@ if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorIm
     $OnepductsObj->editProduct();
     $OnepductsObj->profilProducts();
 
-//    $pductsObj->products_img = '../assets/imgProducts/' . $_FILES['image']['name']; //j'indique que mon objet correpond au chemin de l'image uploadé.
-//    $pductsObj->addProducts(); // execute ma requete presente dans mon model
-//    $date = $pductsObj->products_expiration;  //variable qui seras utilisé dans la vue pr formater l'objet expiration en date française.
-//    $showForm = false; // ma variable return false donc cache mon formulaire remplie.
-    //$profil = $profilObj->UserProfil();
-    //$rdvParPatient = $RDVObj->RDVbyID();
+
 }

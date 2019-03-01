@@ -1,9 +1,9 @@
 
 <?php
 
-class Products extends database {//creation class client qui heriteras de la class database cree ds la page modelbdd
+class Products extends database {//création class Products qui hériteras de la class database crée ds le modelbdd
 
-    public $products_id; // attribué des attributs, correspond aux colonne de ma table 
+    public $products_id; // attribué des attributs, correspond aux colonnes de ma table 
     public $products_name;
     public $products_brand;
     public $products_quantity;
@@ -16,17 +16,17 @@ class Products extends database {//creation class client qui heriteras de la cla
     public $users_id;
 
     /**
-     * Fonction permettant d'ajouter un user
+     * Fonction permettant d'enregistrer un produit
      * @return Execute Query INSERT INTO
      * 
      */
     public function addProducts() {
-        //variable query stocke ma requete pour inserer les donnee de mon formulaire
+        //variable query stocke ma requête pour insérer les donnee de mon formulaire
         $query = 'INSERT INTO `velo_products` (`products_name`, `products_brand`, `products_quantity`, '
                 . '`products_state`, `products_capacity`, `products_expiration`, `products_img`, '
                 . '`maincat_id`, `subcat_id`, `users_id`) '
                 . 'VALUES(:nameproduct, :brand, :quantity, :state, :capacity, :expiration, :image, :category, :sbcategory, :idUser) '; //marqueur nominatif
-        $addPdt = $this->database->prepare($query); //connexion database puis prepare la requete
+        $addPdt = $this->database->prepare($query); //connexion database puis prépare la requête
         $addPdt->bindValue(':nameproduct', $this->products_name, PDO::PARAM_STR);
         $addPdt->bindValue(':brand', $this->products_brand, PDO::PARAM_STR);
         $addPdt->bindValue(':quantity', $this->products_quantity, PDO::PARAM_INT);
@@ -102,37 +102,7 @@ class Products extends database {//creation class client qui heriteras de la cla
     }
 
     /**
-     * Fonction permettant de modifier un produit sans l'image
-     * @return Execute Query UPDATE 
-     * 
-     */
-    public function editProductWithoutImg() {
-        //variable query stocke ma requete pour inserer les donnee de mon formulaire
-        $query = 'UPDATE `velo_products` '
-                . 'SET `products_name`= :nameproduct, '
-                . '`products_brand`= :brand, '
-                . '`products_quantity`= :quantity, '
-                . '`products_state`= :state, '
-                . '`products_capacity`= :capacity, '
-                . '`products_expiration`= :expiration, '
-                . '`subcat_id`= :sbcategory, '
-                . '`maincat_id`= :category '
-                . 'WHERE `products_id` = :idProducts ';
-        $editPdt = $this->database->prepare($query); //connexion database puis prepare la requete
-        $editPdt->bindValue(':nameproduct', $this->products_name, PDO::PARAM_STR);
-        $editPdt->bindValue(':brand', $this->products_brand, PDO::PARAM_STR);
-        $editPdt->bindValue(':quantity', $this->products_quantity, PDO::PARAM_STR);
-        $editPdt->bindValue(':state', $this->products_state, PDO::PARAM_STR);
-        $editPdt->bindValue(':capacity', $this->products_capacity, PDO::PARAM_STR);
-        $editPdt->bindValue(':expiration', $this->products_expiration, PDO::PARAM_STR);
-        $editPdt->bindValue(':category', $this->maincat_id, PDO::PARAM_STR);
-        $editPdt->bindValue(':sbcategory', $this->subcat_id, PDO::PARAM_STR);
-        $editPdt->bindValue(':idProducts', $this->products_id, PDO::PARAM_STR);
-        return $editPdt->execute();
-    }
-
-    /**
-     * Fonction permettant de modifier un produit sans l'image
+     * Fonction permettant de modifier un produit 
      * @return Execute Query UPDATE 
      * 
      */
@@ -161,5 +131,47 @@ class Products extends database {//creation class client qui heriteras de la cla
         $response->bindValue(':sbcategory', $this->subcat_id, PDO::PARAM_STR);
         $response->bindValue(':idProducts', $this->products_id, PDO::PARAM_STR);
         return $response->execute();
+    }
+    
+    /**
+     * Fonction permettant de supprimer un article
+     * @return Execute Query DELETE 
+     * 
+     */
+    public function DeletePdts() {
+        $query = 'DELETE FROM `velo_products` WHERE `products_id`= :idProducts AND `users_id`= :idUser ';
+        $deletePdt = $this->database->prepare($query); //connexion database puis prepare la requête
+        $deletePdt->bindValue(':idProducts', $this->products_id, PDO::PARAM_INT); 
+        $deletePdt->bindValue(':idUser', $this->users_id, PDO::PARAM_INT);
+        return $deletePdt->execute();
+    }
+    
+     /**
+     * Fonction permettant d'afficher les categorie et sous-categorie d'un produit dans ma nav
+     * @return Execute Query SELECT 
+     * 
+     */
+    public function navbar() {
+        $query = 'SELECT `products_id`, '
+                . '`products_name`, '
+                . '`products_brand`, '
+                . '`products_quantity`, '
+                . '`products_state`, '
+                . '`products_capacity`, '
+                . '`products_expiration`, '
+                . '`products_img`, '
+                . '`velo_products`.`subcat_id`, '
+                . '`velo_products`.`maincat_id`, '
+                . '`maincat_name`, '
+                . '`subcat_name` '
+                . 'FROM `velo_products` '
+                . 'INNER JOIN `velo_maincat` '
+                . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
+                . 'INNER JOIN `velo_subcat` '
+                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id ' ;
+        $productnavbar = $this->database->prepare($query);
+        $productnavbar->execute();
+        $productCateg = $productnavbar->fetchAll(PDO::FETCH_OBJ);
+        return $productCateg;
     }
 }

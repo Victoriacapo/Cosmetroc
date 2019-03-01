@@ -32,11 +32,10 @@ include_once('../Controller/controllerAjout-article.php');
             <div class="row">
                 <div class="col-sm-12 col-lg-6 Article">
                     <?php if ($showForm) { //applique ma booleenne pr afficher/cacher mon form?>
-                        <!--partie form pr uploader image-->
+                       
                         <form name="addProduit" action="ajout-articleView.php" method="POST" enctype="multipart/form-data">
                             <h1 class="ArticleFormH1">Article</h1>
 
-                            <!--partie select-->
                             <div class="row">
                                 <div class="form-group col-lg-4 col-sm-6"> 
                                     <label for="nameproduct">Nom du produit: </label>
@@ -93,7 +92,7 @@ include_once('../Controller/controllerAjout-article.php');
                                         <?php
                                         foreach ($showMncat as $Maincat) { //boucle pour afficher les categories de la Bdd
                                             ?>
-                                            <option value="<?= $Maincat->maincat_id ?>" <?= (isset($_POST['category']) && $_POST['category'] == '') ? 'selected' : ''; ?>><?= $Maincat->maincat_name ?></option> <!--la variable à été gardé car je veux afficher le nom de catégorie et non l'id, l'attibut maincat_name n'est pas compris ds mes attribut ds mn model-->
+                                            <option value="<?= $Maincat->maincat_id ?>" <?= (isset($_POST['category']) && $_POST['category'] == '') ? 'selected' : ''; ?>><?= $Maincat->maincat_name ?></option> <!--la variable à été gardé car je veux afficher le nom de catégorie et non l'id, l'attribut maincat_name n'est pas compris ds mes attribut ds mn modelProducts-->
                                             <?php
                                         }
                                         ?>
@@ -143,7 +142,7 @@ include_once('../Controller/controllerAjout-article.php');
                                 <li>Quantité: <?= $pductsObj->products_quantity ?></li>
                                 <li>Etat: <?= $pductsObj->products_state ?></li>
                                 <li>Capacité: <?= $pductsObj->products_capacity ?></li>
-                                <li>Expiration: <?= date('d/m/Y', strtotime($date)); ?> <!-- la variable $date est déclarer dns le controller, il contient l'attribut(products_expiration)-->
+                                <li>Expiration: <?= date('d/m/Y', strtotime($pductsObj->products_expiration)); ?> <!-- la variable $date est déclarer dns le controller, il contient l'attribut(products_expiration)-->
                             </ul>
                         </div>
                         <div id="plus"><button onclick="(window.location = 'ajout-articleView.php?id=<?= $_SESSION['idUser']; ?>')" class="btn btn-raised btn-primary">Ajouter un article</button></div>

@@ -31,11 +31,10 @@ include_once('../Controller/controllerModifArticle.php');
             <div class="row">
                 <div class="col-sm-12 col-lg-6 Article">
 
-                    <!--partie form pr uploader image-->
+
                     <form name="addProduit" action="modifArticle.php" method="POST" enctype="multipart/form-data">
                         <h1 class="ArticleFormH1">Modification Article</h1>
 
-                        <!--partie select-->
                         <div class="row">
                             <div class="form-group col-lg-4 col-sm-6"> 
                                 <label for="nameproduct">Nom du produit: </label>
@@ -53,11 +52,12 @@ include_once('../Controller/controllerModifArticle.php');
                                 <label>Quantité: </label>
                                 <select name="quantity" class="form-control"> 
                                     <option value="" selected disabled></option>
-                                    <option value="1" <?= isset($quantity) && $quantity == 1 ? $quantity : $filePdt->products_quantity == '1' ? 'selected' : ''  ?>>1</option> <!--ternaire qui permet de garder les valeurs inscrites à l'envoi -->
-                                    <option value="2" <?= isset($quantity) && $quantity == 2 ? $quantity : $filePdt->products_quantity == '2' ? 'selected' : ''  ?>>2</option>
-                                    <option value="3" <?= isset($quantity) && $quantity == 3 ? $quantity : $filePdt->products_quantity == '3' ? 'selected' : ''  ?>>3</option>
-                                    <option value="4" <?= isset($quantity) && $quantity == 4 ? $quantity : $filePdt->products_quantity == '4' ? 'selected' : ''  ?>>4</option>
-                                    <option value="5" <?= isset($quantity) && $quantity == 5 ? $quantity : $filePdt->products_quantity == '5' ? 'selected' : ''  ?>>5</option>
+                                    <!--Si la variable $quantity  est récupéré et qu’elle est égale à 1, afficher $quantity sinon afficher l’objet (qui contient la valeur  initiale)-->
+                                    <option value="1" <?= isset($quantity) && $quantity == 1 ? $quantity : $filePdt->products_quantity == '1' ? 'selected' : '' ?>>1</option> <!--ternaire qui permet de garder les valeurs inscrites à l'envoi -->
+                                    <option value="2" <?= isset($quantity) && $quantity == 2 ? $quantity : $filePdt->products_quantity == '2' ? 'selected' : '' ?>>2</option>
+                                    <option value="3" <?= isset($quantity) && $quantity == 3 ? $quantity : $filePdt->products_quantity == '3' ? 'selected' : '' ?>>3</option>
+                                    <option value="4" <?= isset($quantity) && $quantity == 4 ? $quantity : $filePdt->products_quantity == '4' ? 'selected' : '' ?>>4</option>
+                                    <option value="5" <?= isset($quantity) && $quantity == 5 ? $quantity : $filePdt->products_quantity == '5' ? 'selected' : '' ?>>5</option>
                                 </select>
                                 <span class="error"><?= isset($errorsArray['quantity']) ? $errorsArray['quantity'] : ''; ?></span>
                             </div>
@@ -66,9 +66,9 @@ include_once('../Controller/controllerModifArticle.php');
                                 <label>Etat: </label>
                                 <select name="state" class="form-control"> 
                                     <option value=""selected disabled></option>
-                                    <option value="neuf" <?=isset($state) && $state == 'neuf' ? $state : $filePdt->products_state == 'neuf' ? 'selected' : ''  ?>>Neuf</option> 
-                                    <option value="testé" <?=isset($state) && $state == 'testé' ? $state : $filePdt->products_state == 'testé' ? 'selected' : ''  ?>>testé</option> 
-                                    <option value="Utilisé + de 5 fois" <?=isset($state) && $state == 'Utilisé + de 5 fois' ? $state : $filePdt->products_state == 'Utilisé + de 5 fois' ? 'selected' : ''  ?>>Utilisé + de 5 fois</option> 
+                                    <option value="neuf" <?= isset($state) && $state == 'neuf' ? $state : $filePdt->products_state == 'neuf' ? 'selected' : '' ?>>Neuf</option> 
+                                    <option value="testé" <?= isset($state) && $state == 'testé' ? $state : $filePdt->products_state == 'testé' ? 'selected' : '' ?>>testé</option> 
+                                    <option value="Utilisé + de 5 fois" <?= isset($state) && $state == 'Utilisé + de 5 fois' ? $state : $filePdt->products_state == 'Utilisé + de 5 fois' ? 'selected' : '' ?>>Utilisé + de 5 fois</option> 
                                 </select>
                                 <span class="error"><?= isset($errorsArray['state']) ? $errorsArray['state'] : ''; ?></span>
                             </div>
@@ -81,19 +81,19 @@ include_once('../Controller/controllerModifArticle.php');
 
                             <div class="form-group col-lg-4 col-sm-6"> 
                                 <label for="expiration">Date d'expiration: </label>
-                                <input type="date" name="expiration" class="form-control" value="<?= isset($_POST['expiration']) ? $_POST['expiration'] : date('Y-m-d', strtotime($filePdt->products_expiration)); ?>"/><!--ternaire qui permet que les données saisie reste -->
+                                <input type="date" name="expiration" class="form-control" value="<?= isset($_POST['expiration']) ? $_POST['expiration'] : date('Y-m-d', strtotime($filePdt->products_expiration)); ?>"/><!--La date d’expiration est formaté  au format français dans la vue-->
                                 <span class="error"><?= isset($errorsArray['expiration']) ? $errorsArray['expiration'] : ''; ?></span>
                             </div>
 
                             <div class="form-group col-lg-4 col-sm-6"> 
                                 <label>Catégorie: </label>
                                 <select name="category" class="form-control"> 
-                                    <option value="Choix" selected disabled></option>
-                                     <?= isset($quantity) && $quantity == 5 ? $quantity : $filePdt->products_quantity == '5' ? 'selected' : ''  ?>
+                                    <option value="" selected disabled>Choix</option>
                                     <?php
                                     foreach ($showMncat as $Maincat) { //boucle pour afficher les categories de la Bdd
                                         ?>
-                                        <option value="<?= $Maincat->maincat_id ?>" <?=isset($category) && $category == $Maincat->maincat_id ? $category : $Maincat->maincat_id == $filePdt->maincat_id ? 'selected' : '' ?>><?= $Maincat->maincat_name ?></option> 
+                     <!-- Si la variable $category est récupéré et qu’elle est égale  $Maincat->maincat_id, afficher $category , sinon $Maincat->maincat_id == à la valeur initiale-->
+                                        <option value="<?= $Maincat->maincat_id ?>" <?= isset($category) && $category == $Maincat->maincat_id ? $category : $Maincat->maincat_id == $filePdt->maincat_id ? 'selected' : '' ?>><?= $Maincat->maincat_name ?></option> 
                                         <?php
                                     }
                                     ?>
@@ -109,7 +109,7 @@ include_once('../Controller/controllerModifArticle.php');
                                     <?php
                                     foreach ($showSbcat as $subcat) { //boucle pour afficher les ss-categories de la Bdd
                                         ?>
-                                        <option value="<?= $subcat->subcat_id ?>" <?=isset($sbcategory) && $sbcategory == $subcat->subcat_id ? $sbcategory : $subcat->subcat_id == $filePdt->subcat_id ? 'selected' : '' ?>><?=$subcat->subcat_name ?></option> 
+                                        <option value="<?= $subcat->subcat_id ?>" <?= isset($sbcategory) && $sbcategory == $subcat->subcat_id ? $sbcategory : $subcat->subcat_id == $filePdt->subcat_id ? 'selected' : '' ?>><?= $subcat->subcat_name ?></option> 
                                         <?php
                                     }
                                     ?>
@@ -120,7 +120,7 @@ include_once('../Controller/controllerModifArticle.php');
 
                             <div class="form-group col-lg-12 col-sm-12 Image">
                                 <label id="labelImg">Image du produit à troqué </label>
-                                <p><img class="img-fluid" src="<?= isset($filePdt->products_img) ? $filePdt->products_img :  $OnepductsObj->products_img ?>" width="82" height="82"></p>
+                                <p><img class="img-fluid" src="<?= isset($filePdt->products_img) ? $filePdt->products_img : $OnepductsObj->products_img ?>" width="82" height="82"></p>
                                 <input type="file" name="image" class="form-control" value="<?= isset($_FILES['image']['name']) ? $_FILES['image']['name'] : $filePdt->products_img; ?>">
                                 <input type="hidden" name="MAX_FILE_SIZE" value="2000000"><!--controle le format uploadé--> <!-- On limite le fichier à 2Mo -->
                                 <span class="error"><?= isset($errorsArray['image']) ? $errorsArray['image'] : ''; ?></span>

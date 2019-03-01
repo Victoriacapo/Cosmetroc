@@ -189,3 +189,54 @@ SELECT
         
         
         
+        requete pour afficher tous les produits avec les categorie et sous-categorie
+        SELECT `products_id`, 
+        `products_name`, 
+        `products_brand`, 
+        `products_quantity`, 
+        `products_state`, 
+        `products_capacity`, 
+        `products_expiration`, 
+        `products_img`, 
+        `velo_products`.`subcat_id`, 
+        `velo_products`.`maincat_id`, 
+        `maincat_name`, 
+        `subcat_name` 
+        FROM `velo_products` 
+        INNER JOIN `velo_maincat` 
+        ON `velo_products`.maincat_id = `velo_maincat`.maincat_id 
+        INNER JOIN `velo_subcat` 
+        ON `velo_products`.subcat_id = `velo_subcat`.subcat_id 
+        
+        
+        
+        
+        /**
+     * Fonction permettant de modifier un produit sans l'image
+     * @return Execute Query UPDATE 
+     * 
+     */
+    public function editProductWithoutImg() {
+        //variable query stocke ma requete pour inserer les donnee de mon formulaire
+        $query = 'UPDATE `velo_products` '
+                . 'SET `products_name`= :nameproduct, '
+                . '`products_brand`= :brand, '
+                . '`products_quantity`= :quantity, '
+                . '`products_state`= :state, '
+                . '`products_capacity`= :capacity, '
+                . '`products_expiration`= :expiration, '
+                . '`subcat_id`= :sbcategory, '
+                . '`maincat_id`= :category '
+                . 'WHERE `products_id` = :idProducts ';
+        $editPdt = $this->database->prepare($query); //connexion database puis prepare la requete
+        $editPdt->bindValue(':nameproduct', $this->products_name, PDO::PARAM_STR);
+        $editPdt->bindValue(':brand', $this->products_brand, PDO::PARAM_STR);
+        $editPdt->bindValue(':quantity', $this->products_quantity, PDO::PARAM_STR);
+        $editPdt->bindValue(':state', $this->products_state, PDO::PARAM_STR);
+        $editPdt->bindValue(':capacity', $this->products_capacity, PDO::PARAM_STR);
+        $editPdt->bindValue(':expiration', $this->products_expiration, PDO::PARAM_STR);
+        $editPdt->bindValue(':category', $this->maincat_id, PDO::PARAM_STR);
+        $editPdt->bindValue(':sbcategory', $this->subcat_id, PDO::PARAM_STR);
+        $editPdt->bindValue(':idProducts', $this->products_id, PDO::PARAM_STR);
+        return $editPdt->execute();
+    }

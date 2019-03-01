@@ -47,7 +47,7 @@ include_once('../Controller/controllerInscription.php');
                             </div>
                             <div class="form-group"> 
                                 <label for="password">Mot de passe: (6 caractères minimum, comprenant 1 majuscule et 1 miniscule)</label>
-                                <!--<span class="bmd-help">(6 caractères minimum, comprenant 1 majuscule et 1 miniscule)</span>-->
+                            
                                 <input type="password" name="password" class="form-control" value="<?= isset($_POST['password']) ? $usersObj->users_password : ''; ?>"/>
                                 <span class="error"><?= isset($errorsArray['password']) ? $errorsArray['password'] : ''; ?></span>
                             </div>

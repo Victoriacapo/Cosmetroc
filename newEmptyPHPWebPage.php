@@ -116,5 +116,12 @@ header('location:../View/monprofilView.php');
                                 ?>
             <!--button lié au modal dans l'index-->
              <button id="modalbutton" class="btn btn-raised btn-primary" data-toggle="modal" data-target="#pageconnexion">Connexion</button>
+   
+    
+             
+                 <!--<span class="bmd-help">(6 caractères minimum, comprenant 1 majuscule et 1 miniscule)</span>-->
+    span material bootstrap permettant d'aider l'utilisateur.
+    
+    
     </body>
 </html>

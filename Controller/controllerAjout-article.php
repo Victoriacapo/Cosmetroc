@@ -114,12 +114,13 @@ if (isset($_FILES['image'])) {
     }
 
     $arrayValidFormat = ['jpg', 'png', 'jpeg', 'bmp']; // Prise en compte de certains formats de fichiers 
-    //création d'un tableau et si dans ce tableau on compare le fichier à uploadé et les formats autorisés 
+       //création d'un tableau qui permet de comparer les formats autorisés avec celui de l’upload. 
     if (!in_array($imageFileType, $arrayValidFormat)) {
         $errorImage['image']['format'] = 'Le format du fichier n\'est pas autorise.(jpg, jpeg, png ou bmp) ';
     }
-
+// Si non présence dans les vérifications liées aux inputs du formulaire et a l’upload de l’image, 
     if ((count($errorImage) == 0) && (count($errorsArray) == 0)) {
+        // S’assure que le fichier est récupéré par un post , puis le déplace grâce au chemin indiqué.
         if (move_uploaded_file($_FILES['image']['tmp_name'], '../assets/imgProducts/' . $_FILES['image']['name'])) {
 
             $succesArray['image'] = 'le fichier ' . basename($_FILES['image']['name']) . ' a été chargé. ';
@@ -133,13 +134,11 @@ if (isset($_FILES['image'])) {
 
 if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorImage) == 0)) {
     $pductsObj->products_img = '../assets/imgProducts/' . $_FILES['image']['name']; //j'indique que mon objet correpond au chemin de l'image uploadé.
-    $pductsObj->addProducts(); // execute ma requete presente dans mon model$pductsObj->products_img
-    $date = $pductsObj->products_expiration;  //variable qui seras utilisé dans la vue pr formater l'objet expiration en date française.
+    $pductsObj->addProducts(); //execute ma requete qui permet d’ajouter un produit.
     $showForm = false; // ma variable return false donc cache mon formulaire remplie.
 
 
-    //$profil = $profilObj->UserProfil();
-    //$rdvParPatient = $RDVObj->RDVbyID();
+    
     
 }
 ?>

@@ -10,7 +10,7 @@ $showForm = true; //booléen qui renvoie true/false pr soit cacher/afficher mn f
 // on déclare un tableau errorsArray qui contiendra les messages d'erreurs
 $errorsArray = [];
 
-// on test si le pseudo est valide
+// Mise en place des regex
 $regexPseudo = '/^[a-zA-Z0-9_]{3,16}$/';
 $regexPwd = '/^[a-zA-Z0-9_]+$/';
 $regexEmail = '/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/';

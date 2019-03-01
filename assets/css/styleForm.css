@@ -126,3 +126,7 @@
     margin-bottom: 50px;
     font-size: 30px;
 }
+/*applique des border à ma liste dans le deleteArticle*/
+.products li{
+   border:solid 1px #818181 ;
+}

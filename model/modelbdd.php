@@ -12,7 +12,7 @@ class database { //declaration class database
         }
     }
 
-    public function __destruct() {//  completement function qui permet de terminer la requete
+    public function __destruct() {// function qui permet de terminer la requete
         $this->database = NULL;
     }
 

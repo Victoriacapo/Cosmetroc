@@ -31,19 +31,23 @@
 .nav-item:hover::after{
     width:100%;
 }
-.navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show > .nav-link,.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{color:#00876e;}
+#navbarDropdown{
+     margin-right: 25px;
+    margin-left: 25px;
+}
+.navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show > .nav-link,.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{
+    color:#00876e;
+}
 .nav-link{
     padding:15px 5px; /* espace entre ls navlink  */
 }
-.dropdown-item:focus, .dropdown-item:hover{background:#00876e;}
+.dropdown-item:focus, .dropdown-item:hover{
+    background:#00876e;
+}
 .dropdown-toggle::after{
     color: white;
 }
-.listNav{
-    height: auto;
-    width: 800px;
-    background-color: whitesmoke;
-}
+
 #ulNav{
     list-style: none;
     border-right: solid 3px pink;
@@ -66,7 +70,6 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 
 
 /*footer  */
@@ -194,7 +197,7 @@ footer {
 
 .VerticalTabContent {
     margin-top: 55px;
-    
+
 }
 
 /*div pr afficher le profil rapide*/
@@ -214,17 +217,8 @@ label{
     font-size: smaller;
 }
 
-/*tableau de mon espacetroc contenant l'ensemble des pduits proposés par l'utilisateur'*/
-table,
-td {
-    border: 1px solid #333;
+
+#v-pills-Article{
+    height: auto;
+    width: auto;
 }
-
-thead,
-tfoot {
-    background-color: #333;
-    color: #fff;
-}
-
-
-

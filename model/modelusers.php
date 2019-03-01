@@ -1,6 +1,6 @@
 <?php
 
-class Users extends database {//creation class client qui heriteras de la class database cree ds la page modelbdd
+class Users extends database {//creation class Utilisateur qui heriteras de la class database cree ds le modelbdd
 
     public $users_id; // attribué des attributs, correspond aux colonne de ma table 
     public $users_gender;

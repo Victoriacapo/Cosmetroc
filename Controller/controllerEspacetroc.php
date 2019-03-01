@@ -19,3 +19,5 @@ if (isset($_SESSION['idUser'])) { //recupere l'id session de l'utilisateur, veri
         $ifIdexist = TRUE;
     }
 }
+
+
