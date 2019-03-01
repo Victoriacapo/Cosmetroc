@@ -8,8 +8,8 @@ include_once ('../model/modelusers.php');
 $profilObj = new Users(); //instancie un nouvel objet
 
 
-if (isset($_SESSION['id'])) { //recupere l'id, verifie si présent ds la base de donnée, et effectue la requête
-    $profilObj->users_id = $_SESSION['id'];
+if (isset($_SESSION['idUser'])) { //recupere l'id, verifie si présent ds la base de donnée, et effectue la requête
+    $profilObj->users_id = $_SESSION['idUser'];
     $profil = $profilObj->UserProfil();
     if ($profil === FALSE) {
         $ifIdexist = FALSE;
@@ -123,7 +123,7 @@ if (isset($_POST['sendButton']) && (count($errorsArray) == 0)) {
     $profilObj->modifyUser(); // execute ma requete presente dans mon modelpatient
     $profil = $profilObj->UserProfil();
 
-    $_SESSION['id'] = $profilObj->users_id;
+    $_SESSION['idUser'] = $profilObj->users_id;
     $_SESSION['gender'] = $profilObj->users_gender;
     $_SESSION['lastname'] = $profilObj->users_lastname;
     $_SESSION['firstname'] = $profilObj->users_firstname;
@@ -134,7 +134,6 @@ if (isset($_POST['sendButton']) && (count($errorsArray) == 0)) {
     $_SESSION['phone'] = $profilObj->users_phone;
     $_SESSION['pseudo'] = $profilObj->users_pseudo;
 
-    //$rdvParPatient = $RDVObj->RDVbyID();
-    //$modificationOK = TRUE;
+   
 }
 ?>

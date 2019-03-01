@@ -16,13 +16,14 @@ $productsObj = new Products(); //article
 $succesArray = []; //déclaration tableau pour message de succès
 
 $showForm = true; //booléen qui renvoie true/false pr soit cacher/afficher mn form
-
+$checkId = true;
+        
 if (isset($_GET['idProducts']) && ($_SESSION['idUser'])) { //recupere l'idProducts 
     $productsObj->products_id = $_GET['idProducts']; //on indique que l'objet products_id correspond au Get['idProducts']
     $productsObj->users_id = $_SESSION['idUser']; 
 
 
-    $pdtSheet = $productsObj->profilProducts(); //correspond à la requête pr afficher la fiche propre à un produit
+    $pdtSheet = $productsObj->profilProducts(); //correspond à la requête pr afficher la fiche propre à un produit, la variable $pdtSheet est appelé pour m'afficher la fiche produit dans la vue. 
     $_SESSION['idProduct'] = $_GET['idProducts']; // stocke l'idProducts dans variable de session afin de le réutiliser ultérieurement
     $_SESSION['imageProduct'] = $pdtSheet->products_img; //stocke l'objet products_img dans une variable de session qui permettras de le supprimer dans le dossier local
 
@@ -30,6 +31,9 @@ if (isset($_GET['idProducts']) && ($_SESSION['idUser'])) { //recupere l'idProduc
         $ifIdexist = FALSE;
     } else {
         $ifIdexist = TRUE;
+        if ($_SESSION['idUser'] == $pdtSheet->users_id){// si la variable de session est égale à l'objet $productsObj->users_id, la variable $checkId retourne vrai.
+            $checkId = false;
+        }
     }
 }
 

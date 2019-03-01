@@ -23,12 +23,13 @@ class Users extends database {//creation class Utilisateur qui heriteras de la c
      */
     public function addUser() {
         //variable query stocke ma requete pour inserer les donnee de mon formulaire
-        $query = 'INSERT INTO `velo_users` (`users_gender`, `users_pseudo`, `users_password`, `users_email`) VALUES(:gender, :pseudo, :password, :email)'; //:exemple marqueur nominatif lié aux données saisie par l'user
+        $query = 'INSERT INTO `velo_users` (`users_gender`, `users_pseudo`, `users_password`, `users_email`, `users_authorised`) VALUES(:gender, :pseudo, :password, :email, :authorised)'; //:exemple marqueur nominatif lié aux données saisie par l'user
         $addusers = $this->database->prepare($query); //connexion database puis prepare la requete
         $addusers->bindValue(':gender', $this->users_gender, PDO::PARAM_STR);
         $addusers->bindValue(':pseudo', $this->users_pseudo, PDO::PARAM_STR);
         $addusers->bindValue(':password', $this->users_password, PDO::PARAM_STR);
         $addusers->bindValue(':email', $this->users_email, PDO::PARAM_STR);
+        $addusers->bindValue(':authorised', 0, PDO::PARAM_INT);
         return $addusers->execute();
     }
 

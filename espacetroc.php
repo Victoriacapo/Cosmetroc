@@ -26,7 +26,11 @@ include_once('Controller/controllerEspacetroc.php');
                     <div class="col">
                         <a href="#"><img class="img-fluid" id="logo" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></a>
                     </div>
-
+                     <?php  if (($profilFull->users_authorised == 1) && isset($_SESSION['idUser'])){  ?>
+                    <div class="col">
+                       <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'espaceAdmin.php')">Admin</button>
+                    </div>
+                     <?php } ?>
                 </div>
             </div>
             <!-- Nav -->       
