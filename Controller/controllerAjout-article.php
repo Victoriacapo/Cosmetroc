@@ -11,11 +11,17 @@ include_once ('../model/modelProducts.php');
 $categObj = new Category(); //categorie
 $sbcategObj = new SubCategory(); //ss-categorie
 $pductsObj = new Products(); // article
+$profilUserObj = new Users();
+
 
 $showForm = true; //booléen qui renvoie true/false pr soit cacher/afficher mn form
 
 if (isset($_SESSION['idUser'])) { //recupere l'id, verifie si présent ds la base de donnée, et effectue la requête
     $pductsObj->users_id = $_SESSION['idUser'];
+    $profilUserObj->users_id = $_SESSION['idUser'];
+
+    $addArticleOk = $profilUserObj->checkProfilFill();
+    
 
     if ($pductsObj === FALSE) {
         $ifIdexist = FALSE;
@@ -27,13 +33,11 @@ if (isset($_SESSION['idUser'])) { //recupere l'id, verifie si présent ds la bas
 
 $showMncat = $categObj->showCat(); //permet d'effectuer ma requête pr afficher les catégories
 $showSbcat = $sbcategObj->showSubCat(); //permet d'effectuer ma requête pr afficher les ss-catégories
-
 // on déclare un tableau errorsArray qui contiendra les messages d'erreurs
 $errorsArray = [];
 $errorImage = []; //array contenant erreur lié au vérification de l'image.
 $succesArray = [];
 $regexName = '/[a-zA-Z0-9 -]+$/'; //autorise les minuscules, majuscules, les chiffres, les espaces, les traits d'union
-
 // Verification des inputs.
 if (isset($_POST['nameproduct'])) { // recherche donnée input 
     $pductsObj->products_name = htmlspecialchars($_POST['nameproduct']); // declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
@@ -114,7 +118,7 @@ if (isset($_FILES['image'])) {
     }
 
     $arrayValidFormat = ['jpg', 'png', 'jpeg', 'bmp']; // Prise en compte de certains formats de fichiers 
-       //création d'un tableau qui permet de comparer les formats autorisés avec celui de l’upload. 
+    //création d'un tableau qui permet de comparer les formats autorisés avec celui de l’upload. 
     if (!in_array($imageFileType, $arrayValidFormat)) {
         $errorImage['image']['format'] = 'Le format du fichier n\'est pas autorise.(jpg, jpeg, png ou bmp) ';
     }
@@ -136,9 +140,5 @@ if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorIm
     $pductsObj->products_img = '../assets/imgProducts/' . $_FILES['image']['name']; //j'indique que mon objet correpond au chemin de l'image uploadé.
     $pductsObj->addProducts(); //execute ma requete qui permet d’ajouter un produit.
     $showForm = false; // ma variable return false donc cache mon formulaire remplie.
-
-
-    
-    
 }
 ?>

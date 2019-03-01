@@ -31,6 +31,9 @@ include_once('../Controller/controllerAjout-article.php');
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-sm-12 col-lg-6 Article">
+                     <?php if ($addArticleOk == 0){
+     echo ' veuillez remplir votre profil pr ajouter un article';
+        }else{ ?>
                     <?php if ($showForm) { //applique ma booleenne pr afficher/cacher mon form?>
                        
                         <form name="addProduit" action="ajout-articleView.php" method="POST" enctype="multipart/form-data">
@@ -149,6 +152,8 @@ include_once('../Controller/controllerAjout-article.php');
 
                     <?php } ?>
 
+                         <?php }
+        ?>
                     <div id="closebutton">
                         <button type="button" onclick="(window.location = '../espacetroc.php')" class="btn btn-raised btn-danger">X</button>
                     </div>
@@ -156,7 +161,7 @@ include_once('../Controller/controllerAjout-article.php');
             </div>
         </div>
 
-
+       
         <?php
         require('link/script.php');
         ?>

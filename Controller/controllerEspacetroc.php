@@ -16,8 +16,10 @@ if (isset($_SESSION['idUser'])) { //recupere l'id session de l'utilisateur, veri
     
     $productsByUsers = $showPdtsObj->showProducts(); //applique la méthode pour afficher à l'utilisateur tous les produit qu'il a proposé en troc sur le site
     $profilFull = $profilUserObj->UserProfil();
-    var_dump($profilFull);
-    if ($showPdtsObj === FALSE) {
+    
+    $count = $profilUserObj->checkProfilFill();
+   
+        if ($showPdtsObj === FALSE) {
         $ifIdexist = FALSE;
     } else {
         $ifIdexist = TRUE;

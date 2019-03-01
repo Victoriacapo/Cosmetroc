@@ -62,13 +62,35 @@ class Users extends database {//creation class Utilisateur qui heriteras de la c
     }
 
     /**
+     * Fonction permettant d'afficher un profil en fonction de l'id session
+     * @return Execute Query SELECT 
+     * 
+     */
+    public function checkProfilFill() {
+        $query = 'SELECT count(*) FROM velo_users WHERE users_id = :idUser '
+                . 'AND users_lastname IS NOT NULL '
+                . 'AND users_firstname IS NOT NULL '
+                . 'AND users_address IS NOT NULL '
+                . 'AND users_city  IS NOT NULL '
+                . 'AND users_CP  IS NOT NULL '
+                . 'AND users_phone  IS NOT NULL '
+                . 'AND users_phone  IS NOT NULL ';
+        $response = $this->database->prepare($query);
+        $response->bindValue(':idUser', $this->users_id, PDO::PARAM_INT); //recupere l'id
+        $response->execute();
+        $result = $response->fetchColumn();
+        
+        return $result;
+    }
+
+    /**
      * Fonction permettant de recupérer les modifications des patients
      * @return Execute Query UPDATE 
      * 
      */
     public function modifyUser() {
         //variable query stocke ma requete pour inserer les donnee de mon formulaire
-        $query = 'UPDATE `velo_users` SET `users_gender`= :gender, `users_lastname`= :lastname, `users_firstname`= :firstname, `users_address`= :address, `users_city` = :city, `users_CP`= :zipcode, `users_email`= :email, `users_phone`= :phone, `users_pseudo`= :pseudo WHERE `users_id`= :idUser '; 
+        $query = 'UPDATE `velo_users` SET `users_gender`= :gender, `users_lastname`= :lastname, `users_firstname`= :firstname, `users_address`= :address, `users_city` = :city, `users_CP`= :zipcode, `users_email`= :email, `users_phone`= :phone, `users_pseudo`= :pseudo WHERE `users_id`= :idUser ';
         $replaceUser = $this->database->prepare($query); //connexion database puis prepare la requete
         $replaceUser->bindValue(':idUser', $this->users_id, PDO::PARAM_INT); //recuperation de l'attribut id
         $replaceUser->bindValue(':gender', $this->users_gender, PDO::PARAM_STR);
