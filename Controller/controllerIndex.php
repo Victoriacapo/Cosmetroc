@@ -21,7 +21,7 @@ if (isset($_GET['maincat_id']) && ($_GET['subcat_id'])) {
     // sinon par défaut lorsque l'on est sur la page d'accueil tous les articles publiés seront affichés
     // par la méthode AllProducts
     $ArrayProductNavbar = $navbarElementsObj->AllProducts();
-    
+   
 }
 ?>
   

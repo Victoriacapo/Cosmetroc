@@ -181,7 +181,7 @@ class Products extends database {//création class Products qui hériteras de la
     }
 
     /**
-     * Fonction permettant d'afficher les categorie et sous-categorie d'un produit dans ma nav
+     * Fonction permettant d'afficher tous les produits et leur categorie et sous-categorie au niveau des cards
      * @return Execute Query SELECT 
      * 
      */
@@ -191,17 +191,18 @@ class Products extends database {//création class Products qui hériteras de la
                 . '`products_brand`, '
                 . '`products_quantity`, '
                 . '`products_state`, '
-                . ' `products_capacity`, '
-                . ' `products_expiration`, '
-                . ' `products_img`, '
-                . ' `velo_products`.`subcat_id`, '
+                . '`products_capacity`, '
+                . '`products_expiration`, '
+                . '`products_img`, '
+                . '`velo_products`.`subcat_id`, '
                 . '`velo_products`.`maincat_id`, '
                 . '`maincat_name`, '
                 . '`subcat_name` '
                 . 'FROM `velo_products` '
                 . 'INNER JOIN `velo_maincat` '
                 . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
-                . 'INNER JOIN `velo_subcat` ';
+                . 'INNER JOIN `velo_subcat` '
+                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id ';
         $response = $this->database->prepare($query);
         $response->execute();
         $ArrayProductNavbar = $response->fetchAll(PDO::FETCH_OBJ);
