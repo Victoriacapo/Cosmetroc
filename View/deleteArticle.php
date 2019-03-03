@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// appel du controller controllerAjout-article
+// appel du controller controllerdeleteArticle
 include_once('../Controller/controllerdeleteArticle.php');
 ?>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ include_once('../Controller/controllerdeleteArticle.php');
                     <?php } else { //sinon afficher la fiche produit
                         ?>
 
-                        <?php if ($showForm) { //applique ma booleenne pr afficher/cacher mon form ?>
+                        <?php if ($showList) { //applique ma booleenne pr afficher/cacher mon form ?>
                             <div id="message">
                                 <h1 class="messageH1">Suppression Article</h1>
                                 <!--Fiche Produit-->    
@@ -48,25 +48,25 @@ include_once('../Controller/controllerdeleteArticle.php');
                                     <li class="list-group-item">Expiration: <?= date('d/m/Y', strtotime($pdtSheet->products_expiration)); ?></li>
                                     <li class="list-group-item"><img class="img-fluid" src="<?= $pdtSheet->products_img; ?>" width="150" height="150"></li>
                                 </ul>
-                                <!--supprimer après une demande de confirmation--> 
+                                <!--bouton pour afficher demande de confirmation pour la poursuite de la suppression--> 
                                 <form method="POST">
                                     <div id="sendButton"><input type="submit" class="btn btn-raised btn-primary" name="sendButton" value="Supprimer" /></div>
                                 </form>
                             </div>
                         <?php } else { ?>
-                            <!--message de confirmation de suppression-->
+                            <!--message pour la demande de confirmation pour la poursuite de la suppression-->
                             <div id="message">
                                 <h1 class="messageH1">Confirmation de suppression</h1>
-                                <p><?= 'Etes vous sûr de vouloir procéder à la suppression de l\'article ' . $pdtSheet->products_name ?>
-                                    <!--span pour message de succès de l’action-->
-                                    <span class="succes"><?= isset($succesArray['deleteSucces']) ? $succesArray['deleteSucces'] : ''; ?></span>
-                                    <!--bouton pour la suppression effective de l'article-->
+                                <p>Etes vous sûr de vouloir procéder à la suppression de l'article:</p> 
+                                <p><?= $pdtSheet->products_name ?></p>
+                                <!--span pour message de succès de l’action-->
+                                <span class="succes"><?= isset($succesArray['deleteSucces']) ? $succesArray['deleteSucces'] : ''; ?></span>
+                                <!--bouton pour la suppression effective de l'article-->
                                 <form method="POST">
                                     <div id="sendButton"><input type="submit" class="btn btn-raised btn-primary" name="deleteButton" value="Supprimer" /></div>   
                                 </form>
-                                </p>
                             </div>
-                        <?php
+                            <?php
                         }
                     }
                     ?>

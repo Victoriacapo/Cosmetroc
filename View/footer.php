@@ -5,22 +5,22 @@
                 <div class="foot-div">
                     <h5 class="foot-subt">Acceuil</h5>
                 </div>
-                <a class="foot-link" href="index.php" title="footer_Home">Acceuil</a>
+                <a class="foot-link" href="index.php">Acceuil</a>
             </div>
             <div class="foot-sect col-12 col-lg-4 col-md-6 col-sm-12">
                 <div class="foot-div">
                     <h5 class="foot-subt">Produits</h5>
                 </div>
-                <a class="foot-link" href="" title="Mascara">Maquillage</a>
-                <a class="foot-link" href="" title="Vernis">Soin du visage</a>
-                <a class="foot-link" href="" title="Parfum">Soin du corps</a>
+                <a class="foot-link" href="" title="Maquillage">Maquillage</a>
+                <a class="foot-link" href="" title="Soins du visage">Soins du visage</a>
+                <a class="foot-link" href="" title="Soins du corps">Soins du corps</a>
             </div>
             <div class="foot-sect col-12 col-lg-4 col-md-6 col-sm-12">
                 <div class="foot-div">
                     <h5 class="foot-subt">A propos</h5>
                 </div>
-                <a class="foot-link" href="about.php" title="footer_About">A Propos</a>
-                <a class="foot-link" href="pp.php" title="footer_Past_Projects">Conditions Générales</a>
+                <a class="foot-link" href="about.php" title="A Propos">A Propos</a>
+                <a class="foot-link" href="pp.php" title="Conditions Générales">Conditions Générales</a>
             </div>
 
 

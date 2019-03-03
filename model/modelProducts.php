@@ -133,7 +133,7 @@ class Products extends database {//création class Products qui hériteras de la
         $response->bindValue(':idProducts', $this->products_id, PDO::PARAM_STR);
         return $response->execute();
     }
-    
+
     /**
      * Fonction permettant de supprimer un article
      * @return Execute Query DELETE 
@@ -142,17 +142,17 @@ class Products extends database {//création class Products qui hériteras de la
     public function DeletePdts() {
         $query = 'DELETE FROM `velo_products` WHERE `products_id`= :idProducts AND `users_id`= :idUser ';
         $deletePdt = $this->database->prepare($query); //connexion database puis prepare la requête
-        $deletePdt->bindValue(':idProducts', $this->products_id, PDO::PARAM_INT); 
+        $deletePdt->bindValue(':idProducts', $this->products_id, PDO::PARAM_INT);
         $deletePdt->bindValue(':idUser', $this->users_id, PDO::PARAM_INT);
         return $deletePdt->execute();
     }
-    
-     /**
+
+    /**
      * Fonction permettant d'afficher les categorie et sous-categorie d'un produit dans ma nav
      * @return Execute Query SELECT 
      * 
      */
-    public function navbar() {
+    public function navbar($maincat_id, $subcat_id) {
         $query = 'SELECT `products_id`, '
                 . '`products_name`, '
                 . '`products_brand`, '
@@ -169,10 +169,43 @@ class Products extends database {//création class Products qui hériteras de la
                 . 'INNER JOIN `velo_maincat` '
                 . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
                 . 'INNER JOIN `velo_subcat` '
-                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id ' ;
+                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
+                . 'WHERE `velo_maincat`.maincat_id = :maincat_id '
+                . 'And `velo_subcat`. subcat_id = :subcat_id ';
         $productnavbar = $this->database->prepare($query);
+        $productnavbar->bindValue(':maincat_id', $maincat_id, PDO::PARAM_STR);
+        $productnavbar->bindValue(':subcat_id', $subcat_id, PDO::PARAM_STR);
         $productnavbar->execute();
-        $productCateg = $productnavbar->fetchAll(PDO::FETCH_OBJ);
-        return $productCateg;
+        $ArrayProductNavbar = $productnavbar->fetchAll(PDO::FETCH_OBJ);
+        return $ArrayProductNavbar;
     }
+
+    /**
+     * Fonction permettant d'afficher les categorie et sous-categorie d'un produit dans ma nav
+     * @return Execute Query SELECT 
+     * 
+     */
+    public function AllProducts() {
+        $query = 'SELECT `products_id`, '
+                . '`products_name`, '
+                . '`products_brand`, '
+                . '`products_quantity`, '
+                . '`products_state`, '
+                . ' `products_capacity`, '
+                . ' `products_expiration`, '
+                . ' `products_img`, '
+                . ' `velo_products`.`subcat_id`, '
+                . '`velo_products`.`maincat_id`, '
+                . '`maincat_name`, '
+                . '`subcat_name` '
+                . 'FROM `velo_products` '
+                . 'INNER JOIN `velo_maincat` '
+                . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
+                . 'INNER JOIN `velo_subcat` ';
+        $response = $this->database->prepare($query);
+        $response->execute();
+        $ArrayProductNavbar = $response->fetchAll(PDO::FETCH_OBJ);
+        return $ArrayProductNavbar;
+    }
+
 }

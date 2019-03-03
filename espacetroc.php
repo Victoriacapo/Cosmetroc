@@ -24,7 +24,7 @@ include_once('Controller/controllerEspacetroc.php');
             <div class="container-fluid headDiv">
                 <div class="row">
                     <div class="col">
-                        <a href="#"><img class="img-fluid" id="logo" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></a>
+                        <a href="index.php"><img class="img-fluid" id="logo" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></a>
                     </div>
                      <?php  if (($profilFull->users_authorised == 1) && isset($_SESSION['idUser'])){  ?> <!--condition pour  -->
                     <div class="col">

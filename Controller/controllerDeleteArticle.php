@@ -15,7 +15,7 @@ $productsObj = new Products(); //article
 
 $succesArray = []; //déclaration tableau pour message de succès
 
-$showForm = true; //booléen qui renvoie true/false pr soit cacher/afficher mn form
+$showList = true; //booléen qui renvoie true/false pr soit cacher/afficher mn form
 $checkId = true;
         
 if (isset($_GET['idProducts']) && ($_SESSION['idUser'])) { //recupere l'idProducts 
@@ -39,14 +39,14 @@ if (isset($_GET['idProducts']) && ($_SESSION['idUser'])) { //recupere l'idProduc
 
 // bouton permettant le renvoie d’un message de confirmation pour procéder à la suppression en renvoyant par le else,le message prévu dans la vue.
 if (isset($_POST['sendButton'])) {
-    $showForm = false;
+    $showList = false;
 }
 
 //bouton pour la suppression effective
 if (isset($_POST['deleteButton'])) {
     unlink($_SESSION['imageProduct']); //suppression de l'image dans le dossier local de stockage d'image.
     $productsObj->DeletePdts(); //Exécute la requête pour la suppression du produit
-    $showForm = false;
+    $showList = false;
     $succesArray['deleteSucces'] = 'L\'article a été supprimé avec succès';
 }
 ?>

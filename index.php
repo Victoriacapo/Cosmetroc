@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+// appel du controller controllerNavbar
+include_once('Controller/controllerIndex.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -22,7 +25,7 @@ session_start();
                         <!-- Button connexion modal -->
                         <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'View/connexionView.php')">Connexion</button>
                         <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'View/inscriptionView.php')">Inscription</button>
-                        <?php if (isset($_SESSION['idUser'])) { ?>
+                        <?php if (isset($_SESSION['idUser'])) { //condition si une session utilisateur existe, afficher le bouton qui permet l'accès vers l'espace personnel' ?>
                             <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'espacetroc.php')"><i class="fas fa-user-tie"></i><?= $_SESSION['pseudo'] ?></button>
                         <?php }
                         ?>
@@ -74,23 +77,26 @@ session_start();
             </fieldset>
 
 
+            <div class="card-deck" id="content">
+                <?php
+                foreach ($ArrayProductNavbar as $cardProducts) { //boucle pour afficher les categories de la Bdd
+                    ?>
 
-            <div class="tab-content">
-                <div id="home" class="tab-pane fade in active">
-                    <h3>HOME</h3>
-                    <p>Some content.</p>
-                </div>
-                <div id="menu1" class="tab-pane fade">
-                    <h3>Menu 1</h3>
-                    <p>Some content in menu 1.</p>
-                </div>
-                <div id="menu2" class="tab-pane fade">
-                    <h3>Menu 2</h3>
-                    <p>Some content in menu 2.</p>
-                </div>
-            </div>
+                    <div class="card">
+                        <img src="<?= $cardProducts->products_img?>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
 
-        </div>
+                    <?php
+                }
+                ?>
+            </div>  
+        </div> <!--/fin div parallax -->
+
 
 
         <!-- Footer -->

@@ -62,15 +62,15 @@ class Users extends database {//creation class Utilisateur qui heriteras de la c
     }
 
     /**
-     * Fonction permettant d'afficher un profil en fonction de l'id session
+     * Fonction permettant de vérifier si le profil de l'utilisateur est complet, pour pouvoir afficher le formulaire d'ajout d'article
      * @return Execute Query SELECT 
      * 
      */
     public function checkProfilFill() {
         $query = 'SELECT count(*) FROM velo_users WHERE users_id = :idUser '
                 . 'AND users_lastname IS NOT NULL '
-                . 'AND users_firstname IS NOT NULL '
-                . 'AND users_address IS NOT NULL '
+                . 'AND users_firstname IS NOT NULL ' 
+                . 'AND users_address IS NOT NULL '    
                 . 'AND users_city  IS NOT NULL '
                 . 'AND users_CP  IS NOT NULL '
                 . 'AND users_phone  IS NOT NULL '
@@ -79,8 +79,13 @@ class Users extends database {//creation class Utilisateur qui heriteras de la c
         $response->bindValue(':idUser', $this->users_id, PDO::PARAM_INT); //recupere l'id
         $response->execute();
         $result = $response->fetchColumn();
-        
         return $result;
+        /*La requête compte le nombre de colonne de la table velo_users
+         * en fonction de l'idUser et que les colonnes cités soit complété (donc ont une valeur)
+         * fetchColumn(), récupère la 1ère ligne des colonnes de la bdd si la condition WHERE  et les AND sont remplies.
+         * Si les condition WHERE et AND ne sont pas remplie, me renvoie 0 ligne des colonnes, le cas contraire me renvoie la 1ere ligne des colonnes.
+         * Donc retourne soit 0 ou 1.  
+         */
     }
 
     /**
