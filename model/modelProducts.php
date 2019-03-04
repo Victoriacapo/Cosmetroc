@@ -180,6 +180,37 @@ class Products extends database {//création class Products qui hériteras de la
         $ArrayProductNavbar = $productnavbar->fetchAll(PDO::FETCH_OBJ);
         return $ArrayProductNavbar;
     }
+    
+/**
+     * Fonction permettant d'afficher les categorie et sous-categorie d'un produit dans ma nav
+     * @return Execute Query SELECT 
+     * 
+     */
+    public function navbarJustMaincat($maincat_id) {
+        $query = 'SELECT `products_id`, '
+                . '`products_name`, '
+                . '`products_brand`, '
+                . '`products_quantity`, '
+                . '`products_state`, '
+                . '`products_capacity`, '
+                . '`products_expiration`, '
+                . '`products_img`, '
+                . '`velo_products`.`subcat_id`, '
+                . '`velo_products`.`maincat_id`, '
+                . '`maincat_name`, '
+                . '`subcat_name` '
+                . 'FROM `velo_products` '
+                . 'INNER JOIN `velo_maincat` '
+                . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
+                . 'INNER JOIN `velo_subcat` '
+                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
+                . 'WHERE `velo_maincat`.maincat_id = :maincat_id ';
+        $MaincatNavbar = $this->database->prepare($query);
+        $MaincatNavbar->bindValue(':maincat_id', $maincat_id, PDO::PARAM_STR);
+        $MaincatNavbar->execute();
+        $ArrayProductNavbar = $MaincatNavbar->fetchAll(PDO::FETCH_OBJ);
+        return $ArrayProductNavbar;
+    }
 
     /**
      * Fonction permettant d'afficher tous les produits et leur categorie et sous-categorie au niveau des cards

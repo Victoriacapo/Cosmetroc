@@ -20,7 +20,7 @@
                     <h5 class="foot-subt">A propos</h5>
                 </div>
                 <a class="foot-link" href="about.php" title="A Propos">A Propos</a>
-                <a class="foot-link" href="pp.php" title="Conditions Générales">Conditions Générales</a>
+                <a class="foot-link" href="View/mentionslegales.php" title="mentions légales">mentions légales</a>
             </div>
 
 

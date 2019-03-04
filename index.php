@@ -15,11 +15,11 @@ include_once('Controller/controllerIndex.php');
         <title>Cosmétroc</title>
     </head>
     <body>
-        <header>
+        <header id="headerPage">
             <div class="container-fluid headDiv">
                 <div class="row">
                     <div class="col">
-                        <a href="#"><img class="img-fluid" id="logo" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></a>
+                        <a href="index.php"><img class="img-fluid" id="logo" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></a>
                     </div>
                     <div class="col">
                         <!--condition pour m'afficher les bouton en fonction que l'utilisateur soit connecté ou non-->
@@ -72,14 +72,7 @@ include_once('Controller/controllerIndex.php');
 
         <div class="parallax">
 
-            <!--bouton pr faire remonter la page à améliorer-->
-            <fieldset >
-                <button type="button" class="btn btn-danger bmd-btn-fab" href="#logo">
-                    <i class="fas fa-arrow-alt-circle-up"></i>
-                </button>
-            </fieldset>
-
-
+          
             <div class="container" id="cardProduct">
                 <div class="row">
                     <?php
@@ -102,6 +95,8 @@ include_once('Controller/controllerIndex.php');
                     ?>                  
                 </div>
             </div>
+            
+            
         </div> <!--/fin div parallax -->
 
 
