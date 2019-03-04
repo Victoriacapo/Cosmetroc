@@ -26,9 +26,9 @@ include_once('Controller/controllerEspacetroc.php');
                     <div class="col">
                         <a href="index.php"><img class="img-fluid" id="logo" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></a>
                     </div>
-                     <?php  if (($profilFull->users_authorised == 1) && isset($_SESSION['idUser'])){  ?> <!--condition pour  -->
+                     <?php  if (($profilFull->users_authorised == 1) && isset($_SESSION['idUser'])){  ?> <!--A l'aide de la variable $profilFull, je vérifie que l'attribut users_authorised soit = à 1, ce qui signifie que l'utilisateur est authentifié admin  -->
                     <div class="col">
-                       <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'espaceAdmin.php')">Admin</button>
+                       <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'espaceAdmin.php')">Admin</button>
                     </div>
                      <?php } ?>
                 </div>

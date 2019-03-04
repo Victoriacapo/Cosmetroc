@@ -14,6 +14,7 @@ class Products extends database {//création class Products qui hériteras de la
     public $maincat_id;
     public $subcat_id;
     public $users_id;
+    public $search;
 
     /**
      * Fonction permettant d'enregistrer un produit
@@ -71,7 +72,7 @@ class Products extends database {//création class Products qui hériteras de la
     }
 
     /**
-     * Fonction permettant d'afficher une fiche/profil d'un produit en fonction de son id
+     * Fonction permettant d'afficher une fiche/profil d'un produit en fonction de l'id du produit
      * @return Execute Query SELECT 
      * 
      */
@@ -206,6 +207,30 @@ class Products extends database {//création class Products qui hériteras de la
         $response = $this->database->prepare($query);
         $response->execute();
         $ArrayProductNavbar = $response->fetchAll(PDO::FETCH_OBJ);
+        return $ArrayProductNavbar;
+    }
+
+    /**
+     * Fonction permettant d'afficher un resultat pr la recherche de produit
+     * @return Execute Query SELECT 
+     * 
+     */
+    public function searchProducts() {
+        $query = 'SELECT * '
+                . 'FROM `velo_products` '
+                . 'INNER JOIN `velo_maincat` '
+                . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
+                . 'INNER JOIN `velo_subcat` '
+                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
+                . 'WHERE `products_name` LIKE :search '
+                . 'OR `products_brand` LIKE :search '
+                . 'OR `maincat_name` LIKE :search '
+                . 'OR `subcat_name` LIKE :search '
+                . 'ORDER BY `products_name` ';
+        $searchResult = $this->database->prepare($query);
+        $searchResult->bindValue(':search', $this->search , PDO::PARAM_STR); //lie la valeur de l'input search, on enleve le % de devant, si on veut que la recherche commence absolument par la lettre tapé, entourer par ls %, la recherche seras +vaste, selectionneras tout les mots contenant la lettre/ syllabe tapé.
+        $searchResult->execute();
+        $ArrayProductNavbar = $searchResult->fetchAll(PDO::FETCH_OBJ);
         return $ArrayProductNavbar;
     }
 

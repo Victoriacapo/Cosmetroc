@@ -15,7 +15,7 @@ if (isset($_SESSION['idUser'])) { //recupere l'id session de l'utilisateur, veri
     $profilUserObj->users_id = $_SESSION['idUser'];
     
     $productsByUsers = $showPdtsObj->showProducts(); //applique la méthode pour afficher à l'utilisateur tous les produit qu'il a proposé en troc sur le site
-    $profilFull = $profilUserObj->UserProfil();
+    $profilFull = $profilUserObj->UserProfil();//applique la méthode permettant d'afficher un profil en fonction de l'id session
     
     $count = $profilUserObj->checkProfilFill();
    

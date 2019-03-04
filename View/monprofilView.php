@@ -35,8 +35,9 @@ include_once('../Controller/controllermonProfil.php');
                             <label>Civilité: </label>
                             <select name="gender" class="form-control"> 
                                 <option  value="" selected disabled></option>
-                                <option  value="MR" <?= (isset($_POST['gender']) && $_POST['gender'] == 'MR') ? 'selected' : ''; //ternaire qui permet de garder les valeurs inscrites à l'envoi  ?>>MR</option>
-                                <option  value="MME" <?= (isset($_POST['gender']) && $_POST['gender'] == 'MME') ? 'selected' : ''; //ternaire qui permet de garder les valeurs inscrites à l'envoi  ?>>MME</option>
+                                <option  value="MR" <?= (isset($_POST['gender'])) && $_POST['gender'] == 'MR'  ? $_POST['gender'] : $profil->users_gender == 'MR' ? 'selected' : ''; //ternaire qui permet de garder les valeurs inscrites à l'envoi  ?>>MR</option>
+                                <option  value="MME" <?= (isset($_POST['gender']) && $_POST['gender'] == 'MME') ? $_POST['gender'] : $profil->users_gender == 'MME' ? 'selected' : ''; //ternaire qui permet de garder les valeurs inscrites à l'envoi  ?>>MME</option>
+                                                   
                             </select>
                             <span class="error"><?= isset($errorsArray['gender']) ? $errorsArray['gender'] : ''; ?></span>
                         </div>

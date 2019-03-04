@@ -22,13 +22,16 @@ include_once('Controller/controllerIndex.php');
                         <a href="#"><img class="img-fluid" id="logo" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></a>
                     </div>
                     <div class="col">
-                        <!-- Button connexion modal -->
-                        <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'View/connexionView.php')">Connexion</button>
-                        <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'View/inscriptionView.php')">Inscription</button>
+                        <!--condition pour m'afficher les bouton en fonction que l'utilisateur soit connecté ou non-->
                         <?php if (isset($_SESSION['idUser'])) { //condition si une session utilisateur existe, afficher le bouton qui permet l'accès vers l'espace personnel' ?>
-                            <button id="buttonForm" class="btn btn-raised btn-primary" onclick="(window.location = 'espacetroc.php')"><i class="fas fa-user-tie"></i><?= $_SESSION['pseudo'] ?></button>
-                        <?php }
+                        <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'View/deconnexion.php')"><i class="fas fa-sign-out-alt"></i>Deconnexion</button>
+                        <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'espacetroc.php')"><i class="fas fa-user-tie"></i><?= $_SESSION['pseudo'] ?></button>
+                        <?php }else{
                         ?>
+                        <!-- Button connexion -->
+                        <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'View/connexionView.php')">Connexion</button>
+                        <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'View/inscriptionView.php')">Inscription</button>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -71,18 +74,18 @@ include_once('Controller/controllerIndex.php');
 
             <!--bouton pr faire remonter la page à améliorer-->
             <fieldset >
-                <button type="button" class="btn btn-danger bmd-btn-fab">
-                    <i class="material-icons"></i>
+                <button type="button" class="btn btn-danger bmd-btn-fab" href="#logo">
+                    <i class="fas fa-arrow-alt-circle-up"></i>
                 </button>
             </fieldset>
 
-            
+
             <div class="container" id="cardProduct">
                 <div class="row">
                     <?php
                     foreach ($ArrayProductNavbar as $cardProducts) { //boucle pour afficher les produits de la Bdd
                         ?>
-                        <div class="col-xs-12 col-md-6 col-lg-3">
+                        <div class="col-xs-12 col-md-6 col-lg-3" id="content">
                             <div class="card">
                                 <img class="card-img-top" src="<?= $cardProducts->products_img ?>" alt="Card image cap">
                                 <div class="card-block">

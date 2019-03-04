@@ -24,7 +24,7 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="index.php?maincat_id=2#content" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Soins visage
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -35,7 +35,7 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="index.php?maincat_id=3#content" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Soins Corps
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -47,11 +47,12 @@
                 </li>
 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" />
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ok</button>
-            </form>
-        </div>
+            <form class="form-inline my-2 my-lg-0" method="POST" action="index.php">
+                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Rechercher" />
+                <button class="btn btn-raised btn-primary my-2 my-sm-0 mr-lg-0" type="submit" name="ok">Ok</button>
+                <button class="btn btn-raised btn-danger my-2 my-sm-0" type="submit">X</button>
+            </form>  
+        </div> 
     </nav>
 
 </header>

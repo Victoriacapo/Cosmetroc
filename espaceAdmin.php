@@ -6,8 +6,9 @@ if (empty($_SESSION)) {
     exit;
 }
 
+
 // appel du controller controllerAjout-article
-include_once('Controller/controllerEspacetroc.php');
+include_once('Controller/controllerEspaceAdmin.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,7 @@ include_once('Controller/controllerEspacetroc.php');
         ?>
         <!-- style -->
         <link rel="stylesheet" href="../assets/css/style1.css">
-        <title>Espace Troc</title>
+        <title>Espace Admin</title>
     </head>
     <body>
         <header>
@@ -26,7 +27,10 @@ include_once('Controller/controllerEspacetroc.php');
                     <div class="col">
                         <a href="#"><img class="img-fluid" id="logo" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></a>
                     </div>
-
+                    <div class="col">
+                        <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'View/deconnexion.php')"><i class="fas fa-sign-out-alt"></i>Deconnexion</button>
+                        <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'espacetroc.php')"><i class="fas fa-user-tie"></i><?= $_SESSION['pseudo'] ?></button>
+                    </div>
                 </div>
             </div>
             <!-- Nav -->       
@@ -36,17 +40,135 @@ include_once('Controller/controllerEspacetroc.php');
             <!-- /Nav -->
         </header>
 
-        <!--Sous-Menu-->
-        <div class="menunav">
-            <nav class="nav nav-pills nav-fill">
-                <a class="nav-item nav-link"><i class="fas fa-2x fa-user-tie"></i><?= $_SESSION['pseudo'] ?></a> <!--renvoie le pseudo connecté-->
-                <a class="nav-item nav-link" onclick="(window.location = '../index.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fas fa-2x fa-home"></i>Accueil</a>
-                <a class="nav-item nav-link" onclick="(window.location = 'View/monprofilView.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fas fa-2x fa-tachometer-alt"></i>Profil</a>
-                <a class="nav-item nav-link" onclick="(window.location = 'View/ajout-articleView.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fab fa-2x fa-cloudscale"></i>Ajout Article</a>
-                <a class="nav-item nav-link" onclick="(window.location = 'View/deconnexion.php')"><i class="fas fa-2x fa-sign-out-alt"></i>deconnexion</a>
-            </nav>
+        <div class="container-fluid">
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                UTILISATEURS
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="table-responsive-sm">
+                                <table class="table table-striped table-bordered table-dark">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                             <th scope="col">#</th>
+                                            <th scope="col">Pseudo</th>
+                                            <th scope="col">Civilité</th>
+                                            <th scope="col">Nom</th>
+                                            <th scope="col">Prénom</th>
+                                            <th scope="col">Adresse</th>
+                                            <th scope="col">Ville</th>
+                                            <th scope="col">CP</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Teléphone</th>
+                                            <th scope="col"></th>
+                                            <th scope="col">Supprimer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        foreach ($TotalListUser as $totalUsers) {
+                                            ?>
+                                            <tr>
+                                                <th scope="row"><?= $totalUsers->users_id ?></th>
+                                                <td><?= $totalUsers->users_pseudo ?></td>
+                                                <td><?= $totalUsers->users_gender ?></td>
+                                                <td><?= $totalUsers->users_lastname ?></td>
+                                                <td><?= $totalUsers-> users_firstname?></td>
+                                                <td><?= $totalUsers->users_address ?></td>
+                                                <td><?= $totalUsers->users_city  ?></td>
+                                                <td><?= $totalUsers->users_CP ?></td>
+                                                 <td><?=$totalUsers->users_email ?></td>
+                                                <td><?= $totalUsers->users_phone ?></td>
+                                                <td><button class="btn btn-primary">Modifier</button></td>
+                                                <td><button class="btn btn-raised btn-danger">X</button></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                PRODUITS
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                             <div class="table-responsive-sm">
+                                <table class="table table-striped table-bordered table-dark">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nom</th>
+                                            <th scope="col">Marque</th>
+                                            <th scope="col">Quantité</th>
+                                            <th scope="col">Etat</th>
+                                            <th scope="col">Capacité</th>
+                                            <th scope="col">Expiration</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Catégorie</th>
+                                            <th scope="col">Sous-catégorie</th>
+                                            <th scope="col"></th>
+                                            <th scope="col">Supprimer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        foreach ($productsByUsers as $productUsers) {
+                                            ?>
+                                            <tr>
+                                                <th scope="row"><?= $productUsers->products_id ?></th>
+                                                <td><?= $productUsers->products_name ?></td>
+                                                <td><?= $productUsers->products_brand ?></td>
+                                                <td><?= $productUsers->products_quantity ?></td>
+                                                <td><?= $productUsers->products_state ?></td>
+                                                <td><?= $productUsers->products_capacity ?></td>
+                                                <td><?= $productUsers->expiration ?></td>
+                                                <td><img class="img-fluid" src="<?= $productUsers->products_img ?>" width="42" height="42"></td>
+                                                <td><?= $productUsers->maincat_name ?></td>
+                                                <td><?= $productUsers->subcat_name ?></td>
+                                                <td><button class="btn btn-primary" onclick="(window.location = 'View/modifArticle.php?idProducts=<?= $productUsers->products_id; ?>')">Modifier</button></td>
+                                                <td><button class="btn btn-raised btn-danger" onclick="(window.location = 'View/deleteArticle.php?idProducts=<?= $productUsers->products_id; ?>')">X</button></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Collapsible Group Item #3
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!--/Sous-Menu-->
 
 
 
