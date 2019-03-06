@@ -122,7 +122,7 @@ class Users extends database {//creation class Utilisateur qui heriteras de la c
         return $editUser->execute();
     }
 /**
-     * Fonction permettant d'afficher la liste des utilisateursdans ma page admin
+     * Fonction permettant d'afficher la liste des utilisateurs dans ma page admin
      * @return Execute Query SELECT 
      * 
      */

@@ -10,6 +10,7 @@ include_once ('model/modelProducts.php');
 $showPdtsObj = new Products(); // article
 $usersObjt = new Users();
 
+
  
 
 if (isset($_SESSION['idUser'])) { //recupere l'id session de l'utilisateur, verifie si présent ds la base de donnée, et effectue la requête
@@ -19,7 +20,8 @@ if (isset($_SESSION['idUser'])) { //recupere l'id session de l'utilisateur, veri
     
 if ($profilCheck->users_authorised == 1){
    $TotalListUser = $usersObjt->UsersListing(); //méthode affichant le total des Utilisateurs et leurs infos
-   
+   $totalProductsbyusers = $showPdtsObj->ProductsListing();
+   var_dump($totalProductsbyusers);
     if ($usersObjt === FALSE) {
         $ifIdexist = FALSE;
     } else {

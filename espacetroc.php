@@ -26,11 +26,11 @@ include_once('Controller/controllerEspacetroc.php');
                     <div class="col">
                         <a href="index.php"><img class="img-fluid" id="logo" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></a>
                     </div>
-                     <?php  if (($profilFull->users_authorised == 1) && isset($_SESSION['idUser'])){  ?> <!--A l'aide de la variable $profilFull, je vérifie que l'attribut users_authorised soit = à 1, ce qui signifie que l'utilisateur est authentifié admin  -->
-                    <div class="col">
-                       <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'espaceAdmin.php')">Admin</button>
-                    </div>
-                     <?php } ?>
+                    <?php if (($profil->users_authorised == 1) && isset($_SESSION['idUser'])) { ?> <!--A l'aide de la variable $profil, je vérifie que l'attribut users_authorised soit = à 1, ce qui signifie que l'utilisateur est authentifié admin  -->
+                        <div class="col">
+                            <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'espaceAdmin.php')">Admin</button>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
             <!-- Nav -->       
@@ -54,21 +54,8 @@ include_once('Controller/controllerEspacetroc.php');
 
         <div class="container-fluid ">
             <div class="row">
-                <!--Menu vertical-->
-                <div class="col-sm-12 col-lg-2">
-                    <div class="menunavVertical">
-                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link active" id="v-pills-Article-tab" data-toggle="pill" href="#v-pills-Article" role="tab" aria-controls="v-pills-Article" aria-selected="true">Article</a>
-                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Menu vertical-->
-
                 <!--div profil rapide-->
-                <div class="col-sm-12 col-lg-10 showprofil">
+                <div class="col-sm-12 col-lg-6 showprofil">
                     <div class="form-group">
                         <label class="nav-item nav-link">Civilité:</label>
                         <p><?= $_SESSION['gender'] ?></p>
@@ -86,14 +73,13 @@ include_once('Controller/controllerEspacetroc.php');
         <!--content de mon menu vertical-->
         <div class="container-fluid ">
             <div class="row">
-                <div class="col-sm-12 col-lg-6 VerticalTabContent">
-                    <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-Article" role="tabpanel" aria-labelledby="v-pills-Article-tab">
+                <div class="col-sm-12 col-lg-12 VerticalTabContent">
                             <div class="table-responsive-sm">
                                 <table class="table table-striped table-bordered table-dark">
                                     <thead>
                                         <tr class="bg-primary">
                                             <th scope="col">#</th>
+                                            <th scope="col">Statut</th>
                                             <th scope="col">Nom</th>
                                             <th scope="col">Marque</th>
                                             <th scope="col">Quantité</th>
@@ -113,6 +99,13 @@ include_once('Controller/controllerEspacetroc.php');
                                             ?>
                                             <tr>
                                                 <th scope="row"><?= $productUsers->products_id ?></th>
+                                                <td> <?php
+                                                    if ($productUsers->products_validate == 0) { //condition pour afficher le statut validé ou non, avec mon attribut products_validate(si =0 nn validé, ou 1
+                                                        echo 'en cours de validation';
+                                                    } else {
+                                                        echo 'validé';
+                                                    }
+                                                    ?></td>
                                                 <td><?= $productUsers->products_name ?></td>
                                                 <td><?= $productUsers->products_brand ?></td>
                                                 <td><?= $productUsers->products_quantity ?></td>
@@ -132,13 +125,9 @@ include_once('Controller/controllerEspacetroc.php');
                                 </table> 
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">..weeeep.</div>
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">.olleeeeee..</div>
-                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">..wiiiiiiiii.</div>
                     </div>
                 </div>
-            </div> <!--/div row-->
-        </div> <!--/div container-->
+            </div> 
 
 
 

@@ -144,7 +144,7 @@ include_once('../Controller/controllerAjout-article.php');
                         <?php } else { //sinon afficher message de confirmation, showForm renvoie donc false  ?>
                             <div id="message">
                                 <h1 class="messageH1">Confirmation Ajout</h1>
-                                <p><?= 'L\'article ' . $pductsObj->products_name . ' a bien été ajouté' ?></p>
+                                <p><?= 'L\'article ' . $pductsObj->products_name . ' a bien été enregistré, il seras soumis à l\'administrateur pour validation. '?></p>
 
                                 <ul>
                                     <li>Nom du produit: <?= $pductsObj->products_name ?> </li>

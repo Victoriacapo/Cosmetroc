@@ -12,9 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/www/Cosmetroc/View/test.php</file>
-            <file>file:/D:/www/Cosmetroc/model/modelProducts.php</file>
             <file>file:/D:/www/Cosmetroc/Controller/controllerIndex.php</file>
+            <file>file:/D:/www/Cosmetroc/View/test.php</file>
+            <file>file:/D:/www/Cosmetroc/Controller/controllerAjout-article.php</file>
+            <file>file:/D:/www/Cosmetroc/View/ajout-articleView.php</file>
+            <file>file:/D:/www/Cosmetroc/model/modelProducts.php</file>
         </group>
     </open-files>
 </project-private>

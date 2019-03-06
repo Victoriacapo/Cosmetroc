@@ -13,7 +13,7 @@
                 </div>
                 <a class="foot-link" href="index.php?maincat_id=1#content" title="Maquillage">Maquillage</a>
                 <a class="foot-link" href="index.php?maincat_id=2#content" title="Soins du visage">Soins du visage</a>
-                <a class="foot-link" href="index.php?maincat_id=1#content" title="Soins du corps">Soins du corps</a>
+                <a class="foot-link" href="index.php?maincat_id=3#content" title="Soins du corps">Soins du corps</a>
             </div>
             <div class="foot-sect col-12 col-lg-4 col-md-6 col-sm-12">
                 <div class="foot-div">

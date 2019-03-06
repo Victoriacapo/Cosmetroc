@@ -13,9 +13,12 @@ $sbcategObj = new SubCategory(); //ss-categorie
 $OnepductsObj = new Products(); // article
 
 
+$showForm = true; //booléen qui renvoie true/false pr soit afficher/cacher mn form
+
 if (isset($_GET['idProducts'])) { //recupere l'id, verifie si présent ds la base de donnée, et effectue la requête
     $OnepductsObj->products_id = $_GET['idProducts']; //on indique que l'objet products_id correspond au Get['idProduct']
     $filePdt = $OnepductsObj->profilProducts(); //correspond à la requête pr afficher la fiche propre à un produit
+    
     $_SESSION['idProduct'] = $_GET['idProducts'];
     $_SESSION['imageProduct'] = $filePdt->products_img;
 
@@ -29,15 +32,19 @@ if (isset($_GET['idProducts'])) { //recupere l'id, verifie si présent ds la bas
 
 $showMncat = $categObj->showCat(); //permet d'effectuer ma requête pr afficher les catégories
 $showSbcat = $sbcategObj->showSubCat(); //permet d'effectuer ma requête pr afficher les ss-catégories
+
+
 //tableau d'erreur
 $errorsArray = [];
 $errorImage = []; //array contenant erreur lié au vérification de l'image.
 $succesArray = [];
 $regexName = '/[a-zA-Z0-9 -]+$/'; //autorise les minuscules, majuscules, les chiffres, les espaces, les traits d'union
+
+
 // Verification des inputs.
 if (isset($_POST['nameproduct'])) { // recherche donnée input 
-    $nameproduct = htmlspecialchars($_POST['nameproduct']); // declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
-    $_SESSION['nameproduct'] = $nameproduct;
+    $nameproduct = htmlspecialchars($_POST['nameproduct']); //declaration variable qui contient le POST traité par la function htmlspecialchars
+  
     // on test si regex n'est pas bonne
     if (!preg_match($regexName, $nameproduct)) {//le preg_match permet de tester la regex sur ma variable 
         $errorsArray['nameproduct'] = 'Veuillez inscrire un nom de produit conforme';
@@ -49,7 +56,7 @@ if (isset($_POST['nameproduct'])) { // recherche donnée input
 }
 
 if (isset($_POST['brand'])) { // recherche donnée input 
-    $brand = htmlspecialchars($_POST['brand']); // declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
+    $brand = htmlspecialchars($_POST['brand']); //declaration variable qui contient le POST traité par la function htmlspecialchars
     // on test si regex n'est pas bonne
     if (!preg_match($regexName, $brand)) {//le preg_match permet de tester la regex sur ma variable 
         $errorsArray['brand'] = 'Veuillez inscrire une marque conforme';
@@ -72,7 +79,7 @@ if (isset($_POST['state'])) { // recherche donnée input
 }
 
 if (isset($_POST['capacity'])) { // recherche donnée input 
-    $capacity = htmlspecialchars($_POST['capacity']); // declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
+    $capacity = htmlspecialchars($_POST['capacity']); //declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
 }
 
 if (isset($_POST['expiration'])) { // recherche donnée input 
@@ -140,6 +147,7 @@ if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorIm
     } else {
         $OnepductsObj->products_img = '../assets/imgProducts/' . $_FILES['image']['name'];
     }
+    //j'hydrate mes attributs objet avec les variables contenant les POST.
     $OnepductsObj->products_id = $_SESSION['idProduct'];
     $OnepductsObj->products_name = $nameproduct;
     $OnepductsObj->products_brand = $brand;
@@ -147,12 +155,15 @@ if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorIm
     $OnepductsObj->products_state = $state;
     $OnepductsObj->products_capacity = $capacity;
     $OnepductsObj->products_expiration = $expiration;
+    $OnepductsObj->products_validate = false;
     $OnepductsObj->maincat_id = $category;
     $OnepductsObj->subcat_id = $sbcategory;
 
 
     $OnepductsObj->editProduct();
-    $OnepductsObj->profilProducts();
+    $showForm = false; //ma variable retourne false donc cache mon formulaire remplie.
+    
+    //$OnepductsObj->profilProducts();
 
 
 }

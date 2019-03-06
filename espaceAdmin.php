@@ -112,8 +112,10 @@ include_once('Controller/controllerEspaceAdmin.php');
                                 <table class="table table-striped table-bordered table-dark">
                                     <thead>
                                         <tr class="bg-primary">
-                                            <th scope="col">#</th>
-                                            <th scope="col">Nom</th>
+                                            <th scope="col">#Client</th>
+                                            <th scope="col">Infos client</th>
+                                            <th scope="col">#Produit</th>
+                                            <th scope="col">Nom Produits</th>
                                             <th scope="col">Marque</th>
                                             <th scope="col">Quantité</th>
                                             <th scope="col">Etat</th>
@@ -128,21 +130,27 @@ include_once('Controller/controllerEspaceAdmin.php');
                                     </thead>
                                     <tbody>
                                         <?php
-                                        foreach ($productsByUsers as $productUsers) {
+                                        foreach ($totalProductsbyusers as $productByUsers) {
                                             ?>
                                             <tr>
-                                                <th scope="row"><?= $productUsers->products_id ?></th>
-                                                <td><?= $productUsers->products_name ?></td>
-                                                <td><?= $productUsers->products_brand ?></td>
-                                                <td><?= $productUsers->products_quantity ?></td>
-                                                <td><?= $productUsers->products_state ?></td>
-                                                <td><?= $productUsers->products_capacity ?></td>
-                                                <td><?= $productUsers->expiration ?></td>
-                                                <td><img class="img-fluid" src="<?= $productUsers->products_img ?>" width="42" height="42"></td>
-                                                <td><?= $productUsers->maincat_name ?></td>
-                                                <td><?= $productUsers->subcat_name ?></td>
-                                                <td><button class="btn btn-primary" onclick="(window.location = 'View/modifArticle.php?idProducts=<?= $productUsers->products_id; ?>')">Modifier</button></td>
-                                                <td><button class="btn btn-raised btn-danger" onclick="(window.location = 'View/deleteArticle.php?idProducts=<?= $productUsers->products_id; ?>')">X</button></td>
+                                                <th scope="row"><?= $productByUsers->users_id ?></th>
+                                                <td>
+                                                    <p>Pseudo: <?= $productByUsers->users_pseudo ?></p>
+                                                    <p>Nom: <?= $productByUsers->users_lastname ?></p>
+                                                    <p>Prénom: <?= $productByUsers->users_firstname ?></p>
+                                                </td>
+                                                <td><?= $productByUsers->products_id ?></td>
+                                                <td><?= $productByUsers->products_name ?></td>
+                                                <td><?= $productByUsers->products_brand ?></td>
+                                                <td><?= $productByUsers->products_quantity ?></td>
+                                                <td><?= $productByUsers->products_state ?></td>
+                                                <td><?= $productByUsers->products_capacity ?></td>
+                                                <td><?= $productByUsers->expiration ?></td>
+                                                <td><img class="img-fluid" src="<?= $productByUsers->products_img ?>" width="42" height="42"></td>
+                                                <td><?= $productByUsers->maincat_name ?></td>
+                                                <td><?= $productByUsers->subcat_name ?></td>
+                                                <td><button class="btn btn-primary" onclick="">Modifier</button></td>
+                                                <td><button class="btn btn-raised btn-danger" onclick="">X</button></td>
                                             </tr>
                                             <?php
                                         }

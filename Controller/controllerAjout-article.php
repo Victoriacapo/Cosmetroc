@@ -149,6 +149,7 @@ if (isset($_FILES['image'])) {
 
 if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorImage) == 0)) {
     $pductsObj->products_img = '../assets/imgProducts/' . $_FILES['image']['name']; //j'indique que mon objet correpond au chemin de l'image uploadé.
+    $pductsObj->products_validate = false; //J'indique que ma booléenne a comme valeur false tant qu'il n'est pas validé par l'admin 
     $pductsObj->addProducts(); //execute ma requete qui permet d’ajouter un produit.
     $showForm = false; //ma variable retourne false donc cache mon formulaire remplie.
 }
