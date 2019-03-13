@@ -141,11 +141,37 @@ include_once('Controller/controllerEspaceAdmin.php');
                                                 <td><img class="img-fluid" src="<?= $products->products_img ?>" width="42" height="42"></td>
                                                 <td><?= $products->maincat_name ?></td>
                                                 <td><?= $products->subcat_name ?></td>
-                                                <td> <a href="espaceAdmin.php?idValidate=<?= $products->products_id ?>" ><button class="btn btn-primary" data-toggle="modal" data-target="#ModalProducts"><i class="fas fa-check"></i></button></a></td>
+                                                <td> 
+                                                    <!--bouton du modal-->
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Products<?= $products->products_id ?>">
+                                                      <i class="fas fa-check"></i>
+                                                    </button>
+                                                </td>
                                                 <td><button class="btn btn-raised btn-danger">X</button></td>
                                             </tr>
 
-                                        
+                                            <!-- Modal -->
+                                        <div class="modal fade" id="Products<?= $products->products_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmation validation</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Voulez vous valider le produit : <?= $products->products_name ?>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="espaceAdmin.php?idValidate=<?= $products->products_id ?>" ><button class="btn btn-primary">Oui</button></a>
+                                                        <button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">Annuler</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    
                                         <?php
                                     }
                                     ?>
@@ -155,21 +181,89 @@ include_once('Controller/controllerEspaceAdmin.php');
                         </div>
                     </div>
                 </div>
-                
-                
-                
-                
+
+
+
+
                 <div class="card">
                     <div class="card-header" id="headingThree">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Collapsible Group Item #3
+                                Produits en Ligne
                             </button>
+
                         </h5>
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                           <div class="table-responsive-sm">
+                                <table class="table table-striped table-bordered table-dark">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th scope="col">#Produit</th>
+                                            <th scope="col">Nom Produits</th>
+                                            <th scope="col">Marque</th>
+                                            <th scope="col">Quantité</th>
+                                            <th scope="col">Etat</th>
+                                            <th scope="col">Capacité</th>
+                                            <th scope="col">Expiration</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Catégorie</th>
+                                            <th scope="col">Sous-catégorie</th>
+                                            <th scope="col">Supprimer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        foreach ($listProductsValidate as $productsPublished) {
+                                            ?>
+                                            <tr>
+                                                <td><?= $productsPublished->products_id ?></td>
+                                                <td><?= $productsPublished->products_name ?></td>
+                                                <td><?= $productsPublished->products_brand ?></td>
+                                                <td><?= $productsPublished->products_quantity ?></td>
+                                                <td><?= $productsPublished->products_state ?></td>
+                                                <td><?= $productsPublished->products_capacity ?></td>
+                                                <td> <?= date('d/m/Y', strtotime($productsPublished->products_expiration)); ?></td>
+                                                <td><img class="img-fluid" src="<?= $productsPublished->products_img ?>" width="42" height="42"></td>
+                                                <td><?= $productsPublished->maincat_name ?></td>
+                                                <td><?= $productsPublished->subcat_name ?></td>
+                                                <td> 
+                                                    <!--bouton du modal-->
+                                                    <button type="button" class="btn btn-raised btn-danger" data-toggle="modal" data-target="#Products<?= $productsPublished->products_id ?>">
+                                                     X
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Modal -->
+                                        <div class="modal fade" id="Products<?= $productsPublished->products_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmation validation</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Voulez-vous supprimer le produit : <?= $productsPublished->products_name ?>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="espaceAdmin.php?idDelete=<?= $productsPublished->products_id ?>" ><button class="btn btn-primary">Oui</button></a>
+                                                        <button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">Annuler</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                        <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table> 
+                            </div> 
                         </div>
                     </div>
                 </div>
@@ -177,16 +271,19 @@ include_once('Controller/controllerEspaceAdmin.php');
         </div>
 
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <!-- Footer -->
         <?php

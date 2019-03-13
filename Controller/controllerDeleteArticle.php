@@ -16,7 +16,7 @@ $productsObj = new Products(); //article
 $succesArray = []; //déclaration tableau pour message de succès
 
 $showList = true; //booléen qui renvoie true/false pr soit cacher/afficher mn form
-$checkId = true;
+$checkId = true; //variable qui permet d'appliquer un  message à l'utilisateur si son identifiant est incorrect.
         
 if (isset($_GET['idProducts']) && ($_SESSION['idUser'])) { //recupere l'idProducts 
     $productsObj->products_id = $_GET['idProducts']; //on indique que l'objet products_id correspond au Get['idProducts']

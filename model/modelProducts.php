@@ -275,8 +275,6 @@ class Products extends database {//création class Products qui hériteras de la
         return $ArrayProductNavbar;
     }
 
-   
-
     /**
      * Fonction permettant d'afficher à l'utilisateur tous les produit qu'il a proposé en troc sur le site
      * @return Execute Query SELECT 
@@ -313,13 +311,13 @@ class Products extends database {//création class Products qui hériteras de la
         $listing = $response->fetchAll(PDO::FETCH_OBJ);
         return $listing;
     }
-    
+
     /**
      * Fonction permettant d'afficher les produits non validés à l'administrateur
      * @return Execute Query SELECT 
      * 
      */
-    public function ProductsForValidation() {
+    public function ProductsNoValidate() {
         $query = 'SELECT `products_id`, '
                 . '`products_name`, '
                 . '`products_brand`, '
@@ -341,11 +339,11 @@ class Products extends database {//création class Products qui hériteras de la
                 . 'WHERE `products_validate` = 0 ';
         $response = $this->database->prepare($query);
         $response->execute();
-        $productsNoValidate = $response->fetchAll(PDO::FETCH_OBJ);
-        return $productsNoValidate;
+        $request = $response->fetchAll(PDO::FETCH_OBJ);
+        return $request;
     }
 
-     /**
+    /**
      * Fonction permettant de valider un produit dans l'espace admin, cette validation se fait avec la modification
      * de la colonne products_validate dans la BDD
      * @return Execute Query UPDATE 
@@ -353,12 +351,56 @@ class Products extends database {//création class Products qui hériteras de la
      */
     public function validateProducts() {
         $query = 'UPDATE `velo_products` '
-                . 'SET `products_validate` = :validate ' 
+                . 'SET `products_validate` = :validate '
                 . 'WHERE `products_id` = :idValidate ';
         $Result = $this->database->prepare($query);
         $Result->bindValue(':validate', true, PDO::PARAM_BOOL); //on met le BOOL  en true, pour la validation du produit
         $Result->bindValue(':idValidate', $this->products_id, PDO::PARAM_STR);
         return $Result->execute();
+    }
+
+    /**
+     * Fonction permettant de supprimer un article dans l'espace Admin
+     * @return Execute Query DELETE 
+     * 
+     */
+    public function DeletePdtsPageAdmin() {
+        $query = 'DELETE FROM `velo_products` WHERE `products_id`= :idDelete '; //On supprime un article quand son id est similaire au idDelete(récupéré grâce au Get).
+        $deletePdtByAdmin = $this->database->prepare($query); //connexion database puis prepare la requête
+        $deletePdtByAdmin->bindValue(':idDelete', $this->products_id, PDO::PARAM_STR);
+        return $deletePdtByAdmin->execute();
+    }
+
+    /**
+     * Fonction permettant d'afficher le profil du produit en fonction de l' idDelete récupéré.
+     * @return Execute Query SELECT 
+     * 
+     */
+    public function ProfilProductsByIdDelete() {
+        $query = 'SELECT `products_id`, '
+                . '`products_name`, '
+                . '`products_brand`, '
+                . '`products_quantity`, '
+                . '`products_state`, '
+                . '`products_capacity`, '
+                . 'DATE_FORMAT(`products_expiration`, \'%d/%m/%Y\') AS expiration, '
+                . '`products_img`,'
+                . '`products_validate`, '
+                . '`velo_products`.`subcat_id`, '
+                . '`velo_products`.`maincat_id`, '
+                . '`maincat_name`, '
+                . '`subcat_name` '
+                . 'FROM `velo_products` '
+                . 'INNER JOIN `velo_maincat` '
+                . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
+                . 'INNER JOIN `velo_subcat` '
+                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
+                . 'WHERE `products_id` = :idDelete';
+        $response = $this->database->prepare($query);
+        $response->bindValue(':idDelete', $this->products_id, PDO::PARAM_STR);
+        $response->execute();
+        $request = $response->fetch(PDO::FETCH_OBJ);
+        return $request;
     }
 
 }
