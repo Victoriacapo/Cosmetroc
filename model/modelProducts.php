@@ -134,7 +134,7 @@ class Products extends database {//création class Products qui hériteras de la
         $response->bindValue(':capacity', $this->products_capacity, PDO::PARAM_STR);
         $response->bindValue(':expiration', $this->products_expiration, PDO::PARAM_STR);
         $response->bindValue(':image', $this->products_img, PDO::PARAM_STR);
-        $response->bindValue(':validate', false, PDO::PARAM_BOOL);
+        $response->bindValue(':validate', false, PDO::PARAM_BOOL); //on initialise le booléen en false, tant que l'article n'est pas validé par l'administrateur
         $response->bindValue(':category', $this->maincat_id, PDO::PARAM_STR);
         $response->bindValue(':sbcategory', $this->subcat_id, PDO::PARAM_STR);
         $response->bindValue(':idProducts', $this->products_id, PDO::PARAM_STR);
@@ -142,7 +142,7 @@ class Products extends database {//création class Products qui hériteras de la
     }
 
     /**
-     * Fonction permettant de supprimer un article
+     * Fonction permettant de supprimer un article dans l'espace personnel de l'utilisateur
      * @return Execute Query DELETE 
      * 
      */
@@ -275,21 +275,7 @@ class Products extends database {//création class Products qui hériteras de la
         return $ArrayProductNavbar;
     }
 
-    /**
-     * Fonction permettant de valider un produit dans l'espace admin, cette validation se fait avec la modification
-     * de la colonne products_validate dans la BDD
-     * @return Execute Query UPDATE 
-     * 
-     */
-    public function validateProducts() {
-        $query = 'UPDATE '
-                . 'SET `velo_products` = :validate '
-                . 'WHERE `products_id` = :idProducts ';
-        $Result = $this->database->prepare($query);
-        $Result->bindValue(':validate', true, PDO::PARAM_STR);
-        $Result->bindValue(':idProducts', $this->products_id, PDO::PARAM_STR);
-        $Result->execute();
-    }
+   
 
     /**
      * Fonction permettant d'afficher à l'utilisateur tous les produit qu'il a proposé en troc sur le site
@@ -309,7 +295,7 @@ class Products extends database {//création class Products qui hériteras de la
                 . '`products_validate`, '
                 . '`velo_products`.`users_id`, '
                 . '`maincat_name`, '
-                . '`subcat_name` '
+                . '`subcat_name`, '
                 . '`users_lastname`, '
                 . '`users_firstname`, '
                 . '`users_pseudo` '
@@ -326,6 +312,53 @@ class Products extends database {//création class Products qui hériteras de la
         $response->execute();
         $listing = $response->fetchAll(PDO::FETCH_OBJ);
         return $listing;
+    }
+    
+    /**
+     * Fonction permettant d'afficher les produits non validés à l'administrateur
+     * @return Execute Query SELECT 
+     * 
+     */
+    public function ProductsForValidation() {
+        $query = 'SELECT `products_id`, '
+                . '`products_name`, '
+                . '`products_brand`, '
+                . '`products_quantity`, '
+                . '`products_state`, '
+                . '`products_capacity`, '
+                . 'DATE_FORMAT(`products_expiration`, \'%d/%m/%Y\') AS expiration, '
+                . '`products_img`,'
+                . '`products_validate`, '
+                . '`velo_products`.`subcat_id`, '
+                . '`velo_products`.`maincat_id`, '
+                . '`maincat_name`, '
+                . '`subcat_name` '
+                . 'FROM `velo_products` '
+                . 'INNER JOIN `velo_maincat` '
+                . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
+                . 'INNER JOIN `velo_subcat` '
+                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
+                . 'WHERE `products_validate` = 0 ';
+        $response = $this->database->prepare($query);
+        $response->execute();
+        $productsNoValidate = $response->fetchAll(PDO::FETCH_OBJ);
+        return $productsNoValidate;
+    }
+
+     /**
+     * Fonction permettant de valider un produit dans l'espace admin, cette validation se fait avec la modification
+     * de la colonne products_validate dans la BDD
+     * @return Execute Query UPDATE 
+     * 
+     */
+    public function validateProducts() {
+        $query = 'UPDATE `velo_products` '
+                . 'SET `products_validate` = :validate ' 
+                . 'WHERE `products_id` = :idValidate ';
+        $Result = $this->database->prepare($query);
+        $Result->bindValue(':validate', true, PDO::PARAM_BOOL); //on met le BOOL  en true, pour la validation du produit
+        $Result->bindValue(':idValidate', $this->products_id, PDO::PARAM_STR);
+        return $Result->execute();
     }
 
 }

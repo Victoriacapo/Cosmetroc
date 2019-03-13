@@ -57,7 +57,7 @@ include_once('Controller/controllerEspaceAdmin.php');
                                 <table class="table table-striped table-bordered table-dark">
                                     <thead>
                                         <tr class="bg-primary">
-                                             <th scope="col">#</th>
+                                            <th scope="col">#</th>
                                             <th scope="col">Pseudo</th>
                                             <th scope="col">Civilité</th>
                                             <th scope="col">Nom</th>
@@ -80,11 +80,11 @@ include_once('Controller/controllerEspaceAdmin.php');
                                                 <td><?= $totalUsers->users_pseudo ?></td>
                                                 <td><?= $totalUsers->users_gender ?></td>
                                                 <td><?= $totalUsers->users_lastname ?></td>
-                                                <td><?= $totalUsers-> users_firstname?></td>
+                                                <td><?= $totalUsers->users_firstname ?></td>
                                                 <td><?= $totalUsers->users_address ?></td>
-                                                <td><?= $totalUsers->users_city  ?></td>
+                                                <td><?= $totalUsers->users_city ?></td>
                                                 <td><?= $totalUsers->users_CP ?></td>
-                                                 <td><?=$totalUsers->users_email ?></td>
+                                                <td><?= $totalUsers->users_email ?></td>
                                                 <td><?= $totalUsers->users_phone ?></td>
                                                 <td><button class="btn btn-primary">Modifier</button></td>
                                                 <td><button class="btn btn-raised btn-danger">X</button></td>
@@ -102,18 +102,16 @@ include_once('Controller/controllerEspaceAdmin.php');
                     <div class="card-header" id="headingTwo">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                PRODUITS
+                                PRODUITS A VALIDER
                             </button>
                         </h5>
                     </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div id="collapseTwo" class="collapse <?= isset($_GET['idValidate']) ? 'show' : '' ?>" aria-labelledby="headingTwo" data-parent="#accordion"> <!--Mise en place d'une ternaire pour éviter que mon collapse produit à valider reste affiché et ne se referme pas. -->
                         <div class="card-body">
-                             <div class="table-responsive-sm">
+                            <div class="table-responsive-sm">
                                 <table class="table table-striped table-bordered table-dark">
                                     <thead>
                                         <tr class="bg-primary">
-                                            <th scope="col">#Client</th>
-                                            <th scope="col">Infos client</th>
                                             <th scope="col">#Produit</th>
                                             <th scope="col">Nom Produits</th>
                                             <th scope="col">Marque</th>
@@ -124,43 +122,43 @@ include_once('Controller/controllerEspaceAdmin.php');
                                             <th scope="col">Image</th>
                                             <th scope="col">Catégorie</th>
                                             <th scope="col">Sous-catégorie</th>
-                                            <th scope="col"></th>
+                                            <th scope="col">Valider</th>
                                             <th scope="col">Supprimer</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        foreach ($totalProductsbyusers as $productByUsers) {
+                                        foreach ($listProductsNoValidate as $products) {
                                             ?>
                                             <tr>
-                                                <th scope="row"><?= $productByUsers->users_id ?></th>
-                                                <td>
-                                                    <p>Pseudo: <?= $productByUsers->users_pseudo ?></p>
-                                                    <p>Nom: <?= $productByUsers->users_lastname ?></p>
-                                                    <p>Prénom: <?= $productByUsers->users_firstname ?></p>
-                                                </td>
-                                                <td><?= $productByUsers->products_id ?></td>
-                                                <td><?= $productByUsers->products_name ?></td>
-                                                <td><?= $productByUsers->products_brand ?></td>
-                                                <td><?= $productByUsers->products_quantity ?></td>
-                                                <td><?= $productByUsers->products_state ?></td>
-                                                <td><?= $productByUsers->products_capacity ?></td>
-                                                <td><?= $productByUsers->expiration ?></td>
-                                                <td><img class="img-fluid" src="<?= $productByUsers->products_img ?>" width="42" height="42"></td>
-                                                <td><?= $productByUsers->maincat_name ?></td>
-                                                <td><?= $productByUsers->subcat_name ?></td>
-                                                <td><button class="btn btn-primary" onclick="">Modifier</button></td>
-                                                <td><button class="btn btn-raised btn-danger" onclick="">X</button></td>
+                                                <td><?= $products->products_id ?></td>
+                                                <td><?= $products->products_name ?></td>
+                                                <td><?= $products->products_brand ?></td>
+                                                <td><?= $products->products_quantity ?></td>
+                                                <td><?= $products->products_state ?></td>
+                                                <td><?= $products->products_capacity ?></td>
+                                                <td><?= $products->expiration ?></td>
+                                                <td><img class="img-fluid" src="<?= $products->products_img ?>" width="42" height="42"></td>
+                                                <td><?= $products->maincat_name ?></td>
+                                                <td><?= $products->subcat_name ?></td>
+                                                <td> <a href="espaceAdmin.php?idValidate=<?= $products->products_id ?>" ><button class="btn btn-primary" data-toggle="modal" data-target="#ModalProducts"><i class="fas fa-check"></i></button></a></td>
+                                                <td><button class="btn btn-raised btn-danger">X</button></td>
                                             </tr>
-                                            <?php
-                                        }
-                                        ?>
+
+                                        
+                                        <?php
+                                    }
+                                    ?>
                                     </tbody>
                                 </table> 
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                
+                
+                
                 <div class="card">
                     <div class="card-header" id="headingThree">
                         <h5 class="mb-0">
@@ -179,6 +177,16 @@ include_once('Controller/controllerEspaceAdmin.php');
         </div>
 
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         <!-- Footer -->
         <?php
@@ -187,6 +195,9 @@ include_once('Controller/controllerEspaceAdmin.php');
         <!-- /Footer -->
 
         <!--Script-->
+        <script>
+            $('#myModal').modal(options)
+        </script>
         <?php
         require('View/link/script.php');
         ?>
