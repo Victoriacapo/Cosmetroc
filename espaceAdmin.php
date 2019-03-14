@@ -1,11 +1,10 @@
 <?php
 session_start();
-
+var_dump($_SESSION);
 if (empty($_SESSION)) {
     header('location: index.php');
     exit;
 }
-
 
 // appel du controller controllerAjout-article
 include_once('Controller/controllerEspaceAdmin.php');
@@ -67,7 +66,7 @@ include_once('Controller/controllerEspaceAdmin.php');
                                             <th scope="col">CP</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Teléphone</th>
-                                            <th scope="col"></th>
+                                            <th scope="col">Modifier</th>
                                             <th scope="col">Supprimer</th>
                                         </tr>
                                     </thead>
@@ -86,7 +85,7 @@ include_once('Controller/controllerEspaceAdmin.php');
                                                 <td><?= $totalUsers->users_CP ?></td>
                                                 <td><?= $totalUsers->users_email ?></td>
                                                 <td><?= $totalUsers->users_phone ?></td>
-                                                <td><button class="btn btn-primary">Modifier</button></td>
+                                                <td><button class="btn btn-primary"><i class="fas fa-pen"></i></button></td>
                                                 <td><button class="btn btn-raised btn-danger">X</button></td>
                                             </tr>
                                             <?php
@@ -142,16 +141,21 @@ include_once('Controller/controllerEspaceAdmin.php');
                                                 <td><?= $products->maincat_name ?></td>
                                                 <td><?= $products->subcat_name ?></td>
                                                 <td> 
-                                                    <!--bouton du modal-->
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Products<?= $products->products_id ?>">
-                                                      <i class="fas fa-check"></i>
+                                                    <!--bouton du modal pour confirmation validation-->
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ProductsValidate<?= $products->products_id ?>">
+                                                        <i class="fas fa-check"></i>
                                                     </button>
                                                 </td>
-                                                <td><button class="btn btn-raised btn-danger">X</button></td>
+                                                <td>
+                                                    <!--bouton du modal pour confirmation suppression-->
+                                                    <button type="button" class="btn btn-raised btn-danger" data-toggle="modal" data-target="#ProductsDelete<?= $products->products_id ?>">
+                                                        X
+                                                    </button>
+                                                </td>
                                             </tr>
 
-                                            <!-- Modal -->
-                                        <div class="modal fade" id="Products<?= $products->products_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <!-- Modal pour la validation de l'article -->
+                                        <div class="modal fade" id="ProductsValidate<?= $products->products_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -170,8 +174,28 @@ include_once('Controller/controllerEspaceAdmin.php');
                                                 </div>
                                             </div>
                                         </div>
-                                    
-                                    
+
+                                        <!-- Modal pour la suppression de l'article -->
+                                        <div class="modal fade" id="ProductsDelete<?= $products->products_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmation validation</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Voulez vous supprimer le produit : <?= $products->products_name ?>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="espaceAdmin.php?idDeleteProductNoValidate=<?= $products->products_id ?>" ><button class="btn btn-primary">Oui</button></a>
+                                                        <button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">Annuler</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <?php
                                     }
                                     ?>
@@ -183,20 +207,18 @@ include_once('Controller/controllerEspaceAdmin.php');
                 </div>
 
 
-
-
                 <div class="card">
                     <div class="card-header" id="headingThree">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                 Produits en Ligne
                             </button>
-
                         </h5>
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
-                           <div class="table-responsive-sm">
+
+                            <div class="table-responsive-sm">
                                 <table class="table table-striped table-bordered table-dark">
                                     <thead>
                                         <tr class="bg-primary">
@@ -231,7 +253,7 @@ include_once('Controller/controllerEspaceAdmin.php');
                                                 <td> 
                                                     <!--bouton du modal-->
                                                     <button type="button" class="btn btn-raised btn-danger" data-toggle="modal" data-target="#Products<?= $productsPublished->products_id ?>">
-                                                     X
+                                                        X
                                                     </button>
                                                 </td>
                                             </tr>
@@ -241,7 +263,7 @@ include_once('Controller/controllerEspaceAdmin.php');
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmation validation</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmation supression</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -256,8 +278,8 @@ include_once('Controller/controllerEspaceAdmin.php');
                                                 </div>
                                             </div>
                                         </div>
-                                    
-                                    
+
+
                                         <?php
                                     }
                                     ?>
@@ -270,17 +292,30 @@ include_once('Controller/controllerEspaceAdmin.php');
             </div>
         </div>
 
+        <!-- Modal pour les messages de confirmation de validation/suppression -->
+        <div class="modal fade <?= $_SESSION['showModal'] ? $_SESSION['showModal'] : ''; ?>" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Validation article</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-
-
-
-
-
-
-
-
-
-
+                        <?= isset($_SESSION['message']) ? $_SESSION['message'] : '' ?>
+                        <?php
+                            unset($_SESSION['maessage']);
+                        ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">X</button>
+                    </div>
+                </div>
+            </div>
+            <?php unset($_SESSION['showModal']); ?> 
+        </div>
 
 
 
@@ -298,6 +333,6 @@ include_once('Controller/controllerEspaceAdmin.php');
         <?php
         require('View/link/script.php');
         ?>
-
+        <script src="assets/js/js.js"></script>
     </body>
 </html>

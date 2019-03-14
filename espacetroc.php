@@ -89,7 +89,7 @@ include_once('Controller/controllerEspacetroc.php');
                                             <th scope="col">Image</th>
                                             <th scope="col">Catégorie</th>
                                             <th scope="col">Sous-catégorie</th>
-                                            <th scope="col"></th>
+                                            <th scope="col">Modifier</th>
                                             <th scope="col">Supprimer</th>
                                         </tr>
                                     </thead>
@@ -115,7 +115,7 @@ include_once('Controller/controllerEspacetroc.php');
                                                 <td><img class="img-fluid" src="<?= $productUsers->products_img ?>" width="42" height="42"></td>
                                                 <td><?= $productUsers->maincat_name ?></td>
                                                 <td><?= $productUsers->subcat_name ?></td>
-                                                <td><button class="btn btn-primary" onclick="(window.location = 'View/modifArticle.php?idProducts=<?= $productUsers->products_id; ?>')">Modifier</button></td>
+                                                <td><button class="btn btn-primary" onclick="(window.location = 'View/modifArticle.php?idProducts=<?= $productUsers->products_id; ?>')"><i class="fas fa-pen"></i></button></td>
                                                 <td><button class="btn btn-raised btn-danger" onclick="(window.location = 'View/deleteArticle.php?idProducts=<?= $productUsers->products_id; ?>')">X</button></td>
                                             </tr>
                                             <?php
