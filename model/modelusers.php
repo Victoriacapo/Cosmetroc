@@ -89,7 +89,7 @@ class Users extends database {//creation class Utilisateur qui heriteras de la c
     }
 
     /**
-     * Fonction permettant de recupérer les modifications des patients
+     * Fonction permettant de modifier le profil d'un utilisateur
      * @return Execute Query UPDATE 
      * 
      */
@@ -110,17 +110,6 @@ class Users extends database {//creation class Utilisateur qui heriteras de la c
         return $replaceUser->execute();
     }
 
-    /**
-     * Fonction permettant de supprimer un patient
-     * @return Execute Query DELETE 
-     * 
-     */
-    public function deleteUser() {
-        $query = 'DELETE FROM `velo_users` WHERE `users_id`= :idUser';
-        $editUser = $this->database->prepare($query); //connexion database puis prepare la requete
-        $editUser->bindValue(':idUser', $this->users_id, PDO::PARAM_INT); //recuperation de l'attribut idPatient pr operer la modification sur la ligne du patient concerné
-        return $editUser->execute();
-    }
 /**
      * Fonction permettant d'afficher la liste des utilisateurs dans ma page admin
      * @return Execute Query SELECT 
@@ -133,5 +122,16 @@ class Users extends database {//creation class Utilisateur qui heriteras de la c
         $usersList = $showUsers->fetchAll(PDO::FETCH_OBJ);
         return $usersList;
     }
-   
+    
+    /**
+     * Fonction permettant de supprimer un utilisateur dans la page admin
+     * @return Execute Query DELETE 
+     * 
+     */
+    public function deleteUserAdminPage() {
+        $query = 'DELETE FROM `velo_users` WHERE `users_id`= :idDeleteUser';
+        $editUser = $this->database->prepare($query); //connexion database puis prepare la requete
+        $editUser->bindValue(':idDeleteUser', $this->users_id, PDO::PARAM_STR); 
+        return $editUser->execute();
+    }
 }

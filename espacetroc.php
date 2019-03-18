@@ -44,91 +44,125 @@ include_once('Controller/controllerEspacetroc.php');
         <div class="menunav">
             <nav class="nav nav-pills nav-fill">
                 <a class="nav-item nav-link"><i class="fas fa-2x fa-user-tie"></i><?= $_SESSION['pseudo'] ?></a> <!--renvoie le pseudo connecté-->
-                <a class="nav-item nav-link" onclick="(window.location = '../index.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fas fa-2x fa-home"></i>Accueil</a>
-                <a class="nav-item nav-link" onclick="(window.location = 'View/monprofilView.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fas fa-2x fa-tachometer-alt"></i>Profil</a>
+                <a class="nav-item nav-link" onclick="(window.location = 'View/monprofilView.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fas fa-2x fa-tachometer-alt"></i>Compléter Profil</a>
                 <a class="nav-item nav-link" onclick="(window.location = 'View/ajout-articleView.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fab fa-2x fa-cloudscale"></i>Ajout Article</a>
-                <a class="nav-item nav-link" onclick="(window.location = 'View/deconnexion.php')"><i class="fas fa-2x fa-sign-out-alt"></i>deconnexion</a>
+                <a class="nav-item nav-link" onclick="(window.location = 'View/deconnexion.php')"><i class="fas fa-2x fa-sign-out-alt"></i>Deconnexion</a>
             </nav>
         </div>
         <!--/Sous-Menu-->
 
-        <div class="container-fluid ">
-            <div class="row">
-                <!--div profil rapide-->
-                <div class="col-sm-12 col-lg-6 showprofil">
-                    <div class="form-group">
-                        <label class="nav-item nav-link">Civilité:</label>
-                        <p><?= $_SESSION['gender'] ?></p>
-                        <label class="nav-item nav-link">Pseudo:</label>
-                        <p><?= $_SESSION['pseudo'] ?></p>
-                        <label class="nav-item nav-link">Email:</label>
-                        <p><?= $_SESSION['email'] ?></p>
+
+        <div class="container-fluid">
+            <div id="accordion">
+                <div class="card">
+
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Infos personnelles
+                            </button>
+                        </h5>
                     </div>
-                </div>
-                <!-- /div profil rapide-->
-            </div> <!--/div row-->
-        </div> <!--/div container-->
 
-
-        <!--content de mon menu vertical-->
-        <div class="container-fluid ">
-            <div class="row">
-                <div class="col-sm-12 col-lg-12 VerticalTabContent">
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
                             <div class="table-responsive-sm">
                                 <table class="table table-striped table-bordered table-dark">
                                     <thead>
                                         <tr class="bg-primary">
-                                            <th scope="col">#</th>
-                                            <th scope="col">Statut</th>
+                                            <th scope="col">Pseudo</th>
+                                            <th scope="col">Civilité</th>
                                             <th scope="col">Nom</th>
-                                            <th scope="col">Marque</th>
-                                            <th scope="col">Quantité</th>
-                                            <th scope="col">Etat</th>
-                                            <th scope="col">Capacité</th>
-                                            <th scope="col">Expiration</th>
-                                            <th scope="col">Image</th>
-                                            <th scope="col">Catégorie</th>
-                                            <th scope="col">Sous-catégorie</th>
-                                            <th scope="col">Modifier</th>
-                                            <th scope="col">Supprimer</th>
+                                            <th scope="col">Prénom</th>
+                                            <th scope="col">Adresse</th>
+                                            <th scope="col">Ville</th>
+                                            <th scope="col">CP</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Teléphone</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                        foreach ($productsByUsers as $productUsers) {
-                                            ?>
-                                            <tr>
-                                                <th scope="row"><?= $productUsers->products_id ?></th>
-                                                <td> <?php
-                                                    if ($productUsers->products_validate == 0) { //condition pour afficher le statut validé ou non, avec mon attribut products_validate(si =0 nn validé, ou 1
-                                                        echo 'en cours de validation';
-                                                    } else {
-                                                        echo 'validé';
-                                                    }
-                                                    ?></td>
-                                                <td><?= $productUsers->products_name ?></td>
-                                                <td><?= $productUsers->products_brand ?></td>
-                                                <td><?= $productUsers->products_quantity ?></td>
-                                                <td><?= $productUsers->products_state ?></td>
-                                                <td><?= $productUsers->products_capacity ?></td>
-                                                <td><?= $productUsers->expiration ?></td>
-                                                <td><img class="img-fluid" src="<?= $productUsers->products_img ?>" width="42" height="42"></td>
-                                                <td><?= $productUsers->maincat_name ?></td>
-                                                <td><?= $productUsers->subcat_name ?></td>
-                                                <td><button class="btn btn-primary" onclick="(window.location = 'View/modifArticle.php?idProducts=<?= $productUsers->products_id; ?>')"><i class="fas fa-pen"></i></button></td>
-                                                <td><button class="btn btn-raised btn-danger" onclick="(window.location = 'View/deleteArticle.php?idProducts=<?= $productUsers->products_id; ?>')">X</button></td>
-                                            </tr>
-                                            <?php
-                                        }
-                                        ?>
+                                        <tr>
+                                            <td><?= $profil->users_pseudo ?></td>
+                                            <td><?= $profil->users_gender ?></td>
+                                            <td><?= $profil->users_lastname ?></td>
+                                            <td><?= $profil->users_firstname ?></td>
+                                            <td><?= $profil->users_address ?></td>
+                                            <td><?= $profil->users_city ?></td>
+                                            <td><?= $profil->users_CP ?></td>
+                                            <td><?= $profil->users_email ?></td>
+                                            <td><?= $profil->users_phone ?></td>
+                                        </tr>
                                     </tbody>
                                 </table> 
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> 
 
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Vos Articles proposés en troc
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div class="table-responsive-sm">
+                        <table class="table table-striped table-bordered table-dark">
+                            <thead>
+                                <tr class="bg-primary">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Statut</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Marque</th>
+                                    <th scope="col">Quantité</th>
+                                    <th scope="col">Etat</th>
+                                    <th scope="col">Capacité</th>
+                                    <th scope="col">Expiration</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Catégorie</th>
+                                    <th scope="col">Sous-catégorie</th>
+                                    <th scope="col">Modifier</th>
+                                    <th scope="col">Supprimer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($productsByUsers as $productUsers) {
+                                    ?>
+                                    <tr>
+                                        <th scope="row"><?= $productUsers->products_id ?></th>
+                                        <td> <?php
+                                            if ($productUsers->products_validate == 0) { //condition pour afficher le statut validé ou non, avec mon attribut products_validate(si =0 nn validé, ou 1
+                                                echo 'en cours de validation';
+                                            } else {
+                                                echo 'validé';
+                                            }
+                                            ?></td>
+                                        <td><?= $productUsers->products_name ?></td>
+                                        <td><?= $productUsers->products_brand ?></td>
+                                        <td><?= $productUsers->products_quantity ?></td>
+                                        <td><?= $productUsers->products_state ?></td>
+                                        <td><?= $productUsers->products_capacity ?></td>
+                                        <td><?= $productUsers->expiration ?></td>
+                                        <td><img class="img-fluid" src="<?= $productUsers->products_img ?>" width="42" height="42"></td>
+                                        <td><?= $productUsers->maincat_name ?></td>
+                                        <td><?= $productUsers->subcat_name ?></td>
+                                        <td><button class="btn btn-primary" onclick="(window.location = 'View/modifArticle.php?idProducts=<?= $productUsers->products_id; ?>')"><i class="fas fa-pen"></i></button></td>
+                                        <td><button class="btn btn-raised btn-danger" onclick="(window.location = 'View/deleteArticle.php?idProducts=<?= $productUsers->products_id; ?>')"><i class="fas fa-trash-alt"></i></button></td>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table> 
+                    </div>
+                </div> 
+
+            </div>
+        </div>
 
 
 

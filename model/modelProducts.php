@@ -227,7 +227,7 @@ class Products extends database {//création class Products qui hériteras de la
      * @return Execute Query SELECT 
      * 
      */
-    public function AllProducts() {
+    public function AllProductsValidate() {
         $query = 'SELECT `products_id`, '
                 . '`products_name`, '
                 . '`products_brand`, '
@@ -240,7 +240,8 @@ class Products extends database {//création class Products qui hériteras de la
                 . '`velo_products`.`subcat_id`, '
                 . '`velo_products`.`maincat_id`, '
                 . '`maincat_name`, '
-                . '`subcat_name` '
+                . '`subcat_name`, '
+                . '`users_id` '
                 . 'FROM `velo_products` '
                 . 'INNER JOIN `velo_maincat` '
                 . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
@@ -276,43 +277,6 @@ class Products extends database {//création class Products qui hériteras de la
     }
 
     /**
-     * Fonction permettant d'afficher à l'utilisateur tous les produit qu'il a proposé en troc sur le site
-     * @return Execute Query SELECT 
-     * 
-     */
-    public function ProductsListing() {
-        $query = 'SELECT '
-                . '`products_id`, '
-                . '`products_name`, '
-                . '`products_brand`, '
-                . '`products_quantity`, '
-                . '`products_state`, '
-                . '`products_capacity`, '
-                . 'DATE_FORMAT(`products_expiration`, \'%d/%m/%Y\') AS expiration, '
-                . '`products_img`, '
-                . '`products_validate`, '
-                . '`velo_products`.`users_id`, '
-                . '`maincat_name`, '
-                . '`subcat_name`, '
-                . '`users_lastname`, '
-                . '`users_firstname`, '
-                . '`users_pseudo` '
-                . 'FROM `velo_products` '
-                . 'INNER JOIN `velo_maincat` '
-                . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
-                . 'INNER JOIN `velo_subcat` '
-                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
-                . 'INNER JOIN `velo_users` '
-                . 'ON `velo_products`.users_id = `velo_users`.users_id '
-                . 'GROUP BY `users_id` ';
-
-        $response = $this->database->prepare($query);
-        $response->execute();
-        $listing = $response->fetchAll(PDO::FETCH_OBJ);
-        return $listing;
-    }
-
-    /**
      * Fonction permettant d'afficher les produits non validés à l'administrateur
      * @return Execute Query SELECT 
      * 
@@ -330,7 +294,8 @@ class Products extends database {//création class Products qui hériteras de la
                 . '`velo_products`.`subcat_id`, '
                 . '`velo_products`.`maincat_id`, '
                 . '`maincat_name`, '
-                . '`subcat_name` '
+                . '`subcat_name`, '
+                . '`users_id` '
                 . 'FROM `velo_products` '
                 . 'INNER JOIN `velo_maincat` '
                 . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
@@ -360,19 +325,20 @@ class Products extends database {//création class Products qui hériteras de la
     }
 
     /**
-     * Fonction permettant de supprimer un article dans l'espace Admin
+     * Fonction permettant de supprimer un article dans l'espace Admin en fonction de l'idDelete ou l'idDeleteProductNoValidate
      * @return Execute Query DELETE 
      * 
      */
     public function DeletePdtsPageAdmin() {
-        $query = 'DELETE FROM `velo_products` WHERE `products_id`= :idDelete '; //On supprime un article quand son id est similaire au idDelete(récupéré grâce au Get).
+        $query = 'DELETE FROM `velo_products` WHERE `products_id`= :idDelete OR `products_id`= :idDeleteProductNoValidate '; //On supprime un article quand son id est similaire au idDelete(récupéré grâce au Get).
         $deletePdtByAdmin = $this->database->prepare($query); //connexion database puis prepare la requête
         $deletePdtByAdmin->bindValue(':idDelete', $this->products_id, PDO::PARAM_STR);
+        $deletePdtByAdmin->bindValue(':idDeleteProductNoValidate', $this->products_id, PDO::PARAM_STR);
         return $deletePdtByAdmin->execute();
     }
 
     /**
-     * Fonction permettant d'afficher le profil du produit en fonction de l' idDelete récupéré.
+     * Fonction permettant d'afficher le profil du produit en fonction de l' idDelete ou l'idDeleteProductNoValidate.
      * @return Execute Query SELECT 
      * 
      */
@@ -395,12 +361,71 @@ class Products extends database {//création class Products qui hériteras de la
                 . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
                 . 'INNER JOIN `velo_subcat` '
                 . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
-                . 'WHERE `products_id` = :idDelete';
+                . 'WHERE `products_id` = :idDeleteProductNoValidate OR `products_id` = :idDelete ';
         $response = $this->database->prepare($query);
+        $response->bindValue(':idDeleteProductNoValidate', $this->products_id, PDO::PARAM_STR);
         $response->bindValue(':idDelete', $this->products_id, PDO::PARAM_STR);
         $response->execute();
         $request = $response->fetch(PDO::FETCH_OBJ);
         return $request;
+    }
+
+    /**
+     * Fonction permettant d'effectuer la pagination
+     * @return Execute Query SELECT 
+     * 
+     */
+    public function Pagination() {
+        $query = 'SELECT `products_id`, '
+                . '`products_name`, '
+                . '`products_brand`, '
+                . '`products_quantity`, '
+                . '`products_state`, '
+                . '`products_capacity`, '
+                . '`products_expiration`, '
+                . '`products_img`,'
+                . '`products_validate`, '
+                . '`velo_products`.`subcat_id`, '
+                . '`velo_products`.`maincat_id`, '
+                . '`maincat_name`, '
+                . '`subcat_name` '
+                . 'FROM `velo_products` '
+                . 'INNER JOIN `velo_maincat` '
+                . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
+                . 'INNER JOIN `velo_subcat` '
+                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
+                . 'WHERE `products_validate` = 1 '; //afficher les produits, une fois que l'administrateur auras validé l'article
+        $response = $this->database->prepare($query);
+        $response->execute();
+        $response->fetchAll();
+        return $response->rowCount();
+    }
+
+    /**
+     * Fonction permettant d'afficher les produits en fonction de l'idDeleteUser.
+     * @return Execute Query DELETE 
+     * 
+     */
+    public function profilPtsbyIdDeleteUser() {
+        $query = 'SELECT * FROM `velo_products` WHERE `velo_products`.users_id = :idDeleteUser';
+        $PdctsByIdUser = $this->database->prepare($query); //connexion database puis prepare la requete
+        $PdctsByIdUser->bindValue(':idDeleteUser', $this->users_id, PDO::PARAM_STR);
+        $PdctsByIdUser->execute();
+        $response = $PdctsByIdUser->fetchAll(PDO::FETCH_OBJ);
+        return $response;
+    }
+
+    /**
+     * Fonction permettant de supprimer les produits d'un utilisateur qui à été supprimé au préalable avec une autre méthode dans la page admin.
+     * Les méthodes sont toutes deux liées à l'idDeleteUser.
+     * @return Execute Query DELETE 
+     * 
+     */
+    public function deletePtsAfterUserAdminPage() {
+        $query = 'DELETE FROM `velo_products` WHERE `velo_products`.users_id = :idDeleteUser';
+        $deletePdtsOfUser = $this->database->prepare($query); //connexion database puis prepare la requete
+        $deletePdtsOfUser->bindValue(':idDeleteUser', $this->users_id, PDO::PARAM_STR);
+        return $deletePdtsOfUser->execute();
     }
 
 }

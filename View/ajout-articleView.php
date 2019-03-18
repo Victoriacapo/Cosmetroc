@@ -47,19 +47,19 @@ include_once('../Controller/controllerAjout-article.php');
                                 <h1 class="ArticleFormH1">Article</h1>
 
                                 <div class="row">
-                                    <div class="form-group col-lg-4 col-sm-6"> 
+                                    <div class="form-group col-lg-6 col-sm-6"> 
                                         <label for="nameproduct">Nom du produit: </label>
                                         <input type="text" name="nameproduct" class="form-control" value="<?= isset($_POST['nameproduct']) ? $pductsObj->products_name : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
                                         <span class="error"><?= isset($errorsArray['nameproduct']) ? $errorsArray['nameproduct'] : ''; ?></span>
                                     </div>
 
-                                    <div class="form-group col-lg-4 col-sm-6"> 
+                                    <div class="form-group col-lg-6 col-sm-6"> 
                                         <label for="brand">Marque: </label>
                                         <input type="text" name="brand" class="form-control" value="<?= isset($_POST['brand']) ? $pductsObj->products_brand : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
                                         <span class="error"><?= isset($errorsArray['brand']) ? $errorsArray['brand'] : ''; ?></span>
                                     </div>
 
-                                    <div class="form-group col-lg-4 col-sm-6"> 
+                                    <div class="form-group col-lg-6 col-sm-6"> 
                                         <label>Quantité: </label>
                                         <select name="quantity" class="form-control"> 
                                             <option value="" selected disabled></option>
@@ -72,7 +72,7 @@ include_once('../Controller/controllerAjout-article.php');
                                         <span class="error"><?= isset($errorsArray['quantity']) ? $errorsArray['quantity'] : ''; ?></span>
                                     </div>
 
-                                    <div class="form-group col-lg-4 col-sm-6"> 
+                                    <div class="form-group col-lg-6 col-sm-6"> 
                                         <label>Etat: </label>
                                         <select name="state" class="form-control"> 
                                             <option value="" selected disabled></option>
@@ -83,19 +83,19 @@ include_once('../Controller/controllerAjout-article.php');
                                         <span class="error"><?= isset($errorsArray['state']) ? $errorsArray['state'] : ''; ?></span>
                                     </div>
 
-                                    <div class="form-group col-lg-4 col-sm-6"> 
+                                    <div class="form-group col-lg-6 col-sm-6"> 
                                         <label for="capacity">Capacité: </label>
                                         <input type="text" name="capacity" class="form-control" value="<?= isset($_POST['capacity']) ? $pductsObj->products_capacity : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
                                         <span class="error"><?= isset($errorsArray['capacity']) ? $errorsArray['capacity'] : ''; ?></span>
                                     </div>
 
-                                    <div class="form-group col-lg-4 col-sm-6"> 
+                                    <div class="form-group col-lg-6 col-sm-6"> 
                                         <label for="expiration">Date d'expiration: </label>
                                         <input type="date" name="expiration" class="form-control" value="<?= isset($_POST['expiration']) ? $pductsObj->products_expiration : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
                                         <span class="error"><?= isset($errorsArray['expiration']) ? $errorsArray['expiration'] : ''; ?></span>
                                     </div>
 
-                                    <div class="form-group col-lg-4 col-sm-6"> 
+                                    <div class="form-group col-lg-6 col-sm-6"> 
                                         <label>Catégorie: </label>
                                         <select name="category" class="form-control"> 
                                             <option value="" selected disabled></option>
@@ -111,7 +111,7 @@ include_once('../Controller/controllerAjout-article.php');
                                     </div>
 
 
-                                    <div class="form-group col-lg-4 col-sm-6"> 
+                                    <div class="form-group col-lg-6 col-sm-6"> 
                                         <label>Sous-Catégorie: </label>
                                         <select name="sbcategory" class="form-control"> 
                                             <option value="" selected disabled></option>
@@ -146,13 +146,14 @@ include_once('../Controller/controllerAjout-article.php');
                                 <h1 class="messageH1">Confirmation Ajout</h1>
                                 <p><?= 'L\'article ' . $pductsObj->products_name . ' a bien été enregistré, il seras soumis à l\'administrateur pour validation. '?></p>
 
-                                <ul>
-                                    <li>Nom du produit: <?= $pductsObj->products_name ?> </li>
-                                    <li>Marque du produit: <?= $pductsObj->products_brand ?> </li>
-                                    <li>Quantité: <?= $pductsObj->products_quantity ?></li>
-                                    <li>Etat: <?= $pductsObj->products_state ?></li>
-                                    <li>Capacité: <?= $pductsObj->products_capacity ?></li>
-                                    <li>Expiration: <?= date('d/m/Y', strtotime($pductsObj->products_expiration)); ?> <!-- la variable $date est déclarer dns le controller, il contient l'attribut(products_expiration)-->
+                                <ul class="list-group products">
+                                    <li class="list-group-item active">Nom du produit: <?= $pductsObj->products_name ?> </li>
+                                    <li class="list-group-item">Marque du produit: <?= $pductsObj->products_brand ?> </li>
+                                    <li class="list-group-item">Quantité: <?= $pductsObj->products_quantity ?></li>
+                                    <li class="list-group-item">Etat: <?= $pductsObj->products_state ?></li>
+                                    <li class="list-group-item">Capacité: <?= $pductsObj->products_capacity ?></li>
+                                    <li class="list-group-item">Expiration: <?= date('d/m/Y', strtotime($pductsObj->products_expiration)); ?></li> <!-- la variable $date est déclarer dns le controller, il contient l'attribut(products_expiration)-->
+                                 <li class="list-group-item"><img class="img-fluid" src="<?= $pductsObj->products_img?>" width="102" height="102"></li>
                                 </ul>
                             </div>
                             <div id="plus"><button onclick="(window.location = 'ajout-articleView.php?id=<?= $_SESSION['idUser']; ?>')" class="btn btn-raised btn-primary">Ajouter un article</button></div>

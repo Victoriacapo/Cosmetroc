@@ -148,13 +148,13 @@ include_once('../Controller/controllerModifArticle.php');
                         <p><?= 'La modification de l\'article ' . $OnepductsObj->products_name .', a bien été effectué, il seras soumis à l\'administrateur pour validation. '
                         ?></p>
 
-                        <ul>
-                            <li>Nom du produit: <?= $OnepductsObj->products_name ?> </li>
-                            <li>Marque du produit: <?= $OnepductsObj->products_brand ?> </li>
-                            <li>Quantité: <?= $OnepductsObj->products_quantity ?></li>
-                            <li>Etat: <?= $OnepductsObj->products_state ?></li>
-                            <li>Capacité: <?= $OnepductsObj->products_capacity ?></li>
-                            <li>Expiration: <?= date('d/m/Y', strtotime($OnepductsObj->products_expiration)); ?> <!-- la variable $date est déclarer dns le controller, il contient l'attribut(products_expiration)-->
+                        <ul class="list-group products">
+                            <li class="list-group-item active">Nom du produit: <?= $OnepductsObj->products_name ?> </li>
+                            <li class="list-group-item">Marque du produit: <?= $OnepductsObj->products_brand ?> </li>
+                            <li class="list-group-item">Quantité: <?= $OnepductsObj->products_quantity ?></li>
+                            <li class="list-group-item">Etat: <?= $OnepductsObj->products_state ?></li>
+                            <li class="list-group-item">Capacité: <?= $OnepductsObj->products_capacity ?></li>
+                            <li class="list-group-item">Expiration: <?= date('d/m/Y', strtotime($OnepductsObj->products_expiration)); ?> <!-- la variable $date est déclarer dns le controller, il contient l'attribut(products_expiration)-->
                         </ul>
                     </div>
 

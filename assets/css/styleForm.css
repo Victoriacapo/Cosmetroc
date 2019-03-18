@@ -21,8 +21,7 @@
     width: 550px;
 }
 .Article{
-    margin-top: 40px;
-    margin-bottom: 40px;
+    
     height: auto;
     margin: 0 auto;
     width: 750px;
@@ -51,7 +50,7 @@
 #sendButton{
     margin: 0 auto;
     width: 100px;
-    padding-top: 85px;
+    padding-top: 45px;
 }
 /*style de mes bouton close*/
 #closebutton{

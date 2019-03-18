@@ -6,6 +6,7 @@ include_once ('../model/modelusers.php');
 
 
 $profilObj = new Users(); //instancie un nouvel objet
+$showForm = true; //booléen qui renvoie true/false pr soit cacher/afficher mn form
 
 
 if (isset($_SESSION['idUser'])) { //recupere l'id, verifie si présent ds la base de donnée, et effectue la requête
@@ -122,6 +123,7 @@ if (isset($_POST['sendButton']) && (count($errorsArray) == 0)) {
 
     $profilObj->modifyUser(); // execute ma requete presente dans mon modelpatient
     $profil = $profilObj->UserProfil();
+    $showForm = false; // ma variable return false donc cache mon formulaire remplie.
 
     $_SESSION['idUser'] = $profilObj->users_id;
     $_SESSION['gender'] = $profilObj->users_gender;

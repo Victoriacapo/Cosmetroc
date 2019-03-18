@@ -9,7 +9,7 @@ $navbarElementsObj = new Products();
 
 // sinon par défaut lorsque l'on est sur la page d'accueil tous les articles publiés seront affichés
 // par la méthode AllProducts
-$ArrayProductNavbar = $navbarElementsObj->AllProducts();
+$ArrayProductNavbar = $navbarElementsObj->AllProductsValidate();
 
 
 //Si le maincat_id est récupéré seul dans l'URL via le GET, appliqué la méthode pour afficher les produits en fonction du maincat_id qui représente la catégorie. (les produits sont donc affichés par catégorie)
@@ -33,5 +33,9 @@ if (isset($_POST['ok'])) {// A l'action du bouton ok, hydrater l'objet de l'attr
     //applique la méthode lié à la recherche et affiche le résultat dans la vue en l'appliquant sur $ArrayProductNavbar, sur la même variable qui filtre et affiche les produits
     $ArrayProductNavbar = $navbarElementsObj->searchProducts();
 }
+
+
+
+
 ?>
   

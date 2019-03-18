@@ -29,6 +29,7 @@ include_once('../Controller/controllermonProfil.php');
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-sm-12 col-lg-6 profil">
+                    <?php if ($showForm) { //applique ma booleenne pr afficher/cacher mon form?>
                     <form name="Profil" action="" method="POST">
                         <h1 class="profilFormH1">Profil</h1>
                         <div class="form-group"> 
@@ -83,7 +84,15 @@ include_once('../Controller/controllermonProfil.php');
                         </div>
                         <div id="sendButton"><input type="submit" class="btn btn-raised btn-primary"  name="sendButton" value="Compléter" /></div>
                     </form>
-                   
+                    
+                    <?php } else { ?>
+                        <div id="message">
+                            <h1 class="messageH1">Inscription</h1>
+                            <p><?= 'Bienvenue ' . $profil->users_pseudo . ', votre profil à été complété avec succès.' ?></p>
+                            <p>Vous pouvez dès à présent proposer un article au troc.</p>
+                        </div>
+                    <?php } ?>
+                    
                     <div id="closebutton">
                         <button type="button" onclick="(window.location = '../espacetroc.php')" class="btn btn-raised btn-danger">X</button>
                     </div>

@@ -66,6 +66,7 @@ include_once('../Controller/controllerInscription.php');
                         <div id="message">
                             <h1 class="messageH1">Inscription</h1>
                             <p><?= 'Bienvenue ' . $usersObj->users_pseudo . ' , votre inscription à bien été pris en compte ' ?></p>
+                            <p>Vous pouvez dès à présent vous connecter.</p>
                         </div>
                     <?php } ?>
 
