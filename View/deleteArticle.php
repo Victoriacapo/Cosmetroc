@@ -12,7 +12,7 @@ include_once('../Controller/controllerdeleteArticle.php');
         ?>
 
         <link rel="stylesheet" href="../assets/css/styleForm.css">
-        <title>Ajout-article</title>
+        <title>Suppression-article</title>
     </head>
 
     <body id="Article">
@@ -48,11 +48,13 @@ include_once('../Controller/controllerdeleteArticle.php');
                                     <li class="list-group-item">Expiration: <?= date('d/m/Y', strtotime($pdtSheet->products_expiration)); ?></li>
                                     <li class="list-group-item"><img class="img-fluid" src="<?= $pdtSheet->products_img; ?>" width="150" height="150"></li>
                                 </ul>
+
                                 <!--bouton pour afficher demande de confirmation pour la poursuite de la suppression--> 
                                 <form method="POST">
                                     <div id="sendButton"><input type="submit" class="btn btn-raised btn-primary" name="sendButton" value="Supprimer" /></div>
                                 </form>
                             </div>
+
                         <?php } else { ?>
                             <!--message pour la demande de confirmation pour la poursuite de la suppression-->
                             <div id="message">

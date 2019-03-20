@@ -30,16 +30,15 @@ include_once('../Controller/controllerModifArticle.php');
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-sm-12 col-lg-6 Article">
-                      <?php if ($filePdt->products_validate == 0) { //condition si la variable $filePdt == 0, indiquer à l'utilisateur que son produit est en cours de validation'?>
+                    
+
+                    <?php if ($showForm) { //applique ma booleenne pr afficher/cacher mon form 
+                    if ($filePdt->products_validate == 0) { //condition si la variable $filePdt == 0, indiquer à l'utilisateur que son produit est en cours de validation'?>
 
                         <div class="alert alert-dark" role="alert">
-                            Votre article n'est pas encore visible sur le site, il seras traité par l'administrateur.
+                            Votre article n'est pas encore visible sur le site, il sera traité par l'administrateur.
                         </div>
-
-                    <?php } 
-                        ?>
-
-                    <?php if ($showForm) { //applique ma booleenne pr afficher/cacher mon form  ?>
+                     <?php   }  ?>
                         <form name="addProduit" action="modifArticle.php" method="POST" enctype="multipart/form-data">
                             <h1 class="ArticleFormH1">Modification Article</h1>
 
@@ -145,7 +144,7 @@ include_once('../Controller/controllerModifArticle.php');
                     
                         <div id="message">
                         <h1 class="messageH1">Modification effectuée</h1>
-                        <p><?= 'La modification de l\'article ' . $OnepductsObj->products_name .', a bien été effectué, il seras soumis à l\'administrateur pour validation. '
+                        <p><?= 'La modification de l\'article ' . $OnepductsObj->products_name .', a bien été effectué, il sera soumis à l\'administrateur pour validation. '
                         ?></p>
 
                         <ul class="list-group products">
@@ -155,6 +154,7 @@ include_once('../Controller/controllerModifArticle.php');
                             <li class="list-group-item">Etat: <?= $OnepductsObj->products_state ?></li>
                             <li class="list-group-item">Capacité: <?= $OnepductsObj->products_capacity ?></li>
                             <li class="list-group-item">Expiration: <?= date('d/m/Y', strtotime($OnepductsObj->products_expiration)); ?> <!-- la variable $date est déclarer dns le controller, il contient l'attribut(products_expiration)-->
+                            <li class="list-group-item"><img class="img-fluid" src="<?= $OnepductsObj->products_img?>" width="102" height="102"></li>
                         </ul>
                     </div>
 

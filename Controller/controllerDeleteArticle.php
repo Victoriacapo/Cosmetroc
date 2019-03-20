@@ -18,15 +18,16 @@ $succesArray = []; //déclaration tableau pour message de succès
 $showList = true; //booléen qui renvoie true/false pr soit cacher/afficher mn form
 $checkId = true; //variable qui permet d'appliquer un  message à l'utilisateur si son identifiant est incorrect.
         
-if (isset($_GET['idProducts']) && ($_SESSION['idUser'])) { //recupere l'idProducts 
-    $productsObj->products_id = $_GET['idProducts']; //on indique que l'objet products_id correspond au Get['idProducts']
+if (isset($_GET['idProducts']) && ($_SESSION['idUser'])) { //recupere l'idProducts et l'idUser
+    $productsObj->products_id = $_GET['idProducts']; //on indique que l'objet products_id correspond au Get['idProducts'] pour effectuer la méthode profilProducts 
     $productsObj->users_id = $_SESSION['idUser']; 
 
 
     $pdtSheet = $productsObj->profilProducts(); //correspond à la requête pr afficher la fiche propre à un produit, la variable $pdtSheet est appelé pour m'afficher la fiche produit dans la vue. 
-    $_SESSION['idProduct'] = $_GET['idProducts']; // stocke l'idProducts dans variable de session afin de le réutiliser ultérieurement
+    $_SESSION['idProduct'] = $_GET['idProducts']; // stocke l'idProducts dans variable de session pour l'utiliser
     $_SESSION['imageProduct'] = $pdtSheet->products_img; //stocke l'objet products_img dans une variable de session qui permettras de le supprimer dans le dossier local
 
+    
     if ($productsObj === FALSE) {
         $ifIdexist = FALSE;
     } else {

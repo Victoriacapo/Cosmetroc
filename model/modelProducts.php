@@ -15,6 +15,7 @@ class Products extends database {//création class Products qui hériteras de la
     public $maincat_id;
     public $subcat_id;
     public $users_id;
+    public $users_pseudo;
     public $search;
 
     /**
@@ -147,9 +148,9 @@ class Products extends database {//création class Products qui hériteras de la
      * 
      */
     public function DeletePdts() {
-        $query = 'DELETE FROM `velo_products` WHERE `products_id`= :idProducts AND `users_id`= :idUser ';
+        $query = 'DELETE FROM `velo_products` WHERE `products_id`= :idProduct AND `users_id`= :idUser ';
         $deletePdt = $this->database->prepare($query); //connexion database puis prepare la requête
-        $deletePdt->bindValue(':idProducts', $this->products_id, PDO::PARAM_INT);
+        $deletePdt->bindValue(':idProduct', $this->products_id, PDO::PARAM_INT);
         $deletePdt->bindValue(':idUser', $this->users_id, PDO::PARAM_INT);
         return $deletePdt->execute();
     }
@@ -172,15 +173,20 @@ class Products extends database {//création class Products qui hériteras de la
                 . '`velo_products`.`subcat_id`, '
                 . '`velo_products`.`maincat_id`, '
                 . '`maincat_name`, '
-                . '`subcat_name` '
+                . '`subcat_name`, '
+                . '`velo_products`.`users_id`, '
+                . '`users_pseudo`, '
+                . '`users_email` '
                 . 'FROM `velo_products` '
                 . 'INNER JOIN `velo_maincat` '
                 . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
                 . 'INNER JOIN `velo_subcat` '
                 . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
+                . 'INNER JOIN `velo_users` '
+                . 'ON `velo_products`.users_id = `velo_users`.users_id '
                 . 'WHERE `products_validate` = 1 ' //afficher les produits, une fois que l'administrateur auras validé l'article
                 . 'AND `velo_maincat`.maincat_id = :maincat_id '
-                . 'And `velo_subcat`.subcat_id = :subcat_id ';
+                . 'AND `velo_subcat`.subcat_id = :subcat_id ';
         $productnavbar = $this->database->prepare($query);
         $productnavbar->bindValue(':maincat_id', $maincat_id, PDO::PARAM_STR);
         $productnavbar->bindValue(':subcat_id', $subcat_id, PDO::PARAM_STR);
@@ -207,12 +213,17 @@ class Products extends database {//création class Products qui hériteras de la
                 . '`velo_products`.`subcat_id`, '
                 . '`velo_products`.`maincat_id`, '
                 . '`maincat_name`, '
-                . '`subcat_name` '
+                . '`subcat_name`, '
+                . '`velo_products`.`users_id`, '
+                . '`users_pseudo`, '
+                . '`users_email` '
                 . 'FROM `velo_products` '
                 . 'INNER JOIN `velo_maincat` '
                 . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
                 . 'INNER JOIN `velo_subcat` '
-                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
+                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id  '
+                . 'INNER JOIN `velo_users` '
+                . 'ON `velo_products`.users_id = `velo_users`.users_id '
                 . 'WHERE `products_validate` = 1 ' //afficher les produits, une fois que l'administrateur auras validé l'article
                 . 'AND `velo_maincat`.maincat_id = :maincat_id ';
         $MaincatNavbar = $this->database->prepare($query);
@@ -241,12 +252,16 @@ class Products extends database {//création class Products qui hériteras de la
                 . '`velo_products`.`maincat_id`, '
                 . '`maincat_name`, '
                 . '`subcat_name`, '
-                . '`users_id` '
+                . '`velo_products`.`users_id`, '
+                . '`users_pseudo`, '
+                . '`users_email` '
                 . 'FROM `velo_products` '
                 . 'INNER JOIN `velo_maincat` '
                 . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
                 . 'INNER JOIN `velo_subcat` '
                 . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
+                . 'INNER JOIN `velo_users` '
+                . 'ON `velo_products`.users_id = `velo_users`.users_id '
                 . 'WHERE `products_validate` = 1 '; //afficher les produits, une fois que l'administrateur auras validé l'article
         $response = $this->database->prepare($query);
         $response->execute();
@@ -266,6 +281,8 @@ class Products extends database {//création class Products qui hériteras de la
                 . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
                 . 'INNER JOIN `velo_subcat` '
                 . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
+                . 'INNER JOIN `velo_users` '
+                . 'ON `velo_products`.users_id = `velo_users`.users_id '
                 . 'WHERE `products_validate` = 1 '
                 . 'AND (`products_name` LIKE :search OR `products_brand` LIKE :search)'
                 . 'ORDER BY `products_name` ';

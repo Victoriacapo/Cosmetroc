@@ -153,7 +153,7 @@ include_once('../Controller/controllerAjout-article.php');
                                     <li class="list-group-item">Etat: <?= $pductsObj->products_state ?></li>
                                     <li class="list-group-item">Capacité: <?= $pductsObj->products_capacity ?></li>
                                     <li class="list-group-item">Expiration: <?= date('d/m/Y', strtotime($pductsObj->products_expiration)); ?></li> <!-- la variable $date est déclarer dns le controller, il contient l'attribut(products_expiration)-->
-                                 <li class="list-group-item"><img class="img-fluid" src="<?= $pductsObj->products_img?>" width="102" height="102"></li>
+                                    <li class="list-group-item"><img class="img-fluid" src="<?= $pductsObj->products_img?>" width="102" height="102"></li>
                                 </ul>
                             </div>
                             <div id="plus"><button onclick="(window.location = 'ajout-articleView.php?id=<?= $_SESSION['idUser']; ?>')" class="btn btn-raised btn-primary">Ajouter un article</button></div>

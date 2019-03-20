@@ -28,7 +28,7 @@ $usersObjt = new Users();
         $showPdtsObj->users_id = htmlspecialchars($_GET['idDeleteUser']);//J'indique que mon objet correspond a l'idDeleteUser pr l'application des méthodes
        
         //méthode permettant de supprimer un utilisateur en fonction de l'idDeleteUser.
-        $usersObjt->deleteUserAdminPage(); 
+        $deleteUser = $usersObjt->deleteUserAdminPage(); 
         
         //méthode affichant les articles en fonction de l'idDeleteUser. Ce qui m'affiche tous ls article de l'utilisateur à supprimer.
         $listProductsByIdDeleteUser = $showPdtsObj->profilPtsbyIdDeleteUser();

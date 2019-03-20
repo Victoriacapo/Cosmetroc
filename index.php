@@ -24,13 +24,13 @@ include_once('Controller/controllerIndex.php');
                     <div class="col">
                         <!--condition pour m'afficher les bouton en fonction que l'utilisateur soit connecté ou non-->
                         <?php if (isset($_SESSION['idUser'])) { //condition si une session utilisateur existe, afficher le bouton qui permet l'accès vers l'espace personnel' ?>
-                        <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'View/deconnexion.php')"><i class="fas fa-sign-out-alt"></i>Deconnexion</button>
-                        <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'espacetroc.php')"><i class="fas fa-user-tie"></i><?= $_SESSION['pseudo'] ?></button>
-                        <?php }else{
-                        ?>
-                        <!-- Button connexion -->
-                        <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'View/connexionView.php')">Connexion</button>
-                        <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'View/inscriptionView.php')">Inscription</button>
+                            <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'View/deconnexion.php')"><i class="fas fa-sign-out-alt"></i>Deconnexion</button>
+                            <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'espacetroc.php')"><i class="fas fa-user-tie"></i><?= $_SESSION['pseudo'] ?></button>
+                        <?php } else {
+                            ?>
+                            <!-- Button connexion -->
+                            <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'View/connexionView.php')">Connexion</button>
+                            <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'View/inscriptionView.php')">Inscription</button>
                         <?php } ?>
                     </div>
                 </div>
@@ -72,31 +72,39 @@ include_once('Controller/controllerIndex.php');
 
         <div class="parallax">
 
-          
-            <div class="container" id="cardProduct">
+
+            <div class="container-fluid ProductsContainer">
                 <div class="row">
+
                     <?php
                     foreach ($ArrayProductNavbar as $cardProducts) { //boucle pour afficher les produits de la Bdd
                         ?>
                         <div class="col-xs-12 col-md-6 col-lg-3" id="content">
                             <div class="card">
                                 <img class="card-img-top" src="<?= $cardProducts->products_img ?>" alt="Card image cap">
-                                <div class="card-block">
-                                    <h4 class="card-title">Card title</h4>
-                                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                                <div class="card-header">
+                                    <h4 class="titleCard"><?= $cardProducts->products_name ?></h4>
+                                    <h4 class="subtitleCard"><?= $cardProducts->products_brand ?></h4>
+                                </div>
+                                <div class="card-body">
+                                    <p>Quantité: <?= $cardProducts->products_quantity ?></p>
+                                    <p>Etat: <?= $cardProducts->products_state ?></p>
+                                    <p>Capacité: <?= $cardProducts->products_capacity ?></p>
+                                    <p>Expiration: <?= date('d/m/Y', strtotime($cardProducts->products_expiration)); ?></p> 
+                                    <p><i class="fas fa-user-tie"></i>: <?= $cardProducts->users_pseudo ?></p>
                                 </div>
                                 <div class="card-footer">
-                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                    <small class="text-muted"><i class="fas fa-envelope fa-2x"></i><a href="mailto:<?= $cardProducts->users_email ?>&body=Bonjour,">Contacter</a></small>
                                 </div>
                             </div>
                         </div>
                         <?php
                     }
-                    ?>                  
+                    ?>
+
                 </div>
             </div>
-            
-            
+
         </div> <!--/fin div parallax -->
 
 

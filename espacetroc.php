@@ -43,7 +43,7 @@ include_once('Controller/controllerEspacetroc.php');
         <!--Sous-Menu-->
         <div class="menunav">
             <nav class="nav nav-pills nav-fill">
-                <a class="nav-item nav-link"><i class="fas fa-2x fa-user-tie"></i><?= $_SESSION['pseudo'] ?></a> <!--renvoie le pseudo connecté-->
+                <a class="nav-item nav-link" onclick="(window.location = 'espacetroc.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fas fa-2x fa-user-tie"></i><?= $_SESSION['pseudo'] ?></a> <!--renvoie le pseudo connecté-->
                 <a class="nav-item nav-link" onclick="(window.location = 'View/monprofilView.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fas fa-2x fa-tachometer-alt"></i>Compléter Profil</a>
                 <a class="nav-item nav-link" onclick="(window.location = 'View/ajout-articleView.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fab fa-2x fa-cloudscale"></i>Ajout Article</a>
                 <a class="nav-item nav-link" onclick="(window.location = 'View/deconnexion.php')"><i class="fas fa-2x fa-sign-out-alt"></i>Deconnexion</a>
@@ -53,6 +53,9 @@ include_once('Controller/controllerEspacetroc.php');
 
 
         <div class="container-fluid">
+            <div class="alert alert-dark" role="alert">
+                Courez vite compléter votre profil, pour pouvoir proposer un produit au troc.
+            </div>
             <div id="accordion">
                 <div class="card">
 
@@ -108,59 +111,59 @@ include_once('Controller/controllerEspacetroc.php');
                             </button>
                         </h5>
                     </div>
-
-                    <div class="table-responsive-sm">
-                        <table class="table table-striped table-bordered table-dark">
-                            <thead>
-                                <tr class="bg-primary">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Statut</th>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Marque</th>
-                                    <th scope="col">Quantité</th>
-                                    <th scope="col">Etat</th>
-                                    <th scope="col">Capacité</th>
-                                    <th scope="col">Expiration</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Catégorie</th>
-                                    <th scope="col">Sous-catégorie</th>
-                                    <th scope="col">Modifier</th>
-                                    <th scope="col">Supprimer</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                foreach ($productsByUsers as $productUsers) {
-                                    ?>
-                                    <tr>
-                                        <th scope="row"><?= $productUsers->products_id ?></th>
-                                        <td> <?php
-                                            if ($productUsers->products_validate == 0) { //condition pour afficher le statut validé ou non, avec mon attribut products_validate(si =0 nn validé, ou 1
-                                                echo 'en cours de validation';
-                                            } else {
-                                                echo 'validé';
-                                            }
-                                            ?></td>
-                                        <td><?= $productUsers->products_name ?></td>
-                                        <td><?= $productUsers->products_brand ?></td>
-                                        <td><?= $productUsers->products_quantity ?></td>
-                                        <td><?= $productUsers->products_state ?></td>
-                                        <td><?= $productUsers->products_capacity ?></td>
-                                        <td><?= $productUsers->expiration ?></td>
-                                        <td><img class="img-fluid" src="<?= $productUsers->products_img ?>" width="42" height="42"></td>
-                                        <td><?= $productUsers->maincat_name ?></td>
-                                        <td><?= $productUsers->subcat_name ?></td>
-                                        <td><button class="btn btn-primary" onclick="(window.location = 'View/modifArticle.php?idProducts=<?= $productUsers->products_id; ?>')"><i class="fas fa-pen"></i></button></td>
-                                        <td><button class="btn btn-raised btn-danger" onclick="(window.location = 'View/deleteArticle.php?idProducts=<?= $productUsers->products_id; ?>')"><i class="fas fa-trash-alt"></i></button></td>
+                    <div class="card-body">
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped table-bordered table-dark">
+                                <thead>
+                                    <tr class="bg-primary">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Statut</th>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Marque</th>
+                                        <th scope="col">Quantité</th>
+                                        <th scope="col">Etat</th>
+                                        <th scope="col">Capacité</th>
+                                        <th scope="col">Expiration</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Catégorie</th>
+                                        <th scope="col">Sous-catégorie</th>
+                                        <th scope="col">Modifier</th>
+                                        <th scope="col">Supprimer</th>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <?php
-                                }
-                                ?>
-                            </tbody>
-                        </table> 
-                    </div>
-                </div> 
-
+                                    foreach ($productsByUsers as $productUsers) {
+                                        ?>
+                                        <tr>
+                                            <th scope="row"><?= $productUsers->products_id ?></th>
+                                            <td> <?php
+                                                if ($productUsers->products_validate == 0) { //condition pour afficher le statut validé ou non, avec mon attribut products_validate(si =0 nn validé, ou 1
+                                                    echo 'en cours de validation';
+                                                } else {
+                                                    echo 'validé';
+                                                }
+                                                ?></td>
+                                            <td><?= $productUsers->products_name ?></td>
+                                            <td><?= $productUsers->products_brand ?></td>
+                                            <td><?= $productUsers->products_quantity ?></td>
+                                            <td><?= $productUsers->products_state ?></td>
+                                            <td><?= $productUsers->products_capacity ?></td>
+                                            <td><?= $productUsers->expiration ?></td>
+                                            <td><img class="img-fluid" src="<?= $productUsers->products_img ?>" width="42" height="42"></td>
+                                            <td><?= $productUsers->maincat_name ?></td>
+                                            <td><?= $productUsers->subcat_name ?></td>
+                                            <td><button class="btn btn-primary" for="edit" onclick="(window.location = 'View/modifArticle.php?idProducts=<?= $productUsers->products_id; ?>')"><i class="fas fa-pen"></i></button></td>
+                                            <td><button class="btn btn-raised btn-danger" for="delete" onclick="(window.location = 'View/deleteArticle.php?idProducts=<?= $productUsers->products_id; ?>')"><i class="fas fa-trash-alt"></i></button></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table> 
+                        </div>
+                    </div> 
+                </div>
             </div>
         </div>
 
