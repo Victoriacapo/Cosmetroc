@@ -67,6 +67,7 @@ include_once('../Controller/controllerInscription.php');
                             <h1 class="messageH1">Inscription</h1>
                             <p><?= 'Bienvenue ' . $usersObj->users_pseudo . ' , votre inscription à bien été pris en compte ' ?></p>
                             <p>Vous pouvez dès à présent vous connecter.</p>
+                   <button id="buttonForm" class="btn btn-raised btn-primary btnDivers" onclick="(window.location = 'connexionView.php')">Connexion</button>
                         </div>
                     <?php } ?>
 

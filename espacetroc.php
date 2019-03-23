@@ -82,6 +82,7 @@ include_once('Controller/controllerEspacetroc.php');
                                             <th scope="col">CP</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Teléphone</th>
+                                            <th scope="col">Modifier</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -95,6 +96,7 @@ include_once('Controller/controllerEspacetroc.php');
                                             <td><?= $profil->users_CP ?></td>
                                             <td><?= $profil->users_email ?></td>
                                             <td><?= $profil->users_phone ?></td>
+                                            <td><button class="btn btn-primary" for="edit" onclick="(window.location = 'View/monprofilView.php?id=<?= $_SESSION['idUser']; ?>')"><i class="fas fa-pen"></i></button></td>
                                         </tr>
                                     </tbody>
                                 </table> 

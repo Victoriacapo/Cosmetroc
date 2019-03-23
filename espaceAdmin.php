@@ -1,13 +1,15 @@
 <?php
 session_start();
 
-if (empty($_SESSION)) {
+if (empty($_SESSION)) { //
     header('location: index.php');
     exit;
 }
-
 // appel du controller controllerAjout-article
 include_once('Controller/controllerEspaceAdmin.php');
+
+//Vérifie que l'utilisateur est bien un administrateur
+if ($profilCheck->users_authorised == 1) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -356,7 +358,6 @@ include_once('Controller/controllerEspaceAdmin.php');
 
 
 
-
         <!-- Footer -->
         <?php
         require('View/footer.php');
@@ -373,3 +374,7 @@ include_once('Controller/controllerEspaceAdmin.php');
         <script src="assets/js/js.js"></script>
     </body>
 </html>
+<?php }else{ 
+header('location: index.php');
+exit;
+} ?>

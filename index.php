@@ -72,6 +72,30 @@ include_once('Controller/controllerIndex.php');
 
         <div class="parallax">
 
+            <div class="container-fluid" id="goodPracticeContainer">
+                <div class="row">
+                    <div  class="col-xs-12 col-md-6 col-lg-4">
+                        <div><img class="img-fluid" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></div>
+                        <p>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Button with data-target
+                            </button>
+                        </p>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4">
+                        <div><img class="img-fluid" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></div>  
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4">
+                        <div><img class="img-fluid" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></div>  
+                    </div>
+                </div>
+            </div>
+
 
             <div class="container-fluid ProductsContainer">
                 <div class="row">
@@ -94,7 +118,11 @@ include_once('Controller/controllerIndex.php');
                                     <p><i class="fas fa-user-tie"></i>: <?= $cardProducts->users_pseudo ?></p>
                                 </div>
                                 <div class="card-footer">
-                                    <small class="text-muted"><i class="fas fa-envelope fa-2x"></i><a href="mailto:<?= $cardProducts->users_email ?>&body=Bonjour,">Contacter</a></small>
+                                    <?php if ((isset($_SESSION['idUser'])) && ($productsTableFill != 0)) { ?> <!--$productsTableFill contient la méthode qui compte le nombre d'entrée dans la table products, s'il n'y a ucune entrée, il me renvoie 0. Si entrée il y a, il compte le nombre d'entrées.-->
+                                        <small class="text-muted"><i class="fas fa-envelope fa-2x" id="iconeEmail"></i><?= $cardProducts->users_email ?></small>
+                                    <?php } else { ?>
+                                        <small class="text-muted">Vous devez vous inscrire et proposer un article en troc, pour visualiser les coordonnées du troqueur.</small>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

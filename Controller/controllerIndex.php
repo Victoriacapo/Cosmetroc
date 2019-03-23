@@ -8,7 +8,7 @@ include_once ('model/modelProducts.php');
 $navbarElementsObj = new Products();
 
 // sinon par défaut lorsque l'on est sur la page d'accueil tous les articles publiés seront affichés
-// par la méthode AllProducts
+// par la méthode AllProductsValidate
 $ArrayProductNavbar = $navbarElementsObj->AllProductsValidate();
 
 
@@ -34,8 +34,17 @@ if (isset($_POST['ok'])) {// A l'action du bouton ok, hydrater l'objet de l'attr
     $ArrayProductNavbar = $navbarElementsObj->searchProducts();
 }
 
-
-
+if (isset($_SESSION['idUser'])) { //récupère l'idUser de la session en cours
+    $navbarElementsObj->users_id = $_SESSION['idUser']; //indique que l'objet users_id correspond à l'idUser de la session
+    
+    
+    //Méthode permettant de vérifier que l'utilisateur à inserer un article sur le site.
+    //La méthode compte le nombre d'entrée dans la table produit en fonction de l'idUser récupéré par la variable de session en cours.
+    /*Donc $productsTableFill retourne 0 si la table ne comprends aucune entrée de produit. 
+     *Sinon $productsTableFill retourne le nombre d'entrée.
+     */
+    $productsTableFill = $navbarElementsObj->checkAddProduct();
+   }
 
 ?>
   

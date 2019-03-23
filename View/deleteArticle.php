@@ -30,7 +30,7 @@ include_once('../Controller/controllerdeleteArticle.php');
                 <div class="col-sm-12 col-lg-6 Article">
                     <?php if ($checkId) { ?> <!-- si l'idUser session est différent de l'objet users_id, afficher l'alerte  -->
                         <div class="alert alert-dark" role="alert">
-                            Vous n'avez pas les droits pour modifier cet article.
+                            Vous n'avez pas les droits pour supprimer cet article.
                         </div>
                     <?php } else { //sinon afficher la fiche produit
                         ?>

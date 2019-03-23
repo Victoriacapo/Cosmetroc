@@ -15,17 +15,15 @@
 
 /*div col de mes pages form avec les classes précisé,  pr les marge et la largeur*/
 .profil, .inscription, .connexion {
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 1.33333333rem;
+    margin-bottom: 1.33333333rem;
     margin: 0 auto;
-    width: 550px;
+    width: 18.33333333rem;
 }
 .Article{
-    
     height: auto;
     margin: 0 auto;
-    width: 750px;
-
+    width: 25rem;
 }
 
 /*style pour mes Titre de form et page error(deconnexion et error404)*/
@@ -44,35 +42,35 @@
 }
 /*div contenant mon upload image*/
 .Image{
-    margin-top: 40px;
+    margin-top: 1.33333333rem;
 }
 /*style de mes bouton envoyé*/
 #sendButton{
     margin: 0 auto;
-    width: 100px;
-    padding-top: 45px;
+    width: 3.33333333rem;
+    padding-top: 1.5rem;
 }
 /*style de mes bouton close*/
 #closebutton{
-    height: 40px;
-    width: 80px; 
+    height: 1.33333333rem;
+    width: 2.66666667rem; 
     float: right;
 }
 /*bouton pr rajouter un article apres msg de confirmation ajout-article*/
-#plus{
+#AddArticleButton{
     margin: 0 auto;
-    width: 100px;
-    padding-top: 15px;
+    width: 3.33333333rem;
+    padding-top: 0.5rem;
 }
 
 /*style de mes bouton retour*/
 .returnButton{
-    height: 50px;
-    width: 50px;
+    height: 3.125rem;
+    width: 3.125rem;
     background-color: #00876e;
     color: white;
-    margin-top: 5px;
-    margin-left: 5px;
+    margin-top: 0.3125rem;
+    margin-left: 0.3125rem;
 }
 
 /*style de mes span error de mes form*/
@@ -112,17 +110,17 @@
     -moz-border-radius: 18px;
     border-radius: 18px;
     padding: 5rem;  
-    top: 60px; /* corespond à la position top, installe un margin au dessus de ma div  */
-    margin-bottom: 40px;
+    top: 3.75rem; /* corespond à la position top, installe un margin au dessus de ma div  */
+    margin-bottom: 2.5rem;
     margin: 0 auto;
-    width: 550px;
+    width: 34.375rem;
 }
 
 /*div message à l'utilisateur tel que les bienvenues et autres msg de confirmation*/
 #message{
     text-align: center;
     color: white;
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem;
     font-size: 20px;
 }
 /*applique des border à ma liste dans le deleteArticle*/

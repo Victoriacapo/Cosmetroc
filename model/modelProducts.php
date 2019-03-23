@@ -444,5 +444,32 @@ class Products extends database {//création class Products qui hériteras de la
         $deletePdtsOfUser->bindValue(':idDeleteUser', $this->users_id, PDO::PARAM_STR);
         return $deletePdtsOfUser->execute();
     }
-
+    
+    /**
+     * Fonction permettant de vérifier si l'utilisateur à proposé un article, pour pouvoir afficher les coordonnées d'un troqueur dans la page index.
+     * @return Execute Query SELECT 
+     * 
+     */
+        public function checkAddProduct() {
+        $query = 'SELECT count(*) FROM `velo_products` WHERE `users_id` = :idUser '
+                . 'AND `products_name` IS NOT NULL '
+                . 'AND `products_brand` IS NOT NULL ' 
+                . 'AND `products_quantity` IS NOT NULL '    
+                . 'AND `products_state` IS NOT NULL '
+                . 'AND `products_capacity` IS NOT NULL '
+                . 'AND `products_expiration` IS NOT NULL '
+                . 'AND `products_img` IS NOT NULL '
+                . 'AND `products_validate` IS NOT NULL ';
+        $response = $this->database->prepare($query);
+        $response->bindValue(':idUser', $this->users_id, PDO::PARAM_INT); 
+        $response->execute();
+        $result = $response->fetchColumn();
+        return $result;
+        /*La requête compte le nombre de colonne de la table velo_products
+         * en fonction de l'idUser et que les colonnes cités soit complété (donc ont une valeur)
+         * fetchColumn(), récupère la 1ère ligne des colonnes de la bdd si la condition WHERE  et les AND sont remplies.
+         * Si les condition WHERE et AND ne sont pas remplie, me renvoie 0 ligne des colonnes, le cas contraire me renvoie la 1ere ligne des colonnes.
+         * Donc retourne soit 0 ou 1.  
+         */
+    }
 }

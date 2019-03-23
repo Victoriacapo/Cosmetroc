@@ -4,8 +4,9 @@
     margin-bottom: -10px;
     height: 13rem;
 }
+/*bouton de connexion/deconnexion/espacetroc/espaceAdmin */
 #buttonForm{
-    margin-top: 20px;
+    margin-top: 0.66666667rem;
 }
 
 /*NAVBAR */
@@ -13,9 +14,8 @@
     background-color: black !important;
     border-top: solid 3px pink;  
     border-bottom: solid 3px #00876e;  
-    padding-bottom: 10px;
+    padding-bottom: 0.33333333rem;
 }
-
 .btnDivers{
     float: right;
     margin-right: 1rem;
@@ -32,14 +32,14 @@
     width:100%;
 }
 #navbarDropdown{
-    margin-right: 25px;
-    margin-left: 25px;
+    margin-right: 0.83333333rem;
+    margin-left: 0.83333333rem;
 }
 .navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show > .nav-link,.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{
     color:#00876e;
 }
 .nav-link{
-    padding:15px 5px; /* espace entre ls navlink  */
+    padding: 0.5rem 0.16666667rem; /* espace entre ls navlink  */
 }
 .dropdown-item:focus, .dropdown-item:hover{
     background:#00876e;
@@ -57,9 +57,8 @@
 #carouselExampleIndicators{
     border-bottom: solid 3px #00876e;
 }
-.w-100 {
-	
-	height: 35rem;
+.w-100 { /* hauteur du carousel */
+    height: 35rem;
 }
 .parallax {
     /* image utilisé */
@@ -73,8 +72,23 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-top: -2.7rem;
+    padding: 2.7rem;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon{
+    background-color: #00876e;
 }
 
+#goodPracticeContainer{
+    margin-top: 2.75rem;
+    padding-top: 2.75rem; 
+    padding-bottom: 2.7rem;
+    background-color: red;
+    padding-right: 0rem;
+    padding-left: 1.75rem;
+}
+
+/*Partie de mes cards produits */
 /*je définie une hauteur de mes card-header, pour qu'il garde la même taille peu importe la taille du texte */
 .ProductsContainer .card .card-header {
     text-align: center;
@@ -89,7 +103,6 @@
     font-weight: 100;
     font-size: 1.2em;
 }
-/*j'enlève le padding de card-body*/
 .ProductsContainer .card-body {
     padding: 0rem; 
     height: 150px;
@@ -106,11 +119,14 @@
     padding-top: 1.75rem;
     padding-bottom: 1.75rem;
 }
+#iconeEmail{
+    margin-right: 0.45rem;
+}
 
 /*footer  */
 footer {
     border-top: pink 3px solid;
-    padding-top: 30px;
+    padding-top: 1rem;
     width: 100%;
     background-color: #111111;
     bottom: 0;
@@ -121,40 +137,17 @@ footer {
 }
 .foot-sect {
     width: 100%;
-    margin-top: 0px;
+    margin-top: 0rem;
 }
 
-.foot-sect-current {
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: 10px;
-    margin-top: 30px;
-    width: 100%;
-    white-space: nowrap;
-    border-left: double #a9a9a9 4px;
-    padding-bottom: 5px;
-}
-
-.foot-sect-current > .foot-link {
-    color: white;
-    border-bottom: solid 1px black;
-    display: block;
-    padding: 12px;
-    font-size: 14px;
-}
-.foot-sect-current > .foot-link:hover {
-    color: blue;
-    text-decoration: none;
-    border-bottom: none;
-}
 .foot-link {
     color: #00876e;
     text-decoration: none;
-    margin-right: 2px;
-    margin-left: 8px;
+    margin-right: 0.06666667rem;
+    margin-left: 0.26666667rem;
     border-bottom: pink 1px solid;
     display: block;
-    padding: 10px;
+    padding: 0.33333333rem;
     font-size: 14px;
 }
 
@@ -163,21 +156,7 @@ footer {
     text-decoration: none;
     color: black;
 }
-.foot-link-current {
-    color: #efefef;
-    text-decoration: none;
-    margin-right: 2px;
-    margin-left: 8px;
-    border-bottom: #ED2939 1px solid;
-    display: block;
-    padding: 10px;
-    font-size: 14px;
-}
 
-.foot-link-current:active {
-    color: #efefef;
-    text-decoration: none;
-}
 .foot-subt {
     font-weight: 600;
     color: #efefef;
@@ -186,11 +165,11 @@ footer {
 
 /*div socialLinks dans le footer*/
 #footer ul.social li{
-    padding: 5px 0;
+    padding: 0.16666667rem 0;
 }
 #footer ul.social li a i {
-    margin-right: 5px;
-    font-size:25px;
+    margin-right: 0.16666667rem;
+    font-size: 25px;
     -webkit-transition: .5s all ease;
     -moz-transition: .5s all ease;
     transition: .5s all ease;
@@ -203,12 +182,12 @@ footer {
 #footer ul.quick-links li a{
     color:#ffffff;
 }
-/*partie sociallist dans le footer */
+/*partie socialList dans le footer */
 #social {
     text-align: center;
     margin: auto;
     width: 350px;
-    margin-top: 45px;
+    margin-top: 1.5rem;
 }
 
 
@@ -237,8 +216,8 @@ footer {
     width: 50px;
     background-color: #00876e;
     color: white;
-    margin-top: 5px;
-    margin-left: 5px;
+    margin-top: 0.16666667rem;
+    margin-left: 0.16666667rem;
 }
 
 /*style de mes span succès de mes form*/

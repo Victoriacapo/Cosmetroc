@@ -12,11 +12,13 @@ $categObj = new Category(); //categorie
 $sbcategObj = new SubCategory(); //ss-categorie
 $OnepductsObj = new Products(); // article
 
-
+$checkId = true; //variable qui permet d'appliquer un  message à l'utilisateur si son identifiant est incorrect.
 $showForm = true; //booléen qui renvoie true/false pr soit afficher/cacher mn form
 
-if (isset($_GET['idProducts'])) { //recupere l'id, verifie si présent ds la base de donnée, et effectue la requête
+if (isset($_GET['idProducts']) && ($_SESSION['idUser'])) { //recupere l'id, verifie si présent ds la base de donnée, et effectue la requête
     $OnepductsObj->products_id = $_GET['idProducts']; //on indique que l'objet products_id correspond au Get['idProduct']
+    $OnepductsObj->users_id = $_SESSION['idUser'];
+    
     $filePdt = $OnepductsObj->profilProducts(); //correspond à la requête pr afficher la fiche propre à un produit
     
     $_SESSION['idProduct'] = $_GET['idProducts'];
@@ -26,6 +28,9 @@ if (isset($_GET['idProducts'])) { //recupere l'id, verifie si présent ds la bas
         $ifIdexist = FALSE;
     } else {
         $ifIdexist = TRUE;
+        if ($_SESSION['idUser'] == $filePdt->users_id){// si la variable de session est égale à l'objet $productsObj->users_id, la variable $checkId retourne vrai.
+            $checkId = false;
+        }
     }
 }
 
@@ -142,6 +147,7 @@ if (isset($_FILES['image']) && ($_FILES['image']['error']) != 4) {
 
 
 if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorImage) == 0)) {
+    
     if (($_FILES['image']['error']) == 4) {
         $OnepductsObj->products_img = $_SESSION['imageProduct'];
     } else {
@@ -162,8 +168,8 @@ if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorIm
 
     $OnepductsObj->editProduct();
     $showForm = false; //ma variable retourne false donc cache mon formulaire remplie.
-    
-    //$OnepductsObj->profilProducts();
+    $checkId = false; //indique qu'a cette étape l'idUser est bien vérifié
+   
 
 
 }

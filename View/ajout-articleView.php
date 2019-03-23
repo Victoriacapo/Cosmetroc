@@ -156,7 +156,7 @@ include_once('../Controller/controllerAjout-article.php');
                                     <li class="list-group-item"><img class="img-fluid" src="<?= $pductsObj->products_img?>" width="102" height="102"></li>
                                 </ul>
                             </div>
-                            <div id="plus"><button onclick="(window.location = 'ajout-articleView.php?id=<?= $_SESSION['idUser']; ?>')" class="btn btn-raised btn-primary">Ajouter un article</button></div>
+                            <div id="AddArticleButton"><button onclick="(window.location = 'ajout-articleView.php?id=<?= $_SESSION['idUser']; ?>')" class="btn btn-raised btn-primary">Ajouter un article</button></div>
 
                         <?php } ?>
 
