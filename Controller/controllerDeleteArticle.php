@@ -24,7 +24,7 @@ if (isset($_GET['idProducts']) && ($_SESSION['idUser'])) { //recupere l'idProduc
 
 
     $pdtSheet = $productsObj->profilProducts(); //correspond à la requête pr afficher la fiche propre à un produit, la variable $pdtSheet est appelé pour m'afficher la fiche produit dans la vue. 
-    $_SESSION['idProduct'] = $_GET['idProducts']; // stocke l'idProducts dans variable de session pour l'utiliser
+    $_SESSION['idProduct'] = htmlspecialchars($_GET['idProducts']); // stocke l'idProducts dans variable de session pour l'utiliser
     $_SESSION['imageProduct'] = $pdtSheet->products_img; //stocke l'objet products_img dans une variable de session qui permettras de le supprimer dans le dossier local
 
     

@@ -28,7 +28,7 @@ if (isset($_POST['password'])) { // recherche donnée input
 
 //verification du password
 if (isset($_POST['sendButton']) && (count($errorsArray) == 0)) {
-    $usersInfo = $usersObj->checkUsers($users_pseudo); //$userInfo 
+    $usersInfo = $usersObj->checkUsers($users_pseudo); 
   
     if (is_object($usersInfo)) {
         if (password_verify($password, $usersInfo->users_password)) {

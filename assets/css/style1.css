@@ -75,22 +75,56 @@
     margin-top: -2.7rem;
     padding: 2.7rem;
 }
-.carousel-control-prev-icon, .carousel-control-next-icon{
-    background-color: #00876e;
-}
 
+
+/*Partie de mon container goodPractice */
 #goodPracticeContainer{
     margin-top: 2.75rem;
-    padding-top: 2.75rem; 
-    padding-bottom: 2.7rem;
-    background-color: red;
-    padding-right: 0rem;
-    padding-left: 1.75rem;
+    padding-top: 1rem; 
+    background-image: url('../img/mothers-day-616363_1920');
+    background-size: cover;
+    border-radius: 15px;
+    /*permet le centrage, contexte sur le parent */ 
+    display: flex;
+    min-height: 50vh;
 }
+#goodPracticeContainer .row{
+    /* élément enfant qui seras centré automatiquement */
+    margin: auto;
+}
+#goodPracticeContainer .card-body{
+    background-color: #212529;
+    color: white;
+}
+#ContainerImgGoodPractice{
+    background-color: pink;
+    height: 15.625rem;
+    width: 15.625rem;
+     margin-right: 1.75rem;
+    border-radius: 50%;
+    /*permet le centrage, contexte sur le parent */ 
+    display: flex;
+   
+}
+#ImgGoodPractice{
+    height: 9.375rem;
+    width: 9.375rem;
+    /* élément enfant qui seras centré automatiquement */
+    margin: auto;
+}
+/* format 1ere image car le format d'origine n'est pas comme les autres img*/
+.imgGoodPractice{
+    height: 9.375rem;
+    width: 9.375rem;
+}
+.buttonStyle button{
+    margin-left: 1.875rem;
+}
+
 
 /*Partie de mes cards produits */
 /*je définie une hauteur de mes card-header, pour qu'il garde la même taille peu importe la taille du texte */
-.ProductsContainer .card .card-header {
+.ProductsContainer .card-header {
     text-align: center;
     height: 110px;
 }
@@ -113,6 +147,7 @@
 }
 .ProductsContainer #content{
     margin-top: 1.75rem;
+    border-radius: 15px;
 }
 /* le container qui contients les cards */
 .ProductsContainer{
@@ -121,6 +156,10 @@
 }
 #iconeEmail{
     margin-right: 0.45rem;
+}
+.ProductsContainer .card-img-top {
+	height: 16.625rem;
+	width: 16.625rem;
 }
 
 /*footer  */

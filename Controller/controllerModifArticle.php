@@ -16,12 +16,12 @@ $checkId = true; //variable qui permet d'appliquer un  message à l'utilisateur 
 $showForm = true; //booléen qui renvoie true/false pr soit afficher/cacher mn form
 
 if (isset($_GET['idProducts']) && ($_SESSION['idUser'])) { //recupere l'id, verifie si présent ds la base de donnée, et effectue la requête
-    $OnepductsObj->products_id = $_GET['idProducts']; //on indique que l'objet products_id correspond au Get['idProduct']
+    $OnepductsObj->products_id = htmlspecialchars($_GET['idProducts']); //on indique que l'objet products_id correspond au Get['idProduct']
     $OnepductsObj->users_id = $_SESSION['idUser'];
     
     $filePdt = $OnepductsObj->profilProducts(); //correspond à la requête pr afficher la fiche propre à un produit
     
-    $_SESSION['idProduct'] = $_GET['idProducts'];
+    $_SESSION['idProduct'] = htmlspecialchars($_GET['idProducts']);
     $_SESSION['imageProduct'] = $filePdt->products_img;
 
     if ($OnepductsObj === FALSE) {

@@ -17,7 +17,7 @@ $usersObjt = new Users();
 
       //vérification du statut de l'utilisateur.
     if ($profilCheck->users_authorised == 1) {
-       $TotalListUser = $usersObjt->UsersListing(); //méthode affichant le total des Utilisateurs et leurs infos
+       $TotalListUser = $usersObjt->UsersListing(); //méthode affichant tous les utilisateurs et leurs infos
        $listProductsNoValidate = $showPdtsObj->ProductsNoValidate();//méthode affichant tous ls produits non validé par l'administrateur
        $listProductsValidate = $showPdtsObj->AllProductsValidate();//méthode affichant tous ls produits validé par l'administrateur
       

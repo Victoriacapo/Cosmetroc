@@ -451,7 +451,7 @@ class Products extends database {//création class Products qui hériteras de la
      * 
      */
         public function checkAddProduct() {
-        $query = 'SELECT count(*) FROM `velo_products` WHERE `users_id` = :idUser '
+        $query = 'SELECT count(*) FROM `velo_products` WHERE `users_id` = :idUser AND `products_validate` = 1 '
                 . 'AND `products_name` IS NOT NULL '
                 . 'AND `products_brand` IS NOT NULL ' 
                 . 'AND `products_quantity` IS NOT NULL '    
@@ -471,5 +471,37 @@ class Products extends database {//création class Products qui hériteras de la
          * Si les condition WHERE et AND ne sont pas remplie, me renvoie 0 ligne des colonnes, le cas contraire me renvoie la 1ere ligne des colonnes.
          * Donc retourne soit 0 ou 1.  
          */
+    }
+    
+    /**
+     * Fonction permettant d'afficher tous les produit proposé par un utilistateur
+     * @return Execute Query SELECT 
+     * 
+     */
+    public function AllProductsUser() {
+        $query = 'SELECT '
+                . '`products_id`, '
+                . '`products_name`, '
+                . '`products_brand`, '
+                . '`products_quantity`, '
+                . '`products_state`, '
+                . '`products_capacity`, '
+                . 'DATE_FORMAT(`products_expiration`, \'%d/%m/%Y\') AS expiration, '
+                . '`products_img`, '
+                . '`products_validate`, '
+                . '`maincat_name`, '
+                . '`subcat_name` '
+                . 'FROM `velo_products` '
+                . 'INNER JOIN `velo_maincat` '
+                . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
+                . 'INNER JOIN `velo_subcat` '
+                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
+                . 'WHERE `users_id` = :idUser '
+                . 'AND `products_validate` = 1 ';
+        $ShowPDT = $this->database->prepare($query);
+        $ShowPDT->bindValue(':idUser', $this->users_id, PDO::PARAM_STR); //recupere l'id
+        $ShowPDT->execute();
+        $response = $ShowPDT->fetchAll(PDO::FETCH_OBJ);
+        return $response;
     }
 }

@@ -74,28 +74,65 @@ include_once('Controller/controllerIndex.php');
 
             <div class="container-fluid" id="goodPracticeContainer">
                 <div class="row">
-                    <div  class="col-xs-12 col-md-6 col-lg-4">
-                        <div><img class="img-fluid" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></div>
-                        <p>
-                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Button with data-target
+                    <div class="col-xs-12 col-md-6 col-lg-4 ">
+                        <div id="ContainerImgGoodPractice"><div id="ImgGoodPractice"><img class="img-fluid imgGoodPractice" src="../assets/img/cosmetics-2611803_1280" alt="Produit à troquer"></div></div>
+                        <p class="mx-auto" style="width: 200px;">
+                            <button class="btn btn-raised btn-primary" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
+                                Quel produit troquer
                             </button>
                         </p>
-                        <div class="collapse" id="collapseExample">
+                        <div class="collapse" id="collapse1">
                             <div class="card card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                <p>Pour des raisons d'hygiènes, seul les articles à pompe, à spray et les tubes seront acceptés.</p>
+                                <p>Concernant les maquillages dans la sous catégorie yeux, tous les packages sont acceptés, il suffit juste de poster une photo conforme à son état actuel. L'administrateur se réserve le droit à la suppression s'il juge l'article non conforme.</p>
+                                <p>Les rouges à lèvres et les déodorants à bille ne seront pas acceptés.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6 col-lg-4">
-                        <div><img class="img-fluid" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></div>  
+                        <div id="ContainerImgGoodPractice"><div id="ImgGoodPractice"><img class="img-fluid" src="../assets/img/IconeTrocAutomne" alt="Troc"></div></div>   
+                        <p class="mx-auto" style="width: 200px;">
+                            <button class="btn btn-raised btn-primary" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapseExample">
+                                Comment troquer
+                            </button>
+                        </p>
+                        <div class="collapse" id="collapse2">
+                            <div class="card card-body">
+                                <div class="table-responsive-sm">
+                                    <table class="table table-striped table-bordered table-dark">
+                                        <tr><th>1. Inscription</th></tr>
+                                        <tr><td>Tout d’abord, pour troquer, il faut être inscrit sur Cosmétroc. En effet, votre inscription vous permet de créer votre espace personnel dans lequel vous pourrez répertorier vos produits à troquer.  Vous pourrez ainsi proposer et être contacté pour des propositions de troc.</td></tr>
+                                        <tr><th>2. Proposition de troc</th></tr>
+                                        <tr><td> 
+                                         <p>Lorsqu’un produit disponible sur le site vous fait de l’œil, vous pourrez contacter le propriétaire et lui faire une proposition grâce à l'email proposé sous l'article posté.</p>
+                                         <p>Le troqueur contacté recevra alors votre proposition et y répondra soit en acceptant l’offre, soit en vous envoyant un message pour discuter ou ajuster le troc ou bien refusera l’offre si il n’est intéressé, ni par votre offre, ni par tout autre produit que vous auriez proposé sur le site.</p>
+                                         <p>Le membre que vous contactez peut ne pas être intéressé par le produit que vous lui proposez, toutefois, il peut parcourir les autres produits que vous auriez postés, afin de rechercher un article qui lui conviendrait davantage. Ainsi, il pourra vous faire une contre-proposition par email. N’hésitez pas à discuter et à négocier.</p>
+                                        </td></tr>
+                                        <tr><th>3. Troc accepté</th></tr>
+                                        <tr><td>Lorsque le troc est accepté des deux côtés, l’adresse postale est échangé, pour expédier le produit dans les plus brefs délais.</p>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-xs-12 col-md-6 col-lg-4">
-                        <div><img class="img-fluid" src="../assets/img/Cosmétroc.png" alt="Cosmétroc"></div>  
+                        <div id="ContainerImgGoodPractice"><div id="ImgGoodPractice"><img class="img-fluid" src="../assets/img/wink-98461_1280" alt="Avantages"></div></div>   
+                        <p class="mx-auto buttonStyle" style="width: 200px;">
+                            <button class="btn btn-raised btn-primary" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapseExample">
+                                Avantages
+                            </button>
+                        </p>
+                        <div class="collapse" id="collapse3">
+                            <div class="card card-body">
+                                <p>1. Vous êtes visible</p>
+                                <p>2. Vous pouvez échanger un article que vous n'utilisez plus, contre un de votre souhait.</p>
+                                <p>3. C'est gratuit, économique et écologique</p>
+                                <p>4. Vous désencombrez votre salle de bain.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            </div>
 
             <div class="container-fluid ProductsContainer">
                 <div class="row">
@@ -121,7 +158,7 @@ include_once('Controller/controllerIndex.php');
                                     <?php if ((isset($_SESSION['idUser'])) && ($productsTableFill != 0)) { ?> <!--$productsTableFill contient la méthode qui compte le nombre d'entrée dans la table products, s'il n'y a ucune entrée, il me renvoie 0. Si entrée il y a, il compte le nombre d'entrées.-->
                                         <small class="text-muted"><i class="fas fa-envelope fa-2x" id="iconeEmail"></i><?= $cardProducts->users_email ?></small>
                                     <?php } else { ?>
-                                        <small class="text-muted">Vous devez vous inscrire et proposer un article en troc, pour visualiser les coordonnées du troqueur.</small>
+                                        <small class="text-muted">Vous devez vous inscrire et avoir proposé un article en troc validé par l'administrateur, pour visualiser les coordonnées du troqueur.</small>
                                     <?php } ?>
                                 </div>
                             </div>
