@@ -181,15 +181,8 @@ include_once('Controller/controllerEspacetroc.php');
                             <?php
                             foreach ($allUserWithProductsValidate as $userList) {
                                 ?>
-                                <a href="espacetroc.php?idUserProductsList=<?= $userList->users_id ?>"><button>Ts les articles de <?= $userList->users_pseudo ?></button></a>
-                                <?php if (isset($_GET['idUserProductsList'])) { ?>
-
-                                    <div>
-                                        ok ok
-                                    </div>
-
-                                    <?php
-                                }
+                            <a href="View/pageProduit.php?idUserProductsList=<?= $userList->users_id ?>"><button class="btn btn-raised btn-primary mr-1"><i class="fas fa-2x fa-user-tie"></i><?= $userList->users_pseudo ?></button></a>
+                                <?php
                             }
                             ?>
                         </div>
@@ -198,9 +191,7 @@ include_once('Controller/controllerEspacetroc.php');
 
             </div>
         </div>
-        <div>
-            
-        </div>
+        
 
 
         <!-- Footer -->

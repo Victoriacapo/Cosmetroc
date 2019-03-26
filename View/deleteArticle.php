@@ -25,7 +25,7 @@ include_once('../Controller/controllerdeleteArticle.php');
             </div>
         </div>
 
-        <div class="container-fluid ">
+        <div class="container-fluid my-5">
             <div class="row">
                 <div class="col-sm-12 col-lg-6 Article">
                     <?php if ($checkId) { ?> <!-- si l'idUser session est différent de l'objet users_id, afficher l'alerte  -->

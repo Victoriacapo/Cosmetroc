@@ -136,12 +136,12 @@ class Users extends database {//creation class Utilisateur qui heriteras de la c
     }
     
     /**
-     * Fonction permettant d'afficher la liste des utilisateurs
+     * Fonction permettant d'afficher la liste des utilisateurs etl'ensemble de leur produits validé sur le site
      * @return Execute Query SELECT 
      * 
      */
     public function UsersListingForProductslisting() {
-        $query = 'SELECT'
+        $query = 'SELECT '
                 . '`velo_users`.`users_id`, '
                 . '`users_pseudo`, '
                 . '`users_email` '
@@ -154,5 +154,25 @@ class Users extends database {//creation class Utilisateur qui heriteras de la c
         $showUsers->execute();
         $usersList = $showUsers->fetchAll(PDO::FETCH_OBJ);
         return $usersList;
+    }
+    
+    /**
+     * Fonction permettant d'afficher les infos d'un utilisateur en fonction de l'idUserProductsList
+     * @return Execute Query SELECT 
+     * 
+     */
+    public function UserInfosPageProducts() {
+        $query = 'SELECT '
+                . '`velo_users`.`users_id`, '
+                . '`users_gender`, '
+                . '`users_pseudo`, '
+                . '`users_email` '
+                . 'FROM `velo_users` '
+                . 'WHERE `users_id` = :idUserProductsList ';
+        $showUserPseudo = $this->database->prepare($query);
+        $showUserPseudo->bindValue(':idUserProductsList', $this->users_id, PDO::PARAM_INT);
+        $showUserPseudo->execute();
+        $response = $showUserPseudo->fetch(PDO::FETCH_OBJ);
+        return $response;
     }
 }

@@ -28,7 +28,7 @@ include_once('../Controller/controllerAjout-article.php');
         </div>
 
 
-        <div class="container-fluid ">
+        <div class="container-fluid my-5">
             <div class="row">
                 <div class="col-sm-12 col-lg-6 Article">
 

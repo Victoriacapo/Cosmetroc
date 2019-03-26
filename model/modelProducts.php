@@ -461,7 +461,8 @@ class Products extends database {//création class Products qui hériteras de la
                 . '`maincat_name`, '
                 . '`subcat_name`, '
                 . '`velo_products`.`users_id`, '
-                . '`users_pseudo` '
+                . '`users_pseudo`, '
+                . '`users_gender` '
                 . 'FROM `velo_products` '
                 . 'INNER JOIN `velo_maincat` '
                 . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
@@ -469,8 +470,10 @@ class Products extends database {//création class Products qui hériteras de la
                 . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
                 . 'INNER JOIN `velo_users` '
                 . 'ON `velo_products`.users_id = `velo_users`.users_id '
-                . 'WHERE `products_validate` = 1 ';
+                . 'WHERE `velo_products`.`users_id` = :idUserProductsList '
+                . 'AND `products_validate` = 1 ';
         $ShowPDTofUser = $this->database->prepare($query);
+        $ShowPDTofUser->bindValue(':idUserProductsList', $this->users_id, PDO::PARAM_INT);
         $ShowPDTofUser->execute();
         $response = $ShowPDTofUser->fetchAll(PDO::FETCH_OBJ);
         return $response;

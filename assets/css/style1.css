@@ -104,7 +104,6 @@
     border-radius: 50%;
     /*permet le centrage, contexte sur le parent */ 
     display: flex;
-
 }
 #ImgGoodPractice{
     height: 9.375rem;
@@ -180,6 +179,32 @@
     height: 9.375rem;
     width: 9.375rem;
 }
+
+/*Partie page produit */
+#pageProduitBody {
+  background-image: url('../img/shooting-star-3601173_1920.jpg');
+  background-size: cover;
+   background-attachment: fixed;
+    background-position: center;
+}
+#ContainerImgPseudo{
+    background-color: pink;
+    height: 15.625rem;
+    width: 15.625rem;
+    margin-right: 1.75rem;
+    border-radius: 50%;
+    /*permet le centrage, contexte sur le parent */ 
+    display: flex;
+}
+#ImgPseudo{
+    height: 9.375rem;
+    width: 9.375rem;
+     border-radius: 50%;
+    /* élément enfant qui seras centré automatiquement */
+    margin: auto;
+}
+
+
 
 /*footer  */
 footer {
