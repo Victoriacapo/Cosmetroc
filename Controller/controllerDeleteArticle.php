@@ -19,7 +19,7 @@ $showList = true; //booléen qui renvoie true/false pr soit cacher/afficher mn f
 $checkId = true; //variable qui permet d'appliquer un  message à l'utilisateur si son identifiant est incorrect.
         
 if (isset($_GET['idProducts']) && ($_SESSION['idUser'])) { //recupere l'idProducts et l'idUser
-    $productsObj->products_id = $_GET['idProducts']; //on indique que l'objet products_id correspond au Get['idProducts'] pour effectuer la méthode profilProducts 
+    $productsObj->products_id = htmlspecialchars($_GET['idProducts']); //on indique que l'objet products_id correspond au Get['idProducts'] pour effectuer la méthode profilProducts 
     $productsObj->users_id = $_SESSION['idUser']; 
 
 

@@ -19,6 +19,12 @@ if (isset($_SESSION['idUser'])) { //recupere l'id session de l'utilisateur, veri
     
     $profilCompleted = $profilUserObj->checkProfilFill();//vérifie si le profil est complet dans la bdd, pour pouvoir accéder au formulaire d'ajout d'article.
    
+    $AllProductsOfUsers = $showPdtsObj->AllProductsUser(); //renvoie tous les produits des différents utilisateurs
+    $allUserWithProductsValidate = $profilUserObj->UsersListingForProductslisting();
+    
+     if (isset($_GET['idDeleteUser'])) {
+    var_dump($_GET['idDeleteUser']);
+     }
         if ($showPdtsObj === FALSE) {
         $ifIdexist = FALSE;
     } else {

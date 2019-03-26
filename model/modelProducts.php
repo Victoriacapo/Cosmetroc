@@ -388,37 +388,6 @@ class Products extends database {//création class Products qui hériteras de la
     }
 
     /**
-     * Fonction permettant d'effectuer la pagination
-     * @return Execute Query SELECT 
-     * 
-     */
-    public function Pagination() {
-        $query = 'SELECT `products_id`, '
-                . '`products_name`, '
-                . '`products_brand`, '
-                . '`products_quantity`, '
-                . '`products_state`, '
-                . '`products_capacity`, '
-                . '`products_expiration`, '
-                . '`products_img`,'
-                . '`products_validate`, '
-                . '`velo_products`.`subcat_id`, '
-                . '`velo_products`.`maincat_id`, '
-                . '`maincat_name`, '
-                . '`subcat_name` '
-                . 'FROM `velo_products` '
-                . 'INNER JOIN `velo_maincat` '
-                . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
-                . 'INNER JOIN `velo_subcat` '
-                . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
-                . 'WHERE `products_validate` = 1 '; //afficher les produits, une fois que l'administrateur auras validé l'article
-        $response = $this->database->prepare($query);
-        $response->execute();
-        $response->fetchAll();
-        return $response->rowCount();
-    }
-
-    /**
      * Fonction permettant d'afficher les produits en fonction de l'idDeleteUser.
      * @return Execute Query DELETE 
      * 
@@ -490,18 +459,20 @@ class Products extends database {//création class Products qui hériteras de la
                 . '`products_img`, '
                 . '`products_validate`, '
                 . '`maincat_name`, '
-                . '`subcat_name` '
+                . '`subcat_name`, '
+                . '`velo_products`.`users_id`, '
+                . '`users_pseudo` '
                 . 'FROM `velo_products` '
                 . 'INNER JOIN `velo_maincat` '
                 . 'ON `velo_products`.maincat_id = `velo_maincat`.maincat_id '
                 . 'INNER JOIN `velo_subcat` '
                 . 'ON `velo_products`.subcat_id = `velo_subcat`.subcat_id '
-                . 'WHERE `users_id` = :idUser '
-                . 'AND `products_validate` = 1 ';
-        $ShowPDT = $this->database->prepare($query);
-        $ShowPDT->bindValue(':idUser', $this->users_id, PDO::PARAM_STR); //recupere l'id
-        $ShowPDT->execute();
-        $response = $ShowPDT->fetchAll(PDO::FETCH_OBJ);
+                . 'INNER JOIN `velo_users` '
+                . 'ON `velo_products`.users_id = `velo_users`.users_id '
+                . 'WHERE `products_validate` = 1 ';
+        $ShowPDTofUser = $this->database->prepare($query);
+        $ShowPDTofUser->execute();
+        $response = $ShowPDTofUser->fetchAll(PDO::FETCH_OBJ);
         return $response;
     }
 }

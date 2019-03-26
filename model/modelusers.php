@@ -134,4 +134,25 @@ class Users extends database {//creation class Utilisateur qui heriteras de la c
         $editUser->bindValue(':idDeleteUser', $this->users_id, PDO::PARAM_STR); 
         return $editUser->execute();
     }
+    
+    /**
+     * Fonction permettant d'afficher la liste des utilisateurs
+     * @return Execute Query SELECT 
+     * 
+     */
+    public function UsersListingForProductslisting() {
+        $query = 'SELECT'
+                . '`velo_users`.`users_id`, '
+                . '`users_pseudo`, '
+                . '`users_email` '
+                . 'FROM `velo_users` '
+                . 'INNER JOIN `velo_products` '
+                . 'ON `velo_users`.users_id = `velo_products`.users_id '
+                . 'WHERE products_validate = 1 '
+                . 'GROUP BY users_pseudo ';
+        $showUsers = $this->database->prepare($query);
+        $showUsers->execute();
+        $usersList = $showUsers->fetchAll(PDO::FETCH_OBJ);
+        return $usersList;
+    }
 }

@@ -58,7 +58,6 @@ include_once('Controller/controllerEspacetroc.php');
             </div>
             <div id="accordion">
                 <div class="card">
-
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -113,62 +112,95 @@ include_once('Controller/controllerEspacetroc.php');
                             </button>
                         </h5>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive-sm">
-                            <table class="table table-striped table-bordered table-dark">
-                                <thead>
-                                    <tr class="bg-primary">
-                                        <th scope="col">#</th>
-                                        <th scope="col">Statut</th>
-                                        <th scope="col">Nom</th>
-                                        <th scope="col">Marque</th>
-                                        <th scope="col">Quantité</th>
-                                        <th scope="col">Etat</th>
-                                        <th scope="col">Capacité</th>
-                                        <th scope="col">Expiration</th>
-                                        <th scope="col">Image</th>
-                                        <th scope="col">Catégorie</th>
-                                        <th scope="col">Sous-catégorie</th>
-                                        <th scope="col">Modifier</th>
-                                        <th scope="col">Supprimer</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    foreach ($productsByUsers as $productUsers) {
-                                        ?>
-                                        <tr>
-                                            <th scope="row"><?= $productUsers->products_id ?></th>
-                                            <td> <?php
-                                                if ($productUsers->products_validate == 0) { //condition pour afficher le statut validé ou non, avec mon attribut products_validate(si =0 nn validé, ou 1
-                                                    echo 'en cours de validation';
-                                                } else {
-                                                    echo 'validé';
-                                                }
-                                                ?></td>
-                                            <td><?= $productUsers->products_name ?></td>
-                                            <td><?= $productUsers->products_brand ?></td>
-                                            <td><?= $productUsers->products_quantity ?></td>
-                                            <td><?= $productUsers->products_state ?></td>
-                                            <td><?= $productUsers->products_capacity ?></td>
-                                            <td><?= $productUsers->expiration ?></td>
-                                            <td><img class="img-fluid" src="<?= $productUsers->products_img ?>" width="42" height="42"></td>
-                                            <td><?= $productUsers->maincat_name ?></td>
-                                            <td><?= $productUsers->subcat_name ?></td>
-                                            <td><button class="btn btn-primary" for="edit" onclick="(window.location = 'View/modifArticle.php?idProducts=<?= $productUsers->products_id; ?>')"><i class="fas fa-pen"></i></button></td>
-                                            <td><button class="btn btn-raised btn-danger" for="delete" onclick="(window.location = 'View/deleteArticle.php?idProducts=<?= $productUsers->products_id; ?>')"><i class="fas fa-trash-alt"></i></button></td>
+                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="table-responsive-sm">
+                                <table class="table table-striped table-bordered table-dark">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th scope="col">#</th>
+                                            <th scope="col">Statut</th>
+                                            <th scope="col">Nom</th>
+                                            <th scope="col">Marque</th>
+                                            <th scope="col">Quantité</th>
+                                            <th scope="col">Etat</th>
+                                            <th scope="col">Capacité</th>
+                                            <th scope="col">Expiration</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Catégorie</th>
+                                            <th scope="col">Sous-catégorie</th>
+                                            <th scope="col">Modifier</th>
+                                            <th scope="col">Supprimer</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
                                         <?php
-                                    }
-                                    ?>
-                                </tbody>
-                            </table> 
-                        </div>
-                    </div> 
+                                        foreach ($productsByUsers as $productUsers) {
+                                            ?>
+                                            <tr>
+                                                <th scope="row"><?= $productUsers->products_id ?></th>
+                                                <td> <?php
+                                                    if ($productUsers->products_validate == 0) { //condition pour afficher le statut validé ou non, avec mon attribut products_validate(si =0 nn validé, ou 1
+                                                        echo 'en cours de validation';
+                                                    } else {
+                                                        echo 'validé';
+                                                    }
+                                                    ?></td>
+                                                <td><?= $productUsers->products_name ?></td>
+                                                <td><?= $productUsers->products_brand ?></td>
+                                                <td><?= $productUsers->products_quantity ?></td>
+                                                <td><?= $productUsers->products_state ?></td>
+                                                <td><?= $productUsers->products_capacity ?></td>
+                                                <td><?= $productUsers->expiration ?></td>
+                                                <td><div class="imgEspacetroc"><img class="img-fluid" src="<?= $productUsers->products_img ?>"></div></td>
+                                                <td><?= $productUsers->maincat_name ?></td>
+                                                <td><?= $productUsers->subcat_name ?></td>
+                                                <td><button class="btn btn-primary" for="edit" onclick="(window.location = 'View/modifArticle.php?idProducts=<?= $productUsers->products_id; ?>')"><i class="fas fa-pen"></i></button></td>
+                                                <td><button class="btn btn-raised btn-danger" for="delete" onclick="(window.location = 'View/deleteArticle.php?idProducts=<?= $productUsers->products_id; ?>')"><i class="fas fa-trash-alt"></i></button></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table> 
+                            </div>
+                        </div> 
+                    </div>
                 </div>
+
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Retrouver les utilisateurs et leurs articles
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <?php
+                            foreach ($allUserWithProductsValidate as $userList) {
+                                ?>
+                                <a href="espacetroc.php?idUserProductsList=<?= $userList->users_id ?>"><button>Ts les articles de <?= $userList->users_pseudo ?></button></a>
+                                <?php if (isset($_GET['idUserProductsList'])) { ?>
+
+                                    <div>
+                                        ok ok
+                                    </div>
+
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-
+        <div>
+            
+        </div>
 
 
         <!-- Footer -->

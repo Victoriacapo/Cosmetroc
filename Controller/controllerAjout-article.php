@@ -48,11 +48,12 @@ $succesArray = []; //tableau de message de succès d'une action donnée, ici de 
 
 //Regex
 $regexName = '/[a-zA-Z0-9 -]+$/'; //autorise les minuscules, majuscules, les chiffres, les espaces, les traits d'union
+$regexCapacity = '/[a-zA-Z0-9]{2,6}$/';
 
 // Verification des inputs.
 if (isset($_POST['nameproduct'])) { // recherche donnée input 
     $pductsObj->products_name = htmlspecialchars($_POST['nameproduct']); //declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
-    // on test si regex n'est pas bonne
+     // on applique la regex
     if (!preg_match($regexName, $pductsObj->products_name)) {//le preg_match permet de tester la regex sur ma variable 
         $errorsArray['nameproduct'] = 'Veuillez inscrire un nom de produit conforme';
     }
@@ -64,7 +65,7 @@ if (isset($_POST['nameproduct'])) { // recherche donnée input
 
 if (isset($_POST['brand'])) { //recherche donnée input 
     $pductsObj->products_brand = htmlspecialchars($_POST['brand']); //declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
-    // on test si regex n'est pas bonne
+     // on applique la regex
     if (!preg_match($regexName, $pductsObj->products_brand)) {//le preg_match permet de tester la regex sur ma variable 
         $errorsArray['brand'] = 'Veuillez inscrire une marque conforme';
     }
@@ -87,6 +88,10 @@ if (isset($_POST['state'])) { //recherche donnée input
 
 if (isset($_POST['capacity'])) { //recherche donnée input 
     $pductsObj->products_capacity = htmlspecialchars($_POST['capacity']); //declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
+// on applique la regex
+    if (!preg_match($regexCapacity, $pductsObj->products_capacity)) {//le preg_match permet de tester la regex sur ma variable 
+        $errorsArray['capacity'] = 'Veuillez inscrire une capacité conforme. Exemple: 1L / 150ml / 5cl';
+    }
 }
 
 if (isset($_POST['expiration'])) { //recherche donnée input 

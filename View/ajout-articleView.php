@@ -47,21 +47,21 @@ include_once('../Controller/controllerAjout-article.php');
                                 <h1 class="ArticleFormH1">Article</h1>
 
                                 <div class="row">
-                                    <div class="form-group col-lg-6 col-sm-6"> 
+                                    <div class="form-group col-lg-12 col-sm-6"> 
                                         <label for="nameproduct">Nom du produit: </label>
-                                        <input type="text" name="nameproduct" class="form-control" value="<?= isset($_POST['nameproduct']) ? $pductsObj->products_name : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
+                                        <input type="text" name="nameproduct" class="form-control pt-4" value="<?= isset($_POST['nameproduct']) ? $pductsObj->products_name : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
                                         <span class="error"><?= isset($errorsArray['nameproduct']) ? $errorsArray['nameproduct'] : ''; ?></span>
                                     </div>
 
-                                    <div class="form-group col-lg-6 col-sm-6"> 
+                                    <div class="form-group col-lg-12 col-sm-6"> 
                                         <label for="brand">Marque: </label>
-                                        <input type="text" name="brand" class="form-control" value="<?= isset($_POST['brand']) ? $pductsObj->products_brand : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
+                                        <input type="text" name="brand" class="form-control pt-4" value="<?= isset($_POST['brand']) ? $pductsObj->products_brand : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
                                         <span class="error"><?= isset($errorsArray['brand']) ? $errorsArray['brand'] : ''; ?></span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-sm-6"> 
                                         <label>Quantité: </label>
-                                        <select name="quantity" class="form-control"> 
+                                        <select name="quantity" class="form-control mt-2"> 
                                             <option value="" selected disabled></option>
                                             <option value="1" <?= (isset($_POST['quantity']) && $_POST['quantity'] == '1') ? 'selected' : ''; ?>>1</option> <!--ternaire qui permet de garder les valeurs inscrites à l'envoi -->
                                             <option value="2" <?= (isset($_POST['quantity']) && $_POST['quantity'] == '2') ? 'selected' : ''; ?>>2</option>
@@ -74,7 +74,7 @@ include_once('../Controller/controllerAjout-article.php');
 
                                     <div class="form-group col-lg-6 col-sm-6"> 
                                         <label>Etat: </label>
-                                        <select name="state" class="form-control"> 
+                                        <select name="state" class="form-control mt-2"> 
                                             <option value="" selected disabled></option>
                                             <option value="neuf" <?= (isset($_POST['state']) && $_POST['state'] == 'neuf') ? 'selected' : ''; ?>>Neuf</option> 
                                             <option value="testé" <?= (isset($_POST['state']) && $_POST['state'] == 'testé') ? 'selected' : ''; ?>>testé</option> 
@@ -85,19 +85,19 @@ include_once('../Controller/controllerAjout-article.php');
 
                                     <div class="form-group col-lg-6 col-sm-6"> 
                                         <label for="capacity">Capacité: </label>
-                                        <input type="text" name="capacity" class="form-control" value="<?= isset($_POST['capacity']) ? $pductsObj->products_capacity : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
+                                        <input type="text" name="capacity" class="form-control pt-4" value="<?= isset($_POST['capacity']) ? $pductsObj->products_capacity : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
                                         <span class="error"><?= isset($errorsArray['capacity']) ? $errorsArray['capacity'] : ''; ?></span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-sm-6"> 
                                         <label for="expiration">Date d'expiration: </label>
-                                        <input type="date" name="expiration" class="form-control" value="<?= isset($_POST['expiration']) ? $pductsObj->products_expiration : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
+                                        <input type="date" name="expiration" class="form-control pt-4" value="<?= isset($_POST['expiration']) ? $pductsObj->products_expiration : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
                                         <span class="error"><?= isset($errorsArray['expiration']) ? $errorsArray['expiration'] : ''; ?></span>
                                     </div>
 
                                     <div class="form-group col-lg-6 col-sm-6"> 
                                         <label>Catégorie: </label>
-                                        <select name="category" class="form-control"> 
+                                        <select name="category" class="form-control mt-2"> 
                                             <option value="" selected disabled></option>
                                             <?php
                                             foreach ($showMncat as $Maincat) { //boucle pour afficher les categories de la Bdd
@@ -113,7 +113,7 @@ include_once('../Controller/controllerAjout-article.php');
 
                                     <div class="form-group col-lg-6 col-sm-6"> 
                                         <label>Sous-Catégorie: </label>
-                                        <select name="sbcategory" class="form-control"> 
+                                        <select name="sbcategory" class="form-control mt-2"> 
                                             <option value="" selected disabled></option>
                                             <?php
                                             foreach ($showSbcat as $subcat) { //boucle pour afficher les ss-categories de la Bdd
@@ -129,7 +129,7 @@ include_once('../Controller/controllerAjout-article.php');
 
                                     <div class="form-group col-lg-12 col-sm-12 Image">
                                         <label id="labelImg">Image du produit à troqué </label>
-                                        <input type="file" name="image" class="form-control" value="<?= isset($_FILES['image']['name']) ? $pductsObj->products_img : ''; ?>">
+                                        <input type="file" name="image" class="form-control pt-4" value="<?= isset($_FILES['image']['name']) ? $pductsObj->products_img : ''; ?>">
                                         <input type="hidden" name="MAX_FILE_SIZE" value="2000000"><!--controle le format uploadé--> <!-- On limite le fichier à 2Mo -->
                                         <span class="error"><?= isset($errorsArray['image']) ? $errorsArray['image'] : ''; ?></span>
                                         <span class="error"><?= isset($errorImage['image']) ? $errorImage['image'] : ''; ?></span>

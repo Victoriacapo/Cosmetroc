@@ -43,14 +43,14 @@ $showSbcat = $sbcategObj->showSubCat(); //permet d'effectuer ma requête pr affi
 $errorsArray = [];
 $errorImage = []; //array contenant erreur lié au vérification de l'image.
 $succesArray = [];
-$regexName = '/[a-zA-Z0-9 -]+$/'; //autorise les minuscules, majuscules, les chiffres, les espaces, les traits d'union
-
+$regexName = '/[a-zA-ZÄ-ÿ0-9 -]+$/'; //autorise les minuscules, majuscules, les chiffres, les espaces, les traits d'union
+$regexCapacity = '/[a-zA-Z0-9]{2,6}$/';
 
 // Verification des inputs.
 if (isset($_POST['nameproduct'])) { // recherche donnée input 
     $nameproduct = htmlspecialchars($_POST['nameproduct']); //declaration variable qui contient le POST traité par la function htmlspecialchars
   
-    // on test si regex n'est pas bonne
+     // on applique la regex
     if (!preg_match($regexName, $nameproduct)) {//le preg_match permet de tester la regex sur ma variable 
         $errorsArray['nameproduct'] = 'Veuillez inscrire un nom de produit conforme';
     }
@@ -62,7 +62,7 @@ if (isset($_POST['nameproduct'])) { // recherche donnée input
 
 if (isset($_POST['brand'])) { // recherche donnée input 
     $brand = htmlspecialchars($_POST['brand']); //declaration variable qui contient le POST traité par la function htmlspecialchars
-    // on test si regex n'est pas bonne
+     // on applique la regex
     if (!preg_match($regexName, $brand)) {//le preg_match permet de tester la regex sur ma variable 
         $errorsArray['brand'] = 'Veuillez inscrire une marque conforme';
     }
@@ -74,6 +74,7 @@ if (isset($_POST['brand'])) { // recherche donnée input
 
 if (isset($_POST['quantity'])) { // recherche donnée input 
     $quantity = htmlspecialchars($_POST['quantity']);
+    // on test si c'est vide
 }
 
 if (!array_key_exists('state', $_POST) && isset($_POST['sendButton'])) {
@@ -85,6 +86,13 @@ if (isset($_POST['state'])) { // recherche donnée input
 
 if (isset($_POST['capacity'])) { // recherche donnée input 
     $capacity = htmlspecialchars($_POST['capacity']); //declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
+// on applique la regex
+    if (!preg_match($regexCapacity, $capacity)) {//le preg_match permet de tester la regex sur ma variable 
+        $errorsArray['capacity'] = 'Veuillez inscrire une capacité conforme. Exemple: 1L / 150ml / 5cl';
+    }
+    if (empty($capacity)) {
+        $errorsArray['capacity'] = 'Veuillez saisir une capacité pour continuer';
+    }
 }
 
 if (isset($_POST['expiration'])) { // recherche donnée input 

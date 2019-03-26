@@ -89,7 +89,7 @@
 }
 
 .bmd-form-group .bmd-label-static, .bmd-form-group.is-filled .bmd-label-floating, .bmd-form-group .is-filled .bmd-label-floating, .bmd-form-group.is-focused .bmd-label-floating, .bmd-form-group .is-focused .bmd-label-floating {
-    top: 1rem;
+    top: 2rem;
     left: 0;
     font-size: medium;
 }
@@ -126,4 +126,7 @@
 /*applique des border à ma liste dans le deleteArticle*/
 .products li{
    border:solid 1px #818181 ;
+}
+input #inputPassword .form-control{
+   padding-top: 1.55rem;
 }

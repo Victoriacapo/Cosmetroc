@@ -11,9 +11,9 @@ $showForm = true; //booléen qui renvoie true/false pr soit cacher/afficher mn f
 $errorsArray = [];
 
 // Mise en place des regex
-$regexPseudo = '/^[a-zA-Z0-9_]{3,16}$/';
-$regexPwd = '/^[a-zA-Z0-9_]+$/';
-$regexEmail = '/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/';
+$regexPseudo = '/^[a-zA-ZÄ-ÿ0-9_\.-]{3,16}$/';
+$regexPwd = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{6,}$/';
+$regexMail = '/^[a-z0-9.-]+@[a-z0-9.-]+.[a-z]{2,6}$/';
 
 
 if (!array_key_exists('gender', $_POST) && isset($_POST['sendButton'])) { // recherche si la clé gender existe
@@ -26,9 +26,9 @@ if (isset($_POST['gender'])) { // recherche donnée input
 
 if (isset($_POST['pseudo'])) { // recherche donnée input 
     $usersObj->users_pseudo = htmlspecialchars($_POST['pseudo']); // declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
-    // on test si regex n'est pas bonne
+     // on applique la regex
     if (!preg_match($regexPseudo, $usersObj->users_pseudo)) {//le preg_match permet de tester la regex sur ma variable pseudo
-        $errorsArray['pseudo'] = 'Veuillez inscrire un pseudo conforme';
+        $errorsArray['pseudo'] = 'Veuillez inscrire un pseudo conforme. Exemple: John45 / John / John-45/ jhon_45';
     }
     // on test si c'est vide
     if (empty($usersObj->users_pseudo)) {
@@ -37,20 +37,21 @@ if (isset($_POST['pseudo'])) { // recherche donnée input
 }
 
 if (isset($_POST['password'])) { // recherche donnée input 
-    // on test si regex n'est pas bonne
+     // on applique la regex
     if (!preg_match($regexPwd, $_POST['password'])) {//le preg_match permet de tester la regex sur ma variable 
-        $errorsArray['password'] = 'Veuillez inscrire un mot de passe conforme';
+        $errorsArray['password'] = 'Veuillez inscrire un mot de passe conforme. Il doit contenir 6 caractères minimum, comprenant 1 majuscule et 1 miniscule et un caractère spécial';
     }
     // on test si c'est vide
     if (empty($_POST['password'])) {
         $errorsArray['password'] = 'Veuillez saisir un mot de passe pour continuer';
     }
 }
+
 if (isset($_POST['email'])) { // recherche donnée input pseudo
     $usersObj->users_email = htmlspecialchars($_POST['email']); // declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
-    // on test si regex n'est pas bonne
-    if (!preg_match($regexEmail, $usersObj->users_email)) {//le preg_match permet de tester la regex sur ma variable 
-        $errorsArray['email'] = 'Veuillez inscrire un email conforme';
+     // on applique la regex
+    if (!preg_match($regexMail, $usersObj->users_email)) {//le preg_match permet de tester la regex sur ma variable 
+        $errorsArray['email'] = 'Veuillez inscrire un email conforme. L\'adresse email doit être saisie en minuscule. Exemple: johndoe@domaine.com';
     }
     // on test si c'est vide
     if (empty($usersObj->users_email)) {

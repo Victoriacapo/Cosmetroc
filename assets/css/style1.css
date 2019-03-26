@@ -100,11 +100,11 @@
     background-color: pink;
     height: 15.625rem;
     width: 15.625rem;
-     margin-right: 1.75rem;
+    margin-right: 1.75rem;
     border-radius: 50%;
     /*permet le centrage, contexte sur le parent */ 
     display: flex;
-   
+
 }
 #ImgGoodPractice{
     height: 9.375rem;
@@ -158,8 +158,27 @@
     margin-right: 0.45rem;
 }
 .ProductsContainer .card-img-top {
-	height: 16.625rem;
-	width: 16.625rem;
+    height: 16.625rem;
+    width: 16.625rem;
+}
+/* Zoom sur les images de produit dans l'espacetroc*/
+.imgEspacetroc, .imgEspacetroc img{
+    width:3.125rem;
+    height:3.125rem;
+}
+.imgEspacetroc:hover, .imgEspacetroc img:hover{
+    height: 9.375rem;
+    width: 9.375rem;
+}
+
+/* Zoom sur les images de produit dans l'espaceAdmin*/
+.imgEspaceAdmin, .imgEspaceAdmin img{
+    width: 3.125rem;
+    height: 3.125rem;
+}
+.imgEspaceAdmin:hover, .imgEspaceAdmin img:hover{
+    height: 9.375rem;
+    width: 9.375rem;
 }
 
 /*footer  */

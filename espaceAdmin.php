@@ -173,7 +173,7 @@ if ($profilCheck->users_authorised == 1) {
                                                 <td><?= $products->products_state ?></td>
                                                 <td><?= $products->products_capacity ?></td>
                                                 <td><?= $products->expiration ?></td>
-                                                <td><img class="img-fluid" src="<?= $products->products_img ?>" width="42" height="42"></td>
+                                                <td><div class="imgEspacetroc"><img class="img-fluid" src="<?= $products->products_img ?>"></div></td>
                                                 <td><?= $products->maincat_name ?></td>
                                                 <td><?= $products->subcat_name ?></td>
                                                 <td> 
@@ -253,7 +253,6 @@ if ($profilCheck->users_authorised == 1) {
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
-
                             <div class="table-responsive-sm">
                                 <table class="table table-striped table-bordered table-dark">
                                     <thead>
@@ -285,7 +284,7 @@ if ($profilCheck->users_authorised == 1) {
                                                 <td><?= $productsPublished->products_state ?></td>
                                                 <td><?= $productsPublished->products_capacity ?></td>
                                                 <td> <?= date('d/m/Y', strtotime($productsPublished->products_expiration)); ?></td>
-                                                <td><img class="img-fluid" src="<?= $productsPublished->products_img ?>" width="42" height="42"></td>
+                                                <td><img class="img-fluid ObjetImg" src="<?= $productsPublished->products_img ?>"></td>
                                                 <td><?= $productsPublished->maincat_name ?></td>
                                                 <td><?= $productsPublished->subcat_name ?></td>
                                                 <td> 
@@ -316,8 +315,6 @@ if ($profilCheck->users_authorised == 1) {
                                                 </div>
                                             </div>
                                         </div>
-
-
                                         <?php
                                     }
                                     ?>

@@ -33,7 +33,7 @@ include_once('../Controller/controllerInscription.php');
                             <h1 class="inscriptionFormH1">Inscription</h1>
                             <div class="form-group"> 
                                 <label>Civilité: </label>
-                                <select name="gender" class="form-control"> 
+                                <select name="gender" class="form-control mt-2"> 
                                     <option  value="" selected disabled></option>
                                     <option  value="MR" <?= (isset($_POST['gender']) && $_POST['gender'] == 'MR') ? 'selected' : ''; //ternaire qui permet de garder les valeurs inscrites à l'envoi                                                       ?>>MR</option>
                                     <option  value="MME" <?= (isset($_POST['gender']) && $_POST['gender'] == 'MME') ? 'selected' : ''; //ternaire qui permet de garder les valeurs inscrites à l'envoi;                                                        ?>>MME</option>
@@ -42,18 +42,18 @@ include_once('../Controller/controllerInscription.php');
                             </div>
                             <div class="form-group"> 
                                 <label for="pseudo">Pseudo: </label>
-                                <input type="text" name="pseudo" class="form-control" value="<?= isset($_POST['pseudo']) ? $usersObj->users_pseudo : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
+                                <input type="text" placeholder="john45" name="pseudo" class="form-control pt-4" value="<?= isset($_POST['pseudo']) ? $usersObj->users_pseudo : ''; ?>"/><!--ternaire qui permet que les données saisie reste -->
                                 <span class="error"><?= isset($errorsArray['pseudo']) ? $errorsArray['pseudo'] : ''; ?></span>
                             </div>
                             <div class="form-group"> 
-                                <label for="password">Mot de passe: (6 caractères minimum, comprenant 1 majuscule et 1 miniscule)</label>
-                            
-                                <input type="password" name="password" class="form-control" value="<?= isset($_POST['password']) ? $usersObj->users_password : ''; ?>"/>
+                                <label for="password">Mot de passe: (6 caractères minimum, comprenant 1 majuscule et 1 miniscule et un caractère spécial:(/-_*)</label>
+                                <!-- la class pt-4 correspond à un padding-top de 1.5rem (24px)-->
+                                <input type="password" name="password" class="form-control pt-5" value="<?= isset($_POST['password']) ? $usersObj->users_password : ''; ?>"/>
                                 <span class="error"><?= isset($errorsArray['password']) ? $errorsArray['password'] : ''; ?></span>
                             </div>
                             <div class="form-group"> 
                                 <label for="email" class="bmd-label-floating">Email: </label>
-                                <input type="email" name="email" class="form-control" value="<?= isset($_POST['email']) ? $usersObj->users_email : ''; ?>"/>
+                                <input type="email" placeholder="johndoe@domaine.com" name="email" class="form-control pt-4" value="<?= isset($_POST['email']) ? $usersObj->users_email : ''; ?>"/>
                                 <span class="error"><?= isset($errorsArray['email']) ? $errorsArray['email'] : ''; ?></span>
                             </div>
 

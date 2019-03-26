@@ -35,12 +35,12 @@ include_once('../Controller/controllerConnexion.php');
                         <h1 class="connexionFormH1">Connexion</h1>
                         <div class="form-group"> 
                             <label for="pseudo">Pseudo: </label>
-                            <input type="text" name="pseudo" class="form-control" value="<?= isset($_POST['pseudo']) ? $usersObj->users_pseudo : ''; ?>" required/><!--ternaire qui permet que les données saisie reste -->
+                            <input type="text" name="pseudo" class="form-control pt-4" value="<?= isset($_POST['pseudo']) ? $usersObj->users_pseudo : ''; ?>" required/><!--ternaire qui permet que les données saisie reste -->
                             <span class="error"><?= isset($errorsArray['pseudo']) ? $errorsArray['pseudo'] : ''; ?></span>
                         </div>
                         <div class="form-group"> 
                             <label for="password">Mot-de-passe: </label>
-                            <input type="password" name="password" class="form-control" value="<?= isset($_POST['password']) ? $usersObj->users_password : ''; ?>" required/>
+                            <input type="password" name="password" class="form-control pt-4" value="<?= isset($_POST['password']) ? $usersObj->users_password : ''; ?>" required/>
                             <span class="error"><?= isset($errorsArray['password']) ? $errorsArray['password'] : ''; ?></span>
                         </div>
                         <div id="sendButton"> <input type="submit" class="btn btn-raised btn-primary" name="sendButton" value="Connexion" /></div>
