@@ -1,4 +1,5 @@
 <?php
+
 //appel des différents modèle
 include_once ('../model/modelbdd.php');
 include_once ('../model/modelusers.php');
@@ -12,45 +13,44 @@ $categObj = new Category(); //categorie
 $sbcategObj = new SubCategory(); //ss-categorie
 $OnepductsObj = new Products(); // article
 
-$checkId = true; //variable qui permet d'appliquer un  message à l'utilisateur si son identifiant est incorrect.
+
 $showForm = true; //booléen qui renvoie true/false pr soit afficher/cacher mn form
+
 
 if (isset($_GET['idProducts']) && ($_SESSION['idUser'])) { //recupere l'id, verifie si présent ds la base de donnée, et effectue la requête
     $OnepductsObj->products_id = htmlspecialchars($_GET['idProducts']); //on indique que l'objet products_id correspond au Get['idProduct']
     $OnepductsObj->users_id = $_SESSION['idUser'];
-    
     $filePdt = $OnepductsObj->profilProducts(); //correspond à la requête pr afficher la fiche propre à un produit
-    
-    $_SESSION['idProduct'] = htmlspecialchars($_GET['idProducts']);
+
     $_SESSION['imageProduct'] = $filePdt->products_img;
+    $_SESSION['idProduct'] = htmlspecialchars($_GET['idProducts']);
+
 
     if ($OnepductsObj === FALSE) {
         $ifIdexist = FALSE;
     } else {
         $ifIdexist = TRUE;
-        if ($_SESSION['idUser'] == $filePdt->users_id){// si la variable de session est égale à l'objet $productsObj->users_id, la variable $checkId retourne vrai.
-            $checkId = false;
-        }
     }
 }
 
-
+ $filePdt = $OnepductsObj->profilProducts(); //correspond à la requête pr afficher la fiche propre à un produit
 $showMncat = $categObj->showCat(); //permet d'effectuer ma requête pr afficher les catégories
 $showSbcat = $sbcategObj->showSubCat(); //permet d'effectuer ma requête pr afficher les ss-catégories
-
-
 //tableau d'erreur
 $errorsArray = [];
 $errorImage = []; //array contenant erreur lié au vérification de l'image.
 $succesArray = [];
+//Regex
 $regexName = '/[a-zA-ZÄ-ÿ0-9 -]+$/'; //autorise les minuscules, majuscules, les chiffres, les espaces, les traits d'union
 $regexCapacity = '/[a-zA-Z0-9]{2,6}$/';
 
+$today = date('d-m-Y'); //date du jour
+$dayMoreFifteenDays = date('d-m-Y', strtotime($today) + (24 * 3600 * 15)); //j'ajoute 15 jours à la date du jour pour appliquer une limite avec la date saisie.
+$MoreDays = new DateTime($dayMoreFifteenDays); //je formate la date+15 jours avec la fontion DateTime pr plus tard la comparé avec la date saisie par l'utilisateur.
 // Verification des inputs.
 if (isset($_POST['nameproduct'])) { // recherche donnée input 
     $nameproduct = htmlspecialchars($_POST['nameproduct']); //declaration variable qui contient le POST traité par la function htmlspecialchars
-  
-     // on applique la regex
+    // on applique la regex
     if (!preg_match($regexName, $nameproduct)) {//le preg_match permet de tester la regex sur ma variable 
         $errorsArray['nameproduct'] = 'Veuillez inscrire un nom de produit conforme';
     }
@@ -62,7 +62,7 @@ if (isset($_POST['nameproduct'])) { // recherche donnée input
 
 if (isset($_POST['brand'])) { // recherche donnée input 
     $brand = htmlspecialchars($_POST['brand']); //declaration variable qui contient le POST traité par la function htmlspecialchars
-     // on applique la regex
+    // on applique la regex
     if (!preg_match($regexName, $brand)) {//le preg_match permet de tester la regex sur ma variable 
         $errorsArray['brand'] = 'Veuillez inscrire une marque conforme';
     }
@@ -97,6 +97,12 @@ if (isset($_POST['capacity'])) { // recherche donnée input
 
 if (isset($_POST['expiration'])) { // recherche donnée input 
     $expiration = htmlspecialchars($_POST['expiration']);
+
+    $ExpirationDate = $expiration; //Déclaration variable qui contient la date saisie
+    $datePost = new DateTime($ExpirationDate); //je formate la date saisie avec la fonction DateTime()
+    if ($datePost < $MoreDays) {//Je vérifie que la date saisie n'est pas inférieur aux 15 jours imposé, si c'est le cas message d'erreur
+        $errorsArray['expiration'] = 'la date d\'expiration doit être supérieur de 15 jours à la date du jour.';
+    }
 }
 
 if (!array_key_exists('category', $_POST) && isset($_POST['sendButton'])) {
@@ -155,7 +161,7 @@ if (isset($_FILES['image']) && ($_FILES['image']['error']) != 4) {
 
 
 if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorImage) == 0)) {
-    
+
     if (($_FILES['image']['error']) == 4) {
         $OnepductsObj->products_img = $_SESSION['imageProduct'];
     } else {
@@ -177,7 +183,4 @@ if (isset($_POST['sendButton']) && (count($errorsArray) == 0) && (count($errorIm
     $OnepductsObj->editProduct();
     $showForm = false; //ma variable retourne false donc cache mon formulaire remplie.
     $checkId = false; //indique qu'a cette étape l'idUser est bien vérifié
-   
-
-
 }

@@ -28,22 +28,10 @@ include_once('../Controller/controllerModifArticle.php');
         <div class="container-fluid my-5">
             <div class="row">
                 <div class="col-sm-12 col-lg-6 Article">
-                    <?php if ($checkId) { ?> <!-- si l'idUser session est différent de l'objet users_id, afficher l'alerte  -->
-                        <div class="alert alert-dark" role="alert">
-                            Vous n'avez pas les droits pour modifier cet article.
-                        </div>
-                    <?php } else { //sinon afficher la fiche produit
-                        ?>
-
+                    
                         <?php
                         if ($showForm) { //applique ma booleenne pr afficher/cacher mon form 
-                           
-                            if ($filePdt->products_validate == 0) { //condition si la variable $filePdt == 0, indiquer à l'utilisateur que son produit est en cours de validation'
-                                ?>
-                                <div class="alert alert-dark" role="alert">
-                                    Votre article n'est pas encore visible sur le site, il sera traité par l'administrateur.
-                                </div>
-                            <?php } ?>
+                           ?>
                             <form name="addProduit" action="modifArticle.php" method="POST" enctype="multipart/form-data">
                                 <h1 class="ArticleFormH1">Modification Article</h1>
 
@@ -164,7 +152,7 @@ include_once('../Controller/controllerModifArticle.php');
                             </div>
                             <?php
                         }
-                    }
+                   
                     ?>
                     <div id="closebutton">
                         <button type="button" onclick="(window.location = '../espacetroc.php')" class="btn btn-raised btn-danger">X</button>

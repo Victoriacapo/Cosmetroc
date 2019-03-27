@@ -40,20 +40,22 @@ if (isset($_SESSION['idUser'])) { //récupère l'idUser de la session en cours
 
 $showMncat = $categObj->showCat(); //permet d'effectuer ma requête pr afficher les catégories
 $showSbcat = $sbcategObj->showSubCat(); //permet d'effectuer ma requête pr afficher les ss-catégories
-
 // on déclare un tableau errorsArray qui contiendra les messages d'erreurs
 $errorsArray = [];
 $errorImage = []; //array contenant erreur lié au vérification de l'image.
 $succesArray = []; //tableau de message de succès d'une action donnée, ici de l'upload de l'image
-
 //Regex
 $regexName = '/[a-zA-Z0-9 -]+$/'; //autorise les minuscules, majuscules, les chiffres, les espaces, les traits d'union
 $regexCapacity = '/[a-zA-Z0-9]{2,6}$/';
 
+$today = date('d-m-Y'); //date du jour
+$dayMoreFifteenDays = date('d-m-Y', strtotime($today) + (24 * 3600 * 15)); //j'ajoute 15 jours à la date du jour pour appliquer une limite avec la date saisie.
+$MoreDays = new DateTime($dayMoreFifteenDays); //je formate la date+15 jours avec la fontion DateTime pr plus tard la comparé avec la date saisie par l'utilisateur.
+
 // Verification des inputs.
 if (isset($_POST['nameproduct'])) { // recherche donnée input 
     $pductsObj->products_name = htmlspecialchars($_POST['nameproduct']); //declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
-     // on applique la regex
+    // on applique la regex
     if (!preg_match($regexName, $pductsObj->products_name)) {//le preg_match permet de tester la regex sur ma variable 
         $errorsArray['nameproduct'] = 'Veuillez inscrire un nom de produit conforme';
     }
@@ -65,7 +67,7 @@ if (isset($_POST['nameproduct'])) { // recherche donnée input
 
 if (isset($_POST['brand'])) { //recherche donnée input 
     $pductsObj->products_brand = htmlspecialchars($_POST['brand']); //declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
-     // on applique la regex
+    // on applique la regex
     if (!preg_match($regexName, $pductsObj->products_brand)) {//le preg_match permet de tester la regex sur ma variable 
         $errorsArray['brand'] = 'Veuillez inscrire une marque conforme';
     }
@@ -96,6 +98,12 @@ if (isset($_POST['capacity'])) { //recherche donnée input
 
 if (isset($_POST['expiration'])) { //recherche donnée input 
     $pductsObj->products_expiration = htmlspecialchars($_POST['expiration']);
+    
+    $ExpirationDate = $pductsObj->products_expiration; //Déclaration variable qui contient la date saisie
+    $datePost = new DateTime($ExpirationDate);//je formate la date saisie avec la fonction DateTime()
+    if ($datePost < $MoreDays) {//Je vérifie que la date saisie n'est pas inférieur aux 15 jours imposé, si c'est le cas message d'erreur
+        $errorsArray['expiration'] = 'la date d\'expiration doit être supérieur de 15 jours à la date du jour.';
+    }
 }
 
 if (!array_key_exists('category', $_POST) && isset($_POST['sendButton'])) {

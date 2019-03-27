@@ -74,7 +74,7 @@ if (isset($_POST['email'])) { // recherche donnée input pseudo
 if (isset($_POST['address'])) { // recherche donnée input pseudo
     $profilObj->users_address = htmlspecialchars($_POST['address']); // declaration variable qui contient function htmlspe(qui traite données saisie ds le champs )
     // on applique la regex
-    if (!preg_match($regexAddress, $profilObj->users_email)) {//le preg_match permet de tester la regex sur ma variable 
+    if (!preg_match($regexAddress, $profilObj->users_address)) {//le preg_match permet de tester la regex sur ma variable 
         $errorsArray['address'] = 'Veuillez inscrire une adresse conforme';
     }
     // on test si c'est vide
